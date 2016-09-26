@@ -1,4 +1,4 @@
-﻿namespace WebApplication2.Models
+﻿namespace AcademicosUem.Models
 {
     using System;
     using System.Collections.Generic;
@@ -10,19 +10,11 @@
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-
-        [StringLength(100)]
         public string Titulo { get; set; }
-
-        [StringLength(250)]
         public string Descricao { get; set; }
-
         public int AutorID { get; set; }
-
         public int? AreaID { get; set; }
-
         public virtual Area Area { get; set; }
-
         public virtual Autor Autor { get; set; }
     }
 }

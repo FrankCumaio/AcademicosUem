@@ -1,4 +1,4 @@
-﻿namespace WebApplication2.Models
+﻿namespace AcademicosUem.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,25 +17,18 @@
 
         public int Id { get; set; }
 
-        [StringLength(250)]
         public string Titulo { get; set; }
 
-        [StringLength(250)]
         public string Descricao { get; set; }
 
-        [StringLength(250)]
         public string Data_Publicacao { get; set; }
 
-        [StringLength(10)]
         public string Grau_Academico { get; set; }
 
-        [StringLength(10)]
         public string Data_Defesa { get; set; }
 
-        [StringLength(50)]
         public string Estado { get; set; }
 
-        [StringLength(100)]
         public string DirectorioDoc { get; set; }
 
         public int AreaID { get; set; }
