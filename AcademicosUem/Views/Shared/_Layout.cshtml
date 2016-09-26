@@ -3,13 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Academicos UEM</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/js")
+
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,13 +30,79 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
+    </div>*@
+
+
+    <!--Navigation-->
+    <div class="navbar navbar navbar-fixed-top">
+        <nav id="nav_f" class="default_color" role="navigation">
+            <div class="container">
+                <div class="nav-wrapper">   
+                    <a href="#" id="logo-container" class="brand-logo">Academicos MZ</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#intro">@Html.ActionLink("Inicio", "Index", "Home")</a></li>
+                        <li><a href="#work">Trabalhos</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#contact">Contacte Nos</a></li>
+                    </ul>
+                    <ul id="nav-mobile" class="side-nav">
+                        <li><a href="#intro">@Html.ActionLink("Inicio", "Index", "Home")</a></li>
+                        <li><a href="#work">Trabalhos</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#contact">Contacte Nos</a></li>
+                    </ul>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                </div>
+
+            </div>
+
+           
+        </nav>
     </div>
-    <div class="container body-content">
+
+
+    <div class="">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+            <!--Footer-->
+            <footer id="contact" class="page-footer default_color scrollspy">
+                <div class="container">
+                    <div class="row">
+                      
+                      
+                        <div class="col l3 s12">
+                            <h5 class="white-text">Social</h5>
+                            <ul>
+                                <li>
+                                    <a class="white-text" href="https://www.behance.net/joashp">
+                                        <i class="small fa fa-behance-square white-text"></i> Behance
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="white-text" href="https://www.facebook.com/joash.c.pereira">
+                                        <i class="small fa fa-facebook-square white-text"></i> Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="white-text" href="https://github.com/joashp">
+                                        <i class="small fa fa-github-square white-text"></i> Github
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="white-text" href="https://www.linkedin.com/in/joashp">
+                                        <i class="small fa fa-linkedin-square white-text"></i> Linkedin
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright default_color">
+                    <div class="container">
+                        Developed by Inercio Belton & Frank Cumaio
+                    </div>
+                </div>
+            </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

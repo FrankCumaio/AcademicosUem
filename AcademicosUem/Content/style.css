@@ -5,22 +5,61 @@
  * Thanks for MaterializeCSS.com
  */
 
-.default_color{background-color: #2196F3 !important}
+.default_color{background-color: rgba(91, 79, 79, 0.80)  !important}
 
-.default_color_text{color: #2196F3 !important}
+.default_color_text{color: #5b4f4f !important}
 
 .icon-block {
     padding: 0 15px;
 }
 
+body{
+    padding: 0px;
+}
+
 #intro, #work, #team {padding-top: 4rem;}
 
+#textoHeader{
+    margin-top: 60px;
+    height: 180px;
+}
+
+.promo-caption{
+    margin-bottom: 40px;
+}
+
+#icon_prefix{
+    color: white;
+    border: 1px solid white;
+}
+
+
+a{
+    color : #5b4f4f;
+}
+
+#btPesquisa{
+    margin-top: -3px;
+    background: rgba(0,0,0,.1);
+    border: 1px solid whitesmoke;
+    color: white;
+}
+
+#searchBoxDiv{
+    margin-top: 70px;
+    height: 30px;
+    margin-top: 0;
+}
 
 #index-banner {
-    min-height: 632px;
+    min-height: 470px;
     max-height: 864px;
     position: relative;
-    background-color: #2196F3;
+    background-color: #5b4f4f;
+    background: url('/img/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 #nav_f{
@@ -48,20 +87,20 @@
 
 .text_h2 {font-weight: 100;margin-bottom: 4%; line-height: 4.5rem;}
 
-.span_h2 {font-weight: 300;color: #2196F3;}
+.span_h2 {font-weight: 300;color: #5b4f4f;}
 
-.text_b{color: #2196F3;}
+.text_b{color: #222020;}
 
 .in{font-weight: 400 !important; font-style: normal !important;}
 
 .promo i {
-    color: #2196F3;
+    color: #5b4f4f;
     font-size: 7rem;
     display: block;
 }
-.card-content a {color: #2196F3;}
+.card-content a {color: #5b4f4f;}
 
-.card-content a:hover {color: #2196F3;}
+.card-content a:hover {color: #5b4f4f;}
 
 #work, #team{background: rgb(247, 247, 247);}
 
@@ -79,6 +118,8 @@ nav ul a {
 .cd-headline.type .cd-words-wrapper {
     vertical-align: top;
     overflow: hidden;
+    padding: 0px;
+    margin:0px;
 }
 
 .cd-headline.type .cd-words-wrapper::after {
@@ -112,7 +153,7 @@ nav ul a {
 }
 
 .cd-headline.type .cd-words-wrapper.selected b {
-    color: #2196F3;
+    color: #5b4f4f;
 }
 
 .cd-headline.type b {
@@ -221,6 +262,7 @@ nav ul a {
     }
 }
 
+
 input, textarea {
     border-bottom: 1px solid #fff;
 }
@@ -261,5 +303,5 @@ nav a.button-collapse {
 }
 
 footer.page-footer {
-    margin-top: 0px !important;
+    margin: 0px !important;
 }
