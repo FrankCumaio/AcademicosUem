@@ -13,16 +13,16 @@ using AcademicosUem.Models;
 namespace AcademicosUem.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountControllerbk : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public AccountControllerbk()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountControllerbk(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
