@@ -1,4 +1,4 @@
-﻿namespace WebApplication2.Models
+﻿namespace AcademicosUem.Models
 {
     using System;
     using System.Collections.Generic;

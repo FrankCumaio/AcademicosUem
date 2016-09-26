@@ -179,7 +179,7 @@
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\DAL\AcademicosUemDbContext.cs" />
     <Compile Include="Models\Temas.cs" />
     <Compile Include="Models\Trabalho.cs" />
     <Compile Include="Models\Trabalhos_autor.cs" />
