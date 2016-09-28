@@ -2,68 +2,23 @@
     ViewBag.Title = "Home Page";
 }
 
-@*<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>*@
+@Styles.Render("~/Content/materializeIcons")
 
 
-<!--Hero-->
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container" id="textoHeader">
-        <h3 style="font-size: 50px; padding-top: 50px; padding-bottom:0;" class="text_h center header cd-headline letters type">
-            <span>Encontre</span>
-            <span class="cd-words-wrapper waiting">
-                <b class="is-visible">e partilhe</b>
-                <b>trabalhos</b>
-                <b>temas</b>
-            </span>
-        </h3>
-    </div>
 
-    <div class="container center col s4" id="searchBoxDiv">
-        <div class="input-field col m10" id="searchfield">
-            <input id="icon_prefix" name="name" type="text" class="validate white black-text center" placeholder="Pesquise por trabalhos, temas, etc..">
-            <button id="btPesquisa" class="btn darken-1" type="submit" style="height: 47px;">Pesquisar</button>
-</div>
-    </div>
-
-</div>
-<!--Intro and service-->
+<!--Navegue pelas areas-->
 <div id="intro" class="section scrollspy">
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <h2 class="center header text_h2"> Navegue pelas <span class="span_h2">areas</span></h2>
+                <h2 class="center header text_h2" style="margin-top:0; margin-bottom: 60px;"> Navegue pelas <span class="span_h2">areas</span></h2>
             </div>
             <br/>
             <br/>
             <div class="col s12 m4 l4">
                 <div class="center promo promo-example">
-                    <h5 class="promo-caption">Ciencias exactas</h5>
+                    
+                    <h5 class="promo-caption">  Ciencias exactas</h5>
                     <br/>
                     <h5 class="promo-caption">Ciencias Naturais</h5>
 
@@ -86,10 +41,11 @@
         </div>
     </div>
 </div>
+
 <!--Trabalhos recentes-->
 <div class="section scrollspy" id="work">
     <div class="container">
-        <h3 class="header text_b">Trabalhos recentes <span style="font-size: 20px"><a>[ Ver todos ]</a></span></h3>
+        <h3 class="header text_h2">Trabalhos <span class="span_h2"> recentes</span> <span style="font-size: 20px"><a>[ Ver todos ]</a></span></h3>
         <div class="row">
             <div class="col s12 m4 l4">
                 <div class="card">
@@ -138,9 +94,10 @@
             </div>
             </div>
 
+
         <!--Trabalhos mais populares-->
         <div class="row">
-            <h3 class="header text_b">Trabalhos populares <span style="font-size: 20px"><a>[ Ver todos ]</a></span></h3>
+            <h3 class="header text_h2">Trabalhos <span class="span_h2"> populares </span><span style="font-size: 20px"><a>[ Ver todos ]</a></span></h3>
             <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
@@ -189,14 +146,24 @@
         </div>
     </div>
 </div>
-<!--Parallax-->
-<div class="parallax-container">
-    <div class="parallax"><img src="img/parallax1.png"></div>
+
+
+<!--Parallax Subscreva-se -->
+<div class="parallax-container" style="background: rgba(0, 0, 0,.2);">
+    <div id="subscricao" class="parallax">
+        <!--Conteudo parallax here-->
+        <div class="container col m4" style="margin-top: 60px; color: white">
+            <b><h4 class="center text_h2">Encontre sugestoes de temas para trabalhos de investigacao e partilhe as suas ideias</h4></b>
+        </div>
+        <!--<img src="img/parallax1.png"> -->
+    </div>
 </div>
-<!--Team-->
+
+
+<!--Sobre Nos-->
 <div class="section scrollspy" id="team">
     <div class="container">
-        <h2 class="header text_b"> Our Team </h2>
+        <h2 class="header text_h2"> Sobre <span class="span_h2"> Nos </span></h2>
         <div class="row">
             <div class="col s12 m3">
                 <div class="card card-avatar">

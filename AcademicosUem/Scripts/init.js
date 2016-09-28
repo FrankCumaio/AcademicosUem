@@ -1,3 +1,4 @@
+
 (function($){
   $(function(){
 
@@ -14,7 +15,7 @@
 		//letters effect
 		lettersDelay = 40,
 		//type effect
-		typeLettersDelay = 120,
+		typeLettersDelay = 130,
 		selectionDuration = 500,
 		typeAnimationDelay = selectionDuration + 800,
 		//clip effect 

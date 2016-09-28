@@ -52,6 +52,8 @@ namespace AcademicosUem
                       "~/Content/custom-min.css",
                       "~/Content/plugin-min.css"));
 
+           
+
         }
     }
 }

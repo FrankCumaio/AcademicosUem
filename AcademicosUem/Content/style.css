@@ -5,7 +5,7 @@
  * Thanks for MaterializeCSS.com
  */
 
-.default_color{background-color: rgba(91, 79, 79, 0.80)  !important}
+.default_color{background-color: rgba(91, 79, 79, 0.80)  !important;}
 
 .default_color_text{color: #5b4f4f !important}
 
@@ -33,9 +33,31 @@ body{
     border: 1px solid white;
 }
 
-
 a{
     color : #5b4f4f;
+    text-decoration: none;
+}
+
+a:hover, a:visited, a:focus, a:active{
+    text-decoration: none;
+}
+
+.nav-wrapper ul a:hover, a:visited, a:focus, a:active{
+    color: white;
+}
+
+.myIcon{
+    font-size: 5px;
+}
+
+.nav-wrapper ul a:focus{
+    background: rgba(91, 79, 79, 0.90);
+    color: white;
+}
+
+#subscricao{
+   background: url(../../img/parallax1.png);
+   background-size: cover; 
 }
 
 #btPesquisa{
@@ -72,24 +94,33 @@ a{
     font-size: 6.0em;
     font-weight: 100;
     color:white;
+    font-family: Roboto, Roboto-Light;
 }
+
+.nav-wrapper{
+  font-family: Roboto, Roboto-Light;
+}
+
 
 .brand-logo{
     position: absolute;
     color: #fff;
     display: inline-block;
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     font-style: normal;
     font-weight: 100;
     padding: 0;
-    letter-spacing: 7px;
+    letter-spacing: 2px;
 }
 
-.text_h2 {font-weight: 100;margin-bottom: 4%; line-height: 4.5rem;}
+.text_h2 {font-weight: 100;margin-bottom: 4%; line-height: 4.5rem; font-family: Roboto, Roboto-Light;
+}
 
-.span_h2 {font-weight: 300;color: #5b4f4f;}
+.span_h2 {font-weight: 300;color: #5b4f4f; font-family: Roboto, Roboto-Light;
+}
 
-.text_b{color: #222020;}
+.text_b{color: #222020; font-family: Roboto, Roboto-Light !important;
+}
 
 .in{font-weight: 400 !important; font-style: normal !important;}
 
@@ -113,6 +144,7 @@ nav ul a {
     display: block;
     font-weight: 300;
     padding: 0px 15px;
+    text-decoration: none;
 }
 
 .cd-headline.type .cd-words-wrapper {
