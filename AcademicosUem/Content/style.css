@@ -5,22 +5,83 @@
  * Thanks for MaterializeCSS.com
  */
 
-.default_color{background-color: #2196F3 !important}
+.default_color{background-color: rgba(91, 79, 79, 0.80)  !important;}
 
-.default_color_text{color: #2196F3 !important}
+.default_color_text{color: #5b4f4f !important}
 
 .icon-block {
     padding: 0 15px;
 }
 
+body{
+    padding: 0px;
+}
+
 #intro, #work, #team {padding-top: 4rem;}
 
+#textoHeader{
+    margin-top: 60px;
+    height: 180px;
+}
+
+.promo-caption{
+    margin-bottom: 40px;
+}
+
+#icon_prefix{
+    color: white;
+    border: 1px solid white;
+}
+
+a{
+    color : #5b4f4f;
+    text-decoration: none;
+}
+
+a:hover, a:visited, a:focus, a:active{
+    text-decoration: none;
+}
+
+.nav-wrapper ul a:hover, a:visited, a:focus, a:active{
+    color: white;
+}
+
+.myIcon{
+    font-size: 5px;
+}
+
+.nav-wrapper ul a:focus{
+    background: rgba(91, 79, 79, 0.90);
+    color: white;
+}
+
+#subscricao{
+   background: url(../../img/parallax1.png);
+   background-size: cover; 
+}
+
+#btPesquisa{
+    margin-top: -3px;
+    background: rgba(0,0,0,.1);
+    border: 1px solid whitesmoke;
+    color: white;
+}
+
+#searchBoxDiv{
+    margin-top: 70px;
+    height: 30px;
+    margin-top: 0;
+}
 
 #index-banner {
-    min-height: 632px;
+    min-height: 470px;
     max-height: 864px;
     position: relative;
-    background-color: #2196F3;
+    background-color: #5b4f4f;
+    background: url('/img/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 #nav_f{
@@ -33,35 +94,44 @@
     font-size: 6.0em;
     font-weight: 100;
     color:white;
+    font-family: Roboto, Roboto-Light;
 }
+
+.nav-wrapper{
+  font-family: Roboto, Roboto-Light;
+}
+
 
 .brand-logo{
     position: absolute;
     color: #fff;
     display: inline-block;
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     font-style: normal;
     font-weight: 100;
     padding: 0;
-    letter-spacing: 7px;
+    letter-spacing: 2px;
 }
 
-.text_h2 {font-weight: 100;margin-bottom: 4%; line-height: 4.5rem;}
+.text_h2 {font-weight: 100;margin-bottom: 4%; line-height: 4.5rem; font-family: Roboto, Roboto-Light;
+}
 
-.span_h2 {font-weight: 300;color: #2196F3;}
+.span_h2 {font-weight: 300;color: #5b4f4f; font-family: Roboto, Roboto-Light;
+}
 
-.text_b{color: #2196F3;}
+.text_b{color: #222020; font-family: Roboto, Roboto-Light !important;
+}
 
 .in{font-weight: 400 !important; font-style: normal !important;}
 
 .promo i {
-    color: #2196F3;
+    color: #5b4f4f;
     font-size: 7rem;
     display: block;
 }
-.card-content a {color: #2196F3;}
+.card-content a {color: #5b4f4f;}
 
-.card-content a:hover {color: #2196F3;}
+.card-content a:hover {color: #5b4f4f;}
 
 #work, #team{background: rgb(247, 247, 247);}
 
@@ -74,11 +144,14 @@ nav ul a {
     display: block;
     font-weight: 300;
     padding: 0px 15px;
+    text-decoration: none;
 }
 
 .cd-headline.type .cd-words-wrapper {
     vertical-align: top;
     overflow: hidden;
+    padding: 0px;
+    margin:0px;
 }
 
 .cd-headline.type .cd-words-wrapper::after {
@@ -112,7 +185,7 @@ nav ul a {
 }
 
 .cd-headline.type .cd-words-wrapper.selected b {
-    color: #2196F3;
+    color: #5b4f4f;
 }
 
 .cd-headline.type b {
@@ -221,6 +294,7 @@ nav ul a {
     }
 }
 
+
 input, textarea {
     border-bottom: 1px solid #fff;
 }
@@ -261,5 +335,5 @@ nav a.button-collapse {
 }
 
 footer.page-footer {
-    margin-top: 0px !important;
+    margin: 0px !important;
 }
