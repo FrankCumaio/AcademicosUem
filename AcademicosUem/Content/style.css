@@ -17,6 +17,10 @@ body{
     padding: 0px;
 }
 
+.detail_text{
+    margin-bottom: 40px;
+}
+
 #intro, #work, #team {padding-top: 4rem;}
 
 #textoHeader{
