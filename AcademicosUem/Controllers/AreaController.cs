@@ -10,120 +10,112 @@ using AcademicosUem.Models;
 
 namespace AcademicosUem.Controllers
 {
-    public class TrabalhoController : Controller
+    public class AreaController : Controller
     {
         private AcademicosUemDbContext db = new AcademicosUemDbContext();
 
-        // GET: Trabalho
+        // GET: Area
         public ActionResult Index()
         {
-            var trabalho = db.Trabalho.Include(t => t.Area);
-            return View(trabalho.ToList());
+            var area = db.Area.Include(a => a.Curso);
+            return View(area.ToList());
         }
 
-        public ActionResult Todos()
-        {
-            var trabalho = db.Trabalho.Include(t => t.Area);
-            return View(trabalho.ToList());
-        }
-
-        // GET: Trabalho/Details/5
+        // GET: Area/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trabalho trabalho = db.Trabalho.Find(id);
-            if (trabalho == null)
+            Area area = db.Area.Find(id);
+            if (area == null)
             {
                 return HttpNotFound();
             }
-            return View(trabalho);
+            return View(area);
         }
 
-        // GET: Trabalho/Create
+        // GET: Area/Create
         public ActionResult Create()
         {
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome");
             return View();
         }
 
-
-
-        // POST: Trabalho/Create
+        // POST: Area/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Data_Defesa,Estado,DirectorioDoc,AreaID")] Trabalho trabalho)
+        public ActionResult Create([Bind(Include = "Id,Nome,CursoID")] Area area)
         {
             if (ModelState.IsValid)
             {
-                db.Trabalho.Add(trabalho);
+                db.Area.Add(area);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
-            return View(trabalho);
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", area.CursoID);
+            return View(area);
         }
 
-        // GET: Trabalho/Edit/5
+        // GET: Area/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trabalho trabalho = db.Trabalho.Find(id);
-            if (trabalho == null)
+            Area area = db.Area.Find(id);
+            if (area == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
-            return View(trabalho);
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", area.CursoID);
+            return View(area);
         }
 
-        // POST: Trabalho/Edit/5
+        // POST: Area/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Data_Defesa,Estado,DirectorioDoc,AreaID")] Trabalho trabalho)
+        public ActionResult Edit([Bind(Include = "Id,Nome,CursoID")] Area area)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trabalho).State = EntityState.Modified;
+                db.Entry(area).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
-            return View(trabalho);
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", area.CursoID);
+            return View(area);
         }
 
-        // GET: Trabalho/Delete/5
+        // GET: Area/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trabalho trabalho = db.Trabalho.Find(id);
-            if (trabalho == null)
+            Area area = db.Area.Find(id);
+            if (area == null)
             {
                 return HttpNotFound();
             }
-            return View(trabalho);
+            return View(area);
         }
 
-        // POST: Trabalho/Delete/5
+        // POST: Area/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Trabalho trabalho = db.Trabalho.Find(id);
-            db.Trabalho.Remove(trabalho);
+            Area area = db.Area.Find(id);
+            db.Area.Remove(area);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

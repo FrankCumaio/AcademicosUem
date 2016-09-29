@@ -5745,9 +5745,9 @@ small {
       -ms-transition: color .28s ease;
       transition: color .28s ease; }
       .tabs .tab a:hover {
-        color: #f9c9cb; }
+        color: #5b4f4f; }
     .tabs .tab.disabled a {
-      color: #f9c9cb;
+      color: #5b4f4f;
       cursor: default; }
   .tabs .indicator {
     position: absolute;

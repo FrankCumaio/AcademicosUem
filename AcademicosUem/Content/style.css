@@ -17,6 +17,10 @@ body{
     padding: 0px;
 }
 
+.nav-wrapper a:hover{
+    color: white;
+}
+
 .detail_text{
     margin-bottom: 40px;
 }
@@ -42,13 +46,24 @@ a{
     text-decoration: none;
 }
 
+.nav-pills a {
+    background-color: rgba(201, 203, 203, 0.60) !important;
+    color: black !important;
+}
+
+
+.nav-pills a:hover, a:focus{
+    background-color:  rgba(201, 203, 203, 0.85) !important;
+}
+
+.tabs .tab a:focus{
+    background-color: white !important;
+}
+
 a:hover, a:visited, a:focus, a:active{
     text-decoration: none;
 }
 
-.nav-wrapper ul a:hover, a:visited, a:focus, a:active{
-    color: white;
-}
 
 .myIcon{
     font-size: 5px;

@@ -16,7 +16,7 @@ namespace AcademicosUem
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Trabalho", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -1,173 +1,295 @@
 ﻿@model IEnumerable<AcademicosUem.Models.Trabalho>
+@*
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    @*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Area.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Data_Publicacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Grau_Academico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Data_Defesa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DirectorioDoc)
-            </th>
-            <th></th>
-        </tr>
+     <p>
+         @Html.ActionLink("Create New", "Create")
+     </p>
+    <table class="table">
+         <tr>
+             <th>
+                 @Html.DisplayNameFor(model => model.Area.Nome)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.Titulo)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.Descricao)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.Data_Publicacao)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.Grau_Academico)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.Data_Defesa)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.Estado)
+             </th>
+             <th>
+                 @Html.DisplayNameFor(model => model.DirectorioDoc)
+             </th>
+             <th></th>
+         </tr>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Area.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data_Publicacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Grau_Academico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data_Defesa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DirectorioDoc)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
+     @foreach (var item in Model) {
+         <tr>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Area.Nome)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Titulo)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Descricao)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Data_Publicacao)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Grau_Academico)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Data_Defesa)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Estado)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.DirectorioDoc)
+             </td>
+             <td>
+                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                 @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                 @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+             </td>
+         </tr>
+     }
 
-    </table>*@
+     </table>*@
 
-    <div class="section scrollspy" id="divTrabalho">
+<!--Navegue pelas areas-->
+<div id="intro" class="section scrollspy">
+    <div class="container">
         <div class="row">
-            <div class="container offset-m3">
-                <div class="col m12 m4 l4">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="img/project1.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                            <p>@Html.ActionLink("Project link", "Index", "Trabalho")</p>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                            <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="container col m8">
-                    <br />
-                    <br />
-                    <div style="margin-left: 50px;">
-                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Titulo:</span>  skhdaskjdhashdkjas</h5>
-                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Autor:</span>  sdbsdgjagsdhaj</h5>
-                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Data de publicacao:</span> dd/MM/yyyy</h5>
-                    </div>
-
-                    <div class="row" style="margin-top: 50px; margin-left:10px;">
-                        <button class="btn green darken-1" type="button" style="height: 47px; width:250px; margin-bottom: 10px;">Ler todo documento</button>
-                        <button class="btn blue darken-1" type="button" style="height: 47px; width:250px; margin-bottom: 10px;">Adicionar aos favoritos</button>
-                    </div>
-
-                </div>
+            <div class="col s12">
+                <h2 class="center header text_h2" style="margin-top:0; margin-bottom: 60px;"> Navegue pelas <span class="span_h2">areas</span></h2>
             </div>
-        </div>
-      </div>
-        <div class="row">
-            <div class="container offset-l3">
-                <h4 class="text_h2" style="margin-bottom: 0px;">Descricao</h4>
-                <hr />
-                <p style="font-size: 15px;">
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-
-                 </p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="container offset-l3">
-                <h4 class="text_h2" style="margin-bottom: 0px;">Trabalhos <span class="span_h2">relacionados</span></h4>
-                <hr />
-                <div class="col s12 m4 l4">
-
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="img/project4.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                            <p><a href="#">Project link</a></p>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                            <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                        </div>
-                    </div>
-                </div>
+            <br />
+            <br />
             <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="img/project5.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Project link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
+                <div class="center promo promo-example">
+
+                    <h5 class="promo-caption">  Ciencias exactas</h5>
+                    <br />
+                    <h5 class="promo-caption">Ciencias Naturais</h5>
+
                 </div>
             </div>
             <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="img/project6.jpeg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Project link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
+                <div class="center promo promo-example">
+                    <h5 class="promo-caption">Ciencias de Saude</h5>
+                    <br />
+                    <h5 class="promo-caption">Ciencias Naturais</h5>
                 </div>
-
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="center promo promo-example">
+                    <h5 class="promo-caption">Artes e Musica</h5>
+                    <br />
+                    <h5 class="promo-caption">Educacao</h5>
+                </div>
             </div>
         </div>
-
     </div>
+</div>
+
+<!--Trabalhos recentes-->
+<div class="section scrollspy" id="work">
+    <div class="container">
+        <h3 class="header text_h2">Trabalhos <span class="span_h2"> recentes</span> <span style="font-size: 20px">@Html.ActionLink("[ Ver todos ]", "Todos", "Trabalho")</span></h3>
+        <div class="row">
+
+            @foreach (var item in Model)
+                {
+
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="img/project1.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
+                        <p>@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-close right"></i></span>
+                        <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+                    </div>
+                </div>
+            </div>
+            }
+            
+        </div>
+
+
+        <!--Trabalhos mais populares-->
+        <div class="row">
+            <h3 class="header text_h2">Trabalhos <span class="span_h2"> populares </span><span style="font-size: 20px">@Html.ActionLink("[ Ver todos ]", "Todos", "Trabalho")</span></h3>
+            
+
+            @foreach (var item in Model)
+            {
+
+                <div class="col s12 m4 l4">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="~/img/project2.jpeg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
+                            <p>@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-close right"></i></span>
+                            <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<!--Parallax Subscreva-se -->
+<div class="parallax-container" style="background: rgba(0, 0, 0,.2);">
+    <div id="subscricao" class="parallax">
+        <!--Conteudo parallax here-->
+        <div class="container col m4" style="margin-top: 60px; color: white">
+            <b><h4 class="center text_h2">Encontre sugestoes de temas para trabalhos de investigacao e partilhe as suas ideias</h4></b>
+        </div>
+        <!--<img src="img/parallax1.png"> -->
+    </div>
+</div>
+
+
+<!--Subscreva se-->
+<div class="section scrollspy" id="team">
+    <div class="container">
+        <h3 class="header text_h2"> Subscreva - <span class="span_h2">se </span></h3>
+        <div class="row">
+            <div class="col s12 m3">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="img/avatar1.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            Flash <br />
+                            <small><em><a class="red-text text-darken-1" href="#">CEO</a></em></small>
+                        </span>
+                        <p>
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
+                                <i class="fa fa-twitter-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
+                                <i class="fa fa-google-plus-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                                <i class="fa fa-linkedin-square"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="img/avatar2.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            Cat Woman<br />
+                            <small><em><a class="red-text text-darken-1" href="#">Designer</a></em></small>
+                        </span>
+                        <p>
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
+                                <i class="fa fa-twitter-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
+                                <i class="fa fa-google-plus-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                                <i class="fa fa-linkedin-square"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="img/avatar3.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            Capt. America <br />
+                            <small><em><a class="red-text text-darken-1" href="#">CMO</a></em></small>
+                        </span>
+                        <p>
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
+                                <i class="fa fa-twitter-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
+                                <i class="fa fa-google-plus-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                                <i class="fa fa-linkedin-square"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card card-avatar">
+                    <div class="waves-effect waves-block waves-light">
+                        <img class="activator" src="img/avatar4.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">
+                            Robin<br />
+                            <small><em><a class="red-text text-darken-1" href="#">Developer</a></em></small>
+                        </span>
+                        <p>
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
+                                <i class="fa fa-twitter-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
+                                <i class="fa fa-google-plus-square"></i>
+                            </a>
+                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                                <i class="fa fa-linkedin-square"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

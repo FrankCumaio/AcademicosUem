@@ -168,6 +168,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TrabalhoController.cs" />
@@ -303,6 +305,17 @@
     <Content Include="Views\Trabalho\Details.cshtml" />
     <Content Include="Views\Trabalho\Edit.cshtml" />
     <Content Include="Views\Trabalho\Index.cshtml" />
+    <Content Include="Views\Area\Create.cshtml" />
+    <Content Include="Views\Area\Delete.cshtml" />
+    <Content Include="Views\Area\Details.cshtml" />
+    <Content Include="Views\Area\Edit.cshtml" />
+    <Content Include="Views\Area\Index.cshtml" />
+    <Content Include="Views\Curso\Create.cshtml" />
+    <Content Include="Views\Curso\Delete.cshtml" />
+    <Content Include="Views\Curso\Details.cshtml" />
+    <Content Include="Views\Curso\Edit.cshtml" />
+    <Content Include="Views\Curso\Index.cshtml" />
+    <Content Include="Views\Trabalho\Todos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
