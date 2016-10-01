@@ -23,14 +23,16 @@
                         <li><a href="#intro">@Html.ActionLink("Inicio", "Index", "Trabalho")</a></li>
                         <li><a href="#work">Trabalhos</a></li>
                         <li><a href="#team">Subscricao</a></li>
-                        <li><a href="#">Minha Conta</a></li>
+                       @Html.Partial("_LoginPartial")
                     </ul>
+                    
                     <ul id="nav-mobile" class="side-nav">
                         <li><a href="#intro">@Html.ActionLink("Inicio", "Index", "Trabalho")</a></li>
                         <li><a href="#work">Trabalhos</a></li>
                         <li><a href="#team">Subscricao</a></li>
-                        <li><a href="#contact">Minha Conta</a></li>
+                       
                     </ul>
+                   
                     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                 </div>
 
