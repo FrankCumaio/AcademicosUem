@@ -81,24 +81,24 @@
             <div class="col s12 m4 l4">
                 <div class="center promo promo-example">
 
-                    <h5 class="promo-caption">  Ciencias exactas</h5>
+                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">  Ciencias exactas</h5>
                     <br />
-                    <h5 class="promo-caption">Ciencias Naturais</h5>
+                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">Ciencias Naturais</h5>
 
                 </div>
             </div>
             <div class="col s12 m4 l4">
                 <div class="center promo promo-example">
-                    <h5 class="promo-caption">Ciencias de Saude</h5>
+                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">Ciencias de Saude</h5>
                     <br />
-                    <h5 class="promo-caption">Ciencias Naturais</h5>
+                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">Ciencias Naturais</h5>
                 </div>
             </div>
             <div class="col s12 m4 l4">
                 <div class="center promo promo-example">
-                    <h5 class="promo-caption">Artes e Musica</h5>
+                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">Artes e Musica</h5>
                     <br />
-                    <h5 class="promo-caption">Educacao</h5>
+                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">Educacao</h5>
                 </div>
             </div>
         </div>
@@ -112,32 +112,32 @@
         <div class="row">
 
             @foreach (var item in Model)
-                {
+            {
 
-            <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="img/project1.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
-                        <p>@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-close right"></i></span>
-                        <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+                <div class="col s12 m4 l4">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="~/img/pdf.png">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
+                            <p class="linkDetalhes">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-close right"></i></span>
+                            <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
-            
+
         </div>
 
 
         <!--Trabalhos mais populares-->
         <div class="row">
             <h3 class="header text_h2">Trabalhos <span class="span_h2"> populares </span><span style="font-size: 20px">@Html.ActionLink("[ Ver todos ]", "Todos", "Trabalho")</span></h3>
-            
+
 
             @foreach (var item in Model)
             {
@@ -145,11 +145,11 @@
                 <div class="col s12 m4 l4">
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="~/img/project2.jpeg">
+                            <img class="activator" src="~/img/pdf.png">
                         </div>
                         <div class="card-content">
                             <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
-                            <p>@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+                            <p class="linkDetalhes">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
                         </div>
                         <div class="card-reveal">
                             <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-close right"></i></span>
@@ -165,131 +165,29 @@
 
 
 <!--Parallax Subscreva-se -->
-<div class="parallax-container" style="background: rgba(0, 0, 0,.2);">
-    <div id="subscricao" class="parallax">
-        <!--Conteudo parallax here-->
-        <div class="container col m4" style="margin-top: 60px; color: white">
-            <b><h4 class="center text_h2">Encontre sugestoes de temas para trabalhos de investigacao e partilhe as suas ideias</h4></b>
-        </div>
-        <!--<img src="img/parallax1.png"> -->
-    </div>
-</div>
-
-
-<!--Subscreva se-->
-<div class="section scrollspy" id="team">
+<div class="section scrollspy divTema" style="background: url(../../img/Open-Book1.jpg); background-size: cover; color: white !important; ">
     <div class="container">
-        <h3 class="header text_h2"> Subscreva - <span class="span_h2">se </span></h3>
-        <div class="row">
-            <div class="col s12 m3">
-                <div class="card card-avatar">
-                    <div class="waves-effect waves-block waves-light">
-                        <img class="activator" src="img/avatar1.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">
-                            Flash <br />
-                            <small><em><a class="red-text text-darken-1" href="#">CEO</a></em></small>
-                        </span>
-                        <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
-                            </a>
-                        </p>
-                    </div>
+        <h3 class="header center text_h2" style="line-height: 30px;">Veja <span> tambem.. </span> <span style="font-size: 20px; color:white;">@Html.ActionLink("[ Sugestoes de temas para trabalhos de investigacao]", "Todos", "Trabalho")</span></h3>
+    </div>
+</div>
+
+
+    <!--Subscreva se-->
+    <div class="section scrollspy" id="team" style="padding-top:10px; background-color: white;">
+        <div class="container center">
+            <h3 class="header text_h2" style="margin-bottom: 10px;"> Subscreva - <span class="span_h2">se, </span><span style="font-size: 25px; margin-top:0;"> é simples, gratis e rapido!</span></h3>
+
+            <div class="row">
+                <span>Tenha acesso completo ao material e receba novidades via email sobre os trabalhos que lhe interessam!</span>
+                <div class="input-field col m12 s12" id="searchfield">
+                    <input id="icon_prefix" name="name" type="email" style="border: 1px solid rgba(203, 201, 201, 0.73);" class="validate white black-text center" placeholder="Deixe o seu email">
                 </div>
-            </div>
-            <div class="col s12 m3">
-                <div class="card card-avatar">
-                    <div class="waves-effect waves-block waves-light">
-                        <img class="activator" src="img/avatar2.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">
-                            Cat Woman<br />
-                            <small><em><a class="red-text text-darken-1" href="#">Designer</a></em></small>
-                        </span>
-                        <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
-                            </a>
-                        </p>
-                    </div>
+                <div>
+                    <button class="btn darken-1" type="submit" style="height: 47px; width: 200px; margin-bottom: 10px;">Subscrever!</button>
+                    <button class="btn blue darken-1" type="button" style="height: 47px; width: 200px; margin-bottom: 10px;">Ja tenho conta!</button>
                 </div>
-            </div>
-            <div class="col s12 m3">
-                <div class="card card-avatar">
-                    <div class="waves-effect waves-block waves-light">
-                        <img class="activator" src="img/avatar3.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">
-                            Capt. America <br />
-                            <small><em><a class="red-text text-darken-1" href="#">CMO</a></em></small>
-                        </span>
-                        <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m3">
-                <div class="card card-avatar">
-                    <div class="waves-effect waves-block waves-light">
-                        <img class="activator" src="img/avatar4.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">
-                            Robin<br />
-                            <small><em><a class="red-text text-darken-1" href="#">Developer</a></em></small>
-                        </span>
-                        <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
-</div>
 

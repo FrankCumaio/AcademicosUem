@@ -90,7 +90,7 @@
                 <div class="col m12 m4 l4">
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="~/img/project1.jpg">
+                            <img class="activator" src="~/img/pdf.png">
                         </div>
                         <div class="card-content">
                             <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(model => model.Titulo) .pdf<i class="mdi-navigation-more-vert right"></i></span>
@@ -101,13 +101,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="container col m8">
+                <div class="container col m8 m4">
                     <br />
                     <br />
                     <div style="margin-left: 50px;">
-                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Titulo:</span> @Html.DisplayFor(model => model.Titulo)</h5>
-                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Autor:</span>  @Html.DisplayFor(model => model.Titulo)</h5>
-                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Data de publicacao:</span>@Html.DisplayFor(model => model.Data_Publicacao)</h5>
+                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Titulo:</span> <small style="color: black"> @Html.DisplayFor(model => model.Titulo) </small></h5>
+                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Autor:</span><small style="color: black">  @Html.DisplayFor(model => model.Titulo) </small></h5>
+                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Data de publicacao:</span> <small style="color: black"> @Html.DisplayFor(model => model.Data_Publicacao) </small></h5>
+                        <h6><span class="span_h2">Tags: </span> @Html.DisplayFor(model => model.Area.Nome), @Html.DisplayFor(model => model.Area.Curso.Nome)</h6>
                     </div>
 
                     <div class="row" style="margin-top: 50px; margin-left:10px;">

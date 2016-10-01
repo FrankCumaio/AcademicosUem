@@ -34,6 +34,16 @@ body{
 
 .promo-caption{
     margin-bottom: 40px;
+    margin-left: 50px;
+    text-align: left
+}
+
+.icon_area{
+    color: #5b4f4f;
+}
+
+.icon_area1{
+    margin-top: 12px;
 }
 
 #icon_prefix{
@@ -44,6 +54,10 @@ body{
 a{
     color : #5b4f4f;
     text-decoration: none;
+}
+
+.linkDetalhes{
+    margin-top: 20px !important;
 }
 
 .nav-pills a {
@@ -74,9 +88,20 @@ a:hover, a:visited, a:focus, a:active{
     color: white;
 }
 
+.divTema a{
+    color: rgba(203, 198, 198, 0.71) !important;
+}
+
+.divTema a:hover{
+    color: #cecece !important;
+}
+
 #subscricao{
-   background: url(../../img/parallax1.png);
-   background-size: cover; 
+   background: url(../../img/Open-Book.jpg);
+   background-size: cover;
+   background-position: center; 
+   background-attachment:fixed;
+   background-repeat: no-repeat
 }
 
 #btPesquisa{
@@ -346,7 +371,7 @@ nav a.button-collapse {
 }
 
 .card-avatar .card-content .card-title {
-    line-height: 30px !important;
+    line-height: 10px !important;
 }
 
 .parallax-container {

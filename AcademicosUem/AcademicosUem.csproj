@@ -215,7 +215,11 @@
     <Content Include="img\avatar3.png" />
     <Content Include="img\avatar4.png" />
     <Content Include="img\bg.jpg" />
+    <Content Include="img\Open-Book.jpg" />
+    <Content Include="img\Open-Book1.jpg" />
     <Content Include="img\parallax1.png" />
+    <Content Include="img\pdf.png" />
+    <Content Include="img\pdffoto.png" />
     <Content Include="img\project1.jpg" />
     <Content Include="img\project2.jpeg" />
     <Content Include="img\project3.png" />
