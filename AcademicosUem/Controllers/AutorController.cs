@@ -10,128 +10,112 @@ using AcademicosUem.Models;
 
 namespace AcademicosUem.Controllers
 {
-    public class TrabalhoController : Controller
+    public class AutorController : Controller
     {
         private AcademicosUemDbContext db = new AcademicosUemDbContext();
 
-        // GET: Trabalho
+        // GET: Autor
         public ActionResult Index()
         {
-            var trabalho = db.Trabalho.Include(t => t.Area);
-            return View(trabalho.ToList());
+            var autor = db.Autor.Include(a => a.Curso);
+            return View(autor.ToList());
         }
 
-        public ActionResult Todos()
-        {
-            var trabalho = db.Trabalho.Include(t => t.Area);
-            return View(trabalho.ToList());
-        }
-
-        // GET: Trabalho/Details/5
+        // GET: Autor/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trabalho trabalho = db.Trabalho.Find(id);
-            ViewBag.trabalhosRelacionados = db.Trabalho.ToList();
-
-            if (trabalho == null)
+            Autor autor = db.Autor.Find(id);
+            if (autor == null)
             {
                 return HttpNotFound();
             }
-            return View(trabalho);
+            return View(autor);
         }
 
-        // GET: Trabalho/Create
+        // GET: Autor/Create
         public ActionResult Create()
         {
-            ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome");
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome");
             return View();
         }
 
-
-
-        // POST: Trabalho/Create
+        // POST: Autor/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho)
+        public ActionResult Create([Bind(Include = "Id,Nome,Telefone,Email,CursoID")] Autor autor)
         {
-            trabalho.Estado = "Registado";
-            trabalho.Data_Publicacao = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
-     
-                db.Trabalho.Add(trabalho);
+                db.Autor.Add(autor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-
-
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
-            return View(trabalho);
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", autor.CursoID);
+            return View(autor);
         }
 
-        // GET: Trabalho/Edit/5
+        // GET: Autor/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trabalho trabalho = db.Trabalho.Find(id);
-            if (trabalho == null)
+            Autor autor = db.Autor.Find(id);
+            if (autor == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
-            return View(trabalho);
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", autor.CursoID);
+            return View(autor);
         }
 
-        // POST: Trabalho/Edit/5
+        // POST: Autor/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Data_Defesa,Estado,DirectorioDoc,AreaID")] Trabalho trabalho)
+        public ActionResult Edit([Bind(Include = "Id,Nome,Telefone,Email,CursoID")] Autor autor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trabalho).State = EntityState.Modified;
+                db.Entry(autor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
-            return View(trabalho);
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", autor.CursoID);
+            return View(autor);
         }
 
-        // GET: Trabalho/Delete/5
+        // GET: Autor/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trabalho trabalho = db.Trabalho.Find(id);
-            if (trabalho == null)
+            Autor autor = db.Autor.Find(id);
+            if (autor == null)
             {
                 return HttpNotFound();
             }
-            return View(trabalho);
+            return View(autor);
         }
 
-        // POST: Trabalho/Delete/5
+        // POST: Autor/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Trabalho trabalho = db.Trabalho.Find(id);
-            db.Trabalho.Remove(trabalho);
+            Autor autor = db.Autor.Find(id);
+            db.Autor.Remove(autor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

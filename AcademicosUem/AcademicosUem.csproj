@@ -169,16 +169,22 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\AutorController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TrabalhoController.cs" />
+    <Compile Include="Controllers\Trabalhos_autorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610051731438_teste11.cs" />
-    <Compile Include="Migrations\201610051731438_teste11.Designer.cs">
-      <DependentUpon>201610051731438_teste11.cs</DependentUpon>
+    <Compile Include="Migrations\201610061834298_m1.cs" />
+    <Compile Include="Migrations\201610061834298_m1.Designer.cs">
+      <DependentUpon>201610061834298_m1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610061924296_m11.cs" />
+    <Compile Include="Migrations\201610061924296_m11.Designer.cs">
+      <DependentUpon>201610061924296_m11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -330,11 +336,11 @@
     <Content Include="Views\Curso\Index.cshtml" />
     <Content Include="Views\Trabalho\Todos.cshtml" />
     <Content Include="Views\Shared\_LayoutSecundary.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610051731438_teste11.resx">
-      <DependentUpon>201610051731438_teste11.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="Views\Autor\Create.cshtml" />
+    <Content Include="Views\Autor\Delete.cshtml" />
+    <Content Include="Views\Autor\Details.cshtml" />
+    <Content Include="Views\Autor\Edit.cshtml" />
+    <Content Include="Views\Autor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -343,6 +349,17 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610061834298_m1.resx">
+      <DependentUpon>201610061834298_m1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610061924296_m11.resx">
+      <DependentUpon>201610061924296_m11.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Trabalhos_autor\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

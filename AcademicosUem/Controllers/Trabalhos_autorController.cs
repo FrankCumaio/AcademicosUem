@@ -10,128 +10,112 @@ using AcademicosUem.Models;
 
 namespace AcademicosUem.Controllers
 {
-    public class TrabalhoController : Controller
+    public class Trabalhos_autorController : Controller
     {
         private AcademicosUemDbContext db = new AcademicosUemDbContext();
 
-        // GET: Trabalho
+        // GET: Trabalhos_autor
         public ActionResult Index()
         {
-            var trabalho = db.Trabalho.Include(t => t.Area);
-            return View(trabalho.ToList());
+            var trabalhos_autor = db.Trabalhos_autor.Include(t => t.Autor);
+            return View(trabalhos_autor.ToList());
         }
 
-        public ActionResult Todos()
-        {
-            var trabalho = db.Trabalho.Include(t => t.Area);
-            return View(trabalho.ToList());
-        }
-
-        // GET: Trabalho/Details/5
+        // GET: Trabalhos_autor/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trabalho trabalho = db.Trabalho.Find(id);
-            ViewBag.trabalhosRelacionados = db.Trabalho.ToList();
-
-            if (trabalho == null)
+            Trabalhos_autor trabalhos_autor = db.Trabalhos_autor.Find(id);
+            if (trabalhos_autor == null)
             {
                 return HttpNotFound();
             }
-            return View(trabalho);
+            return View(trabalhos_autor);
         }
 
-        // GET: Trabalho/Create
+        // GET: Trabalhos_autor/Create
         public ActionResult Create()
         {
             ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome");
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
             return View();
         }
 
-
-
-        // POST: Trabalho/Create
+        // POST: Trabalhos_autor/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho)
+        public ActionResult Create([Bind(Include = "Id,TrabalhosID,AutorID")] Trabalhos_autor trabalhos_autor)
         {
-            trabalho.Estado = "Registado";
-            trabalho.Data_Publicacao = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
-     
-                db.Trabalho.Add(trabalho);
+                db.Trabalhos_autor.Add(trabalhos_autor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-
-
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
-            return View(trabalho);
+            ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome", trabalhos_autor.AutorID);
+            return View(trabalhos_autor);
         }
 
-        // GET: Trabalho/Edit/5
+        // GET: Trabalhos_autor/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trabalho trabalho = db.Trabalho.Find(id);
-            if (trabalho == null)
+            Trabalhos_autor trabalhos_autor = db.Trabalhos_autor.Find(id);
+            if (trabalhos_autor == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
-            return View(trabalho);
+            ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome", trabalhos_autor.AutorID);
+            return View(trabalhos_autor);
         }
 
-        // POST: Trabalho/Edit/5
+        // POST: Trabalhos_autor/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Data_Defesa,Estado,DirectorioDoc,AreaID")] Trabalho trabalho)
+        public ActionResult Edit([Bind(Include = "Id,TrabalhosID,AutorID")] Trabalhos_autor trabalhos_autor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trabalho).State = EntityState.Modified;
+                db.Entry(trabalhos_autor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
-            return View(trabalho);
+            ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome", trabalhos_autor.AutorID);
+            return View(trabalhos_autor);
         }
 
-        // GET: Trabalho/Delete/5
+        // GET: Trabalhos_autor/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trabalho trabalho = db.Trabalho.Find(id);
-            if (trabalho == null)
+            Trabalhos_autor trabalhos_autor = db.Trabalhos_autor.Find(id);
+            if (trabalhos_autor == null)
             {
                 return HttpNotFound();
             }
-            return View(trabalho);
+            return View(trabalhos_autor);
         }
 
-        // POST: Trabalho/Delete/5
+        // POST: Trabalhos_autor/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Trabalho trabalho = db.Trabalho.Find(id);
-            db.Trabalho.Remove(trabalho);
+            Trabalhos_autor trabalhos_autor = db.Trabalhos_autor.Find(id);
+            db.Trabalhos_autor.Remove(trabalhos_autor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

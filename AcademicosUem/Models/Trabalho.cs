@@ -12,7 +12,7 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Trabalho()
         {
-            Trabalhos_autor = new HashSet<Trabalhos_autor>();
+            Autor = new HashSet<Autor>();
         }
 
         public int Id { get; set; }
@@ -40,6 +40,6 @@
         public virtual Area Area { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Trabalhos_autor> Trabalhos_autor { get; set; }
+        public virtual ICollection<Autor> Autor { get; set; }
     }
 }
