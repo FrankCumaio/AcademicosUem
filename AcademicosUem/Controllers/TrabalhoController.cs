@@ -35,6 +35,8 @@ namespace AcademicosUem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Trabalho trabalho = db.Trabalho.Find(id);
+            ViewBag.trabalhosRelacionados = db.Trabalho.ToList();
+
             if (trabalho == null)
             {
                 return HttpNotFound();
@@ -56,14 +58,19 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Data_Defesa,Estado,DirectorioDoc,AreaID")] Trabalho trabalho)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho)
         {
+            trabalho.Estado = "Registado";
+            trabalho.Data_Publicacao = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
+     
                 db.Trabalho.Add(trabalho);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+
 
             ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
             return View(trabalho);

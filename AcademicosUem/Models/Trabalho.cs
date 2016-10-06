@@ -21,11 +21,15 @@
 
         public string Descricao { get; set; }
 
-        public string Data_Publicacao { get; set; }
+        public string _Data_Publicacao = DateTime.Now.ToString();
+        public string Data_Publicacao {
+            get {
+                return _Data_Publicacao;
+            }
+            set{ _Data_Publicacao = value; }
+        }
 
         public string Grau_Academico { get; set; }
-
-        public string Data_Defesa { get; set; }
 
         public string Estado { get; set; }
 

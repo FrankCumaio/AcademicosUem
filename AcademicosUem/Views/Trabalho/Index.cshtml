@@ -113,10 +113,11 @@
     <div class="container">
         <h3 class="header text_h2">Trabalhos <span class="span_h2"> recentes</span> <span style="font-size: 20px">@Html.ActionLink("[ Ver todos ]", "Todos", "Trabalho")</span></h3>
         <div class="row">
-
+            @{int i = 0;}
             @foreach (var item in Model)
             {
-
+                if (i < 3)
+                {
                 <div class="col s12 m4 l4">
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
@@ -132,6 +133,8 @@
                         </div>
                     </div>
                 </div>
+                i++;
+                }
             }
 
         </div>
@@ -141,10 +144,11 @@
         <div class="row">
             <h3 class="header text_h2">Trabalhos <span class="span_h2"> populares </span><span style="font-size: 20px">@Html.ActionLink("[ Ver todos ]", "Todos", "Trabalho")</span></h3>
 
-
-            @foreach (var item in Model)
+        @{int j = 0;}
+        @foreach (var item in Model)
+        {
+            if (j < 3)
             {
-
                 <div class="col s12 m4 l4">
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
@@ -160,7 +164,9 @@
                         </div>
                     </div>
                 </div>
+                j++;
             }
+        }
 
         </div>
     </div>
