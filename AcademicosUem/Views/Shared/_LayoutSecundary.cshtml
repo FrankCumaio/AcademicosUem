@@ -22,15 +22,14 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="#work">@Html.ActionLink("Inicio", "Index", "Trabalho")</a></li>
                         <li><a href="#work">@Html.ActionLink("Trabalhos", "Todos", "Trabalho")</a></li>
-
-                        <li><a href="#team">Minha conta</a></li>
+                        @Html.Partial("_LoginPartial")
                  
                     </ul>
 
                     <ul id="nav-mobile" class="side-nav">
                         <li><a href="#work">@Html.ActionLink("Inicio", "Index", "Trabalho")</a></li>
                         <li><a href="#work">@Html.ActionLink("Trabalhos", "Todos", "Trabalho")</a></li>
-                        <li><a href="#team">Minha conta</a></li>
+                        @Html.Partial("_LoginPartial")
 
                     </ul>
 

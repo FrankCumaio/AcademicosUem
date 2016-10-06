@@ -13,11 +13,8 @@
         public Autor()
         {
             Temas = new HashSet<Temas>();
-            Trabalhos_autor = new HashSet<Trabalhos_autor>();
+            Trabalhos = new HashSet<Trabalho>();
         }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
 
         [StringLength(250)]
         public string Nome { get; set; }
@@ -29,7 +26,7 @@
         public string Email { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Nr_estudante { get; set; }
+        public int Id { get; set; }
 
         public int CursoID { get; set; }
 
@@ -39,6 +36,6 @@
         public virtual ICollection<Temas> Temas { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Trabalhos_autor> Trabalhos_autor { get; set; }
+        public virtual ICollection<Trabalho> Trabalhos { get; set; }
     }
 }
