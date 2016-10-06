@@ -136,29 +136,37 @@
     </div>
 
     <div class="row">
-   
-        @foreach (var item in ViewBag.trabalhosRelacionados)
-        {
-            
-                <div class="col s12 m4 l4">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="~/img/pdf.png">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => modelItem.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
-                            <p class="linkDetalhes">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => modelItem.Titulo)<i class="mdi-navigation-close right"></i></span>
-                            <p>@Html.DisplayFor(modelItem => modelItem.Descricao)</p>
+        <div class="container">
+
+            <h4 class="text_h2" style="margin-bottom: 0px;">Trabalhos <span class="span_h2">relacionados</span></h4>
+            <hr />
+
+            @{int i = 0;}
+            @foreach (var item in ViewBag.trabalhosRelacionados)
+            {
+                if (i < 3)
+                {
+                    <div class="col s12 m4 l4">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="~/img/pdf.png">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => modelItem.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
+                                <p class="linkDetalhes">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => modelItem.Titulo)<i class="mdi-navigation-close right"></i></span>
+                                <p>@Html.DisplayFor(modelItem => modelItem.Descricao)</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-        }
+                    i++;
+                }
+            }
 
-    </div>
-
+        </div>
+        </div>
 
 </body>
 </html>
