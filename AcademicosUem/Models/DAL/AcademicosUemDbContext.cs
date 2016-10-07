@@ -8,7 +8,10 @@
     public class AcademicosUemDbContext : DbContext
     {
 
-
+        public AcademicosUemDbContext()
+        : base("DefaultConnection") //Comes from Config File
+    {
+        }
         public virtual DbSet<Area> Area { get; set; }
         public virtual DbSet<Autor> Autor { get; set; }
         public virtual DbSet<Curso> Curso { get; set; }

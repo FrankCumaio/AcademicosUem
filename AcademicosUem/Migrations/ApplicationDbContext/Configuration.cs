@@ -1,18 +1,19 @@
-namespace AcademicosUem.Migrations
+namespace AcademicosUem.Migrations.ApplicationDbContext
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AcademicosUem.Models.AcademicosUemDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AcademicosUem.Models.ApplicationDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            MigrationsDirectory = @"Migrations\ApplicationDbContext";
         }
 
-        protected override void Seed(AcademicosUem.Models.AcademicosUemDbContext context)
+        protected override void Seed(AcademicosUem.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

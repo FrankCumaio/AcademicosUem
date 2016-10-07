@@ -54,15 +54,15 @@ namespace AcademicosUem
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "322236784801206",
+               appSecret: "262771cad4adfcde6ea7a288d0e75d51");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "960662300437-k9cr3hi78l34prvkcdr8c50er7qcnbki.apps.googleusercontent.com",
+                ClientSecret = "peFKLPSr0FANjQ6jEGFLHmhm"
+            });
         }
     }
 }
