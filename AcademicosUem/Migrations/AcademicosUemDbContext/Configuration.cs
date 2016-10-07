@@ -1,4 +1,4 @@
-namespace AcademicosUem.Migrations
+namespace AcademicosUem.Migrations.AcademicosUemDbContext
 {
     using System;
     using System.Data.Entity;
@@ -9,7 +9,8 @@ namespace AcademicosUem.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            MigrationsDirectory = @"Migrations\AcademicosUemDbContext";
         }
 
         protected override void Seed(AcademicosUem.Models.AcademicosUemDbContext context)
