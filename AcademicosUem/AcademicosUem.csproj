@@ -18,10 +18,10 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44379</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -174,23 +174,19 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TrabalhoController.cs" />
-    <Compile Include="Controllers\Trabalhos_autorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610061834298_m1.cs" />
-    <Compile Include="Migrations\201610061834298_m1.Designer.cs">
-      <DependentUpon>201610061834298_m1.cs</DependentUpon>
+    <Compile Include="Migrations\AcademicosUemDbContext\201610091420168_init.cs" />
+    <Compile Include="Migrations\AcademicosUemDbContext\201610091420168_init.Designer.cs">
+      <DependentUpon>201610091420168_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610061924296_m11.cs" />
-    <Compile Include="Migrations\201610061924296_m11.Designer.cs">
-      <DependentUpon>201610061924296_m11.cs</DependentUpon>
+    <Compile Include="Migrations\AcademicosUemDbContext\Configuration.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\201610091416548_init.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\201610091416548_init.Designer.cs">
+      <DependentUpon>201610091416548_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610070950321_m111.cs" />
-    <Compile Include="Migrations\201610070950321_m111.Designer.cs">
-      <DependentUpon>201610070950321_m111.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Autor.cs" />
@@ -200,15 +196,11 @@
     <Compile Include="Models\DAL\AcademicosUemDbContext.cs" />
     <Compile Include="Models\Temas.cs" />
     <Compile Include="Models\Trabalho.cs" />
-    <Compile Include="Models\Trabalhos_autor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AssignedAutorData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-AcademicosUem-20160926122754.mdf" />
-    <Content Include="App_Data\aspnet-AcademicosUem-20160926122754_log.ldf">
-      <DependentUpon>aspnet-AcademicosUem-20160926122754.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom-min.css" />
@@ -355,17 +347,16 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610061834298_m1.resx">
-      <DependentUpon>201610061834298_m1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AcademicosUemDbContext\201610091420168_init.resx">
+      <DependentUpon>201610091420168_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610061924296_m11.resx">
-      <DependentUpon>201610061924296_m11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610070950321_m111.resx">
-      <DependentUpon>201610070950321_m111.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplicationDbContext\201610091416548_init.resx">
+      <DependentUpon>201610091416548_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -384,7 +375,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49835</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49835/</IISUrl>
+          <IISUrl>https://localhost:44379/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>https://localhost:44379/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

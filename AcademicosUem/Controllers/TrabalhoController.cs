@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AcademicosUem.Models;
+using AcademicosUem.ViewModels;
 
 namespace AcademicosUem.Controllers
 {
@@ -49,6 +50,9 @@ namespace AcademicosUem.Controllers
         {
             ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome");
             ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
+            var trabalho = new Trabalho();
+            trabalho.Autor = new List<Autor>();
+            PopulateAssignedAutorData(trabalho);
             return View();
         }
 
@@ -59,8 +63,18 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores)
         {
+            if (selectedAutores != null)
+            {
+                trabalho.Autor = new List<Autor>();
+                foreach (var autor in selectedAutores)
+                {
+                    var autorAdd = db.Autor.Find(int.Parse(autor));
+                    trabalho.Autor.Add(autorAdd);
+                }
+            }
+
             trabalho.Estado = "Registado";
             trabalho.Data_Publicacao = DateTime.Now.ToString();
             if (ModelState.IsValid)
@@ -143,6 +157,23 @@ namespace AcademicosUem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private void PopulateAssignedAutorData(Trabalho trabalho)
+        {
+            var allAutors = db.Autor;
+            var trabalhoAutores = new HashSet<int>(trabalho.Autor.Select(c => c.Id));
+            var viewModel = new List<AssignedAutorData>();
+            foreach (var autor in allAutors)
+            {
+                viewModel.Add(new AssignedAutorData
+                {
+                    AutorID = autor.Id,
+                    Nome = autor.Nome,
+                    Assigned = trabalhoAutores.Contains(autor.Id)
+                });
+            }
+            ViewBag.Autores = viewModel;
         }
     }
 }
