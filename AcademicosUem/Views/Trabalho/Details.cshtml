@@ -122,7 +122,12 @@
                     <br />
                     <div style="margin-left: 50px;">
                         <h5 style="margin-bottom: 20px;"><span class="span_h2">Titulo:</span> <small style="color: black"> @Html.DisplayFor(model => model.Titulo) </small></h5>
-                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Autor:</span><small style="color: black">  @Html.DisplayFor(model => model.Titulo) </small></h5>
+                        <h5 style="margin-bottom: 20px;"><span class="span_h2">Autor(es):</span><small style="color: black"> @{
+                            foreach (var autor in Model.Autor)
+                            {
+                                 @autor.Nome <br />
+                    }
+                        }</small></h5>
                         <h5 style="margin-bottom: 20px;"><span class="span_h2">Data de publicacao:</span> <small style="color: black"> @Html.DisplayFor(model => model.Data_Publicacao) </small></h5>
                          <h6 style="margin-bottom:20px;"><span class="span_h2">Tags: </span> @Html.DisplayFor(model => model.Area.Nome), @Html.DisplayFor(model => model.Area.Curso.Nome)</h6>
                    

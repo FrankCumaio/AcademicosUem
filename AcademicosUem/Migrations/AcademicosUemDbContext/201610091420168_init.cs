@@ -1,9 +1,9 @@
-namespace AcademicosUem.Migrations
+namespace AcademicosUem.Migrations.AcademicosUemDbContext
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class m1 : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -59,21 +59,6 @@ namespace AcademicosUem.Migrations
                 .Index(t => t.AreaID);
             
             CreateTable(
-                "dbo.Trabalhos_autor",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        TrabalhosID = c.Int(),
-                        AutorID = c.Int(),
-                        Trabalho_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Autor", t => t.AutorID)
-                .ForeignKey("dbo.Trabalho", t => t.Trabalho_Id)
-                .Index(t => t.AutorID)
-                .Index(t => t.Trabalho_Id);
-            
-            CreateTable(
                 "dbo.Trabalho",
                 c => new
                     {
@@ -90,26 +75,39 @@ namespace AcademicosUem.Migrations
                 .ForeignKey("dbo.Area", t => t.AreaID, cascadeDelete: true)
                 .Index(t => t.AreaID);
             
+            CreateTable(
+                "dbo.TrabalhoAutors",
+                c => new
+                    {
+                        Trabalho_Id = c.Int(nullable: false),
+                        Autor_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Trabalho_Id, t.Autor_Id })
+                .ForeignKey("dbo.Trabalho", t => t.Trabalho_Id)
+                .ForeignKey("dbo.Autor", t => t.Autor_Id)
+                .Index(t => t.Trabalho_Id)
+                .Index(t => t.Autor_Id);
+            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Trabalhos_autor", "Trabalho_Id", "dbo.Trabalho");
+            DropForeignKey("dbo.TrabalhoAutors", "Autor_Id", "dbo.Autor");
+            DropForeignKey("dbo.TrabalhoAutors", "Trabalho_Id", "dbo.Trabalho");
             DropForeignKey("dbo.Trabalho", "AreaID", "dbo.Area");
-            DropForeignKey("dbo.Trabalhos_autor", "AutorID", "dbo.Autor");
             DropForeignKey("dbo.Temas", "AutorID", "dbo.Autor");
             DropForeignKey("dbo.Temas", "AreaID", "dbo.Area");
             DropForeignKey("dbo.Autor", "CursoID", "dbo.Curso");
             DropForeignKey("dbo.Area", "CursoID", "dbo.Curso");
+            DropIndex("dbo.TrabalhoAutors", new[] { "Autor_Id" });
+            DropIndex("dbo.TrabalhoAutors", new[] { "Trabalho_Id" });
             DropIndex("dbo.Trabalho", new[] { "AreaID" });
-            DropIndex("dbo.Trabalhos_autor", new[] { "Trabalho_Id" });
-            DropIndex("dbo.Trabalhos_autor", new[] { "AutorID" });
             DropIndex("dbo.Temas", new[] { "AreaID" });
             DropIndex("dbo.Temas", new[] { "AutorID" });
             DropIndex("dbo.Autor", new[] { "CursoID" });
             DropIndex("dbo.Area", new[] { "CursoID" });
+            DropTable("dbo.TrabalhoAutors");
             DropTable("dbo.Trabalho");
-            DropTable("dbo.Trabalhos_autor");
             DropTable("dbo.Temas");
             DropTable("dbo.Autor");
             DropTable("dbo.Curso");

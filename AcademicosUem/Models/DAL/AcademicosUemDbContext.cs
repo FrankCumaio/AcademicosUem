@@ -8,13 +8,16 @@
     public class AcademicosUemDbContext : DbContext
     {
 
+        public AcademicosUemDbContext()
+            : base("DefaultConnection")
+        {
+        }
 
         public virtual DbSet<Area> Area { get; set; }
         public virtual DbSet<Autor> Autor { get; set; }
         public virtual DbSet<Curso> Curso { get; set; }
         public virtual DbSet<Temas> Temas { get; set; }
         public virtual DbSet<Trabalho> Trabalho { get; set; }
-        public virtual DbSet<Trabalhos_autor> Trabalhos_autor { get; set; }
 
 
     }
