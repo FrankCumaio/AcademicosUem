@@ -381,3 +381,9 @@ nav a.button-collapse {
 footer.page-footer {
     margin: 0px !important;
 }
+
+@media (max-width: 762px){
+    #navDiv{
+        height: 200px !important;
+    }
+}
