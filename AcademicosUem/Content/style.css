@@ -13,6 +13,10 @@
     padding: 0 15px;
 }
 
+._li{
+    max-width: inherit !important;
+}
+
 body{
     padding: 0px;
 }
