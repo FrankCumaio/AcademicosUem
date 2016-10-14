@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AcademicosUem.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AcademicosUem.Controllers
 {
@@ -19,13 +20,18 @@ namespace AcademicosUem.Controllers
         private ApplicationUserManager _userManager;
 
         public AccountController()
+            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(UserManager<ApplicationUser> userManager,ApplicationSignInManager signInManager)
+        {
+            SignInManager = signInManager;
+        }
+
+        public AccountController(UserManager<ApplicationUser> userManager)
         {
             UserManager = userManager;
-            SignInManager = signInManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -40,17 +46,7 @@ namespace AcademicosUem.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+        public UserManager<ApplicationUser> UserManager { get; private set; }
 
         //
         // GET: /Account/Login
@@ -79,7 +75,7 @@ namespace AcademicosUem.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Roles");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -426,6 +422,7 @@ namespace AcademicosUem.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+        private UserManager<ApplicationUser> userManager;
 
         private IAuthenticationManager AuthenticationManager
         {

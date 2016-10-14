@@ -33,7 +33,8 @@ namespace AcademicosUem
                       "~/Scripts/materialize.min.js",
                       "~/Scripts/modernizr.js",
                       "~/Scripts/custom-min.js",
-                     "~/Scripts/plugin-min.js"));
+                     "~/Scripts/plugin-min.js",
+                     "~/Scripts/MainScript.js"));
 
 
             //add no template
