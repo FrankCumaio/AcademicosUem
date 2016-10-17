@@ -12,7 +12,7 @@ namespace AcademicosUem.Controllers
 {
     public class CursoController : Controller
     {
-        private AcademicosUemDbContext db = new AcademicosUemDbContext();
+        private AcademicosMzDbContext db = new AcademicosMzDbContext();
 
         // GET: Curso
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome")] Curso curso)
+        public ActionResult Create([Bind(Include = "Id,Nome,Area_conhecimento")] Curso curso)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome")] Curso curso)
+        public ActionResult Edit([Bind(Include = "Id,Nome,Area_conhecimento")] Curso curso)
         {
             if (ModelState.IsValid)
             {

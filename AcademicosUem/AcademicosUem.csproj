@@ -49,9 +49,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.24160719\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.12.1.2400\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -193,9 +203,11 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\DAL\AcademicosMzDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\DAL\AcademicosUemDbContext.cs" />
+    <Compile Include="Models\Tema.cs" />
     <Compile Include="Models\Temas.cs" />
     <Compile Include="Models\Trabalho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -285,7 +297,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -329,11 +343,6 @@
     <Content Include="Views\Area\Details.cshtml" />
     <Content Include="Views\Area\Edit.cshtml" />
     <Content Include="Views\Area\Index.cshtml" />
-    <Content Include="Views\Curso\Create.cshtml" />
-    <Content Include="Views\Curso\Delete.cshtml" />
-    <Content Include="Views\Curso\Details.cshtml" />
-    <Content Include="Views\Curso\Edit.cshtml" />
-    <Content Include="Views\Curso\Index.cshtml" />
     <Content Include="Views\Trabalho\Todos.cshtml" />
     <Content Include="Views\Shared\_LayoutSecundary.cshtml" />
     <Content Include="Views\Autor\Create.cshtml" />
@@ -347,6 +356,11 @@
     <Content Include="Views\Roles\ManageUserRoles.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Curso\Create.cshtml" />
+    <Content Include="Views\Curso\Delete.cshtml" />
+    <Content Include="Views\Curso\Details.cshtml" />
+    <Content Include="Views\Curso\Edit.cshtml" />
+    <Content Include="Views\Curso\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

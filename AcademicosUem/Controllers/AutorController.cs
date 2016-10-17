@@ -12,7 +12,7 @@ namespace AcademicosUem.Controllers
 {
     public class AutorController : Controller
     {
-        private AcademicosUemDbContext db = new AcademicosUemDbContext();
+        private AcademicosMzDbContext db = new AcademicosMzDbContext();
 
         // GET: Autor
         public ActionResult Index()

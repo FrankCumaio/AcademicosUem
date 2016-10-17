@@ -1,4 +1,4 @@
-namespace AcademicosUem.Testes.Models
+namespace AcademicosUem.Models
 {
     using System;
     using System.Data.Entity;
@@ -12,17 +12,19 @@ namespace AcademicosUem.Testes.Models
         {
         }
 
-        public virtual DbSet<Area> Areas { get; set; }
-        public virtual DbSet<Autor> Autors { get; set; }
+        public virtual DbSet<Area> Area { get; set; }
+        public virtual DbSet<Autor> Autor { get; set; }
         public virtual DbSet<Curso> Curso { get; set; }
         public virtual DbSet<Tema> Temas { get; set; }
         public virtual DbSet<Trabalho> Trabalho { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("SCOTT");
+
             modelBuilder.Entity<Autor>()
-                .HasMany(e => e.Trabalhoes)
-                .WithMany(e => e.Autors)
+                .HasMany(e => e.Trabalhos)
+                .WithMany(e => e.Autor)
                 .Map(m => m.ToTable("TrabalhoAutors", "SCOTT"));
         }
     }

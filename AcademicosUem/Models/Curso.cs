@@ -20,6 +20,9 @@
 
         public string Nome { get; set; }
 
+        public string Area_conhecimento { get; set; }
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Area> Area { get; set; }
 
