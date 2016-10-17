@@ -42,6 +42,10 @@ body{
     text-align: left
 }
 
+promo{
+    font-size: 30px;
+}
+
 .icon_area{
     color: #5b4f4f;
 }
@@ -60,8 +64,26 @@ a{
     text-decoration: none;
 }
 
+a:visited, a:after a:active{
+    background-color: rgba(0, 0, 0, 0.64) !important;
+}
+
 .linkDetalhes{
     margin-top: 20px !important;
+   font-weight: 200;
+    margin-left: -5px !important;
+    height: 25px;
+    border-radius: 0px;
+    background-color: #5b4f4f;
+    margin-bottom: 30px !important;
+}
+
+.linkDetalhes a{
+    color: white !important;
+    margin-top: 10px;
+    font-size: 15px;
+   font-weight: 300;
+       font-family: Roboto, Roboto-Light !important;
 }
 
 .nav-pills a {
@@ -92,8 +114,22 @@ a:hover, a:visited, a:focus, a:active{
     color: white;
 }
 
+.divTema{
+    background: url(../../img/bg.jpg);
+     background-attachment:fixed;
+      background-size: cover;
+       color: white !important;
+        height: 300px;
+}
+
 .divTema a{
-    color: rgba(203, 198, 198, 0.70) !important;
+     line-height:20px;
+}
+
+.divTemaShadow{
+    margin-top:0;
+    background: rgba(0, 0, 0, 0.64);
+     height: 300px;
 }
 
 .divTema a:hover{
@@ -108,11 +144,54 @@ a:hover, a:visited, a:focus, a:active{
    background-repeat: no-repeat
 }
 
+.renderBody{
+    margin-top: 180px;
+}
+
 #btPesquisa{
     margin-top: -3px;
     background: rgba(0,0,0,.1);
     border: 1px solid whitesmoke;
     color: white;
+}
+
+#opcoes{
+    border: 2px solid white;
+    padding: 0;
+    margin-top: 0;
+    text-align: center;
+}
+
+.verTodos{
+    float: right;
+    font-size: 20px;
+    margin-top: 18px;
+}
+
+.verTodos a{
+      font-size: 16px;
+    color: white;
+    font-family: Roboto, Roboto-Light !important;
+
+}
+
+.verDetalhes{
+ float: left;
+  padding: 5px;
+  margin-bottom:10px;
+}
+
+.verDetalhes a{
+      font-size: 15px;
+    color: white;
+    font-family: Roboto, Roboto-Light !important;
+
+}
+
+.verTodos a{
+    color: white;
+    font-family: Roboto, Roboto-Light !important;
+
 }
 
 #searchBoxDiv{
@@ -178,6 +257,10 @@ a:hover, a:visited, a:focus, a:active{
     display: block;
 }
 .card-content a {color: #5b4f4f;}
+
+ .card-title{
+    font-size: 18px !important;
+}
 
 .card-content a:hover {color: #5b4f4f;}
 
@@ -378,6 +461,7 @@ nav a.button-collapse {
     line-height: 10px !important;
 }
 
+
 .parallax-container {
     max-height: 400px;
 }
@@ -386,10 +470,43 @@ footer.page-footer {
     margin: 0px !important;
 }
 
+
+
 @media (max-width: 762px){
     #navDiv{
-        height: 200px !important;
+        height: 250px !important;
     }
+
+    .renderBody{
+        margin-top:230px;
+    }
+
+    #opcoes{
+        margin-bottom: 10px;
+    }
+
+    .verTodos {
+        margin-top:0;
+        margin-bottom: 5px;
+    }
+
+    .text_tema{
+       font-size: 20px !important;
+    }
+
+    .card-title{
+    font-size: 18px !important;
+}
+
+    .header{
+        font-size: 30px !important;
+    }
+
+
+    .promo1{
+        padding-left: 30px !important;
+    }
+
 }
 
 /*tabela admin*/

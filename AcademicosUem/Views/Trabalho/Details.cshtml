@@ -127,14 +127,16 @@
                                 @{
                                     foreach (var autor in Model.Autor)
                                     {
-                                        @autor.Nome <br />
+                                        @autor.Nome<span>,</span>
                                     }
                                 }
                             </small>
                         </h5>
                         <h5 style="margin-bottom: 20px;"><span class="span_h2">Data de publicacao:</span> <small style="color: black"> @Html.DisplayFor(model => model.Data_Publicacao) </small></h5>
                         <h6 style="margin-bottom:20px;"><span class="span_h2">Tags: </span> @Html.DisplayFor(model => model.Area.Nome), @Html.DisplayFor(model => model.Area.Curso.Nome)</h6>
-
+                        @*<a class="btn btn-success btn-squared pull-right" href="whatsapp://send?text=Ola, veja o material de Programacao Web aqui: http://fakul.co.mz/material/visualizar/53/2015/Informatica/Programacao-Web" data-action="share/whatsapp/share">
+                            <i class="fa fa-whatsapp"> </i> Partilhar
+                        </a>*@
                         <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.facebook.com%2FAcademicosMz%2F&layout=button&size=large&mobile_iframe=true&width=117&height=28&appId" width="117" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
                     </div>
 
@@ -172,20 +174,22 @@
                     @{int i = 0;}
                     @foreach (var item in ViewBag.trabalhosRelacionados)
             {
-                if (i < 3)
+                if (i < 4)
                 {
-                            <div class="col s12 m4 l4">
+                            <div class="col s12 m3 l3">
                                 <div class="card">
-                                    <div class="card-image waves-effect waves-block waves-light">
+                                    <div class="card-image waves-effect waves-block waves-light" style="height: 200px;">
                                         <img class="activator" src="~/img/pdf.png">
                                     </div>
-                                    <div class="card-content">
-                                        <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => modelItem.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
-                                        <p class="linkDetalhes">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+                                    <div class="card-content" style="height: 130px; max-height: 130px !important; overflow-y:auto">
+                                        <span class="card-title activator grey-text text-darken-4">@Html.DisplayFor(modelItem => modelItem.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
                                     </div>
+                                    <p class="linkDetalhes col m7">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+
                                     <div class="card-reveal">
-                                        <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => modelItem.Titulo)<i class="mdi-navigation-close right"></i></span>
-                                        <p>@Html.DisplayFor(modelItem => modelItem.Descricao)</p>
+                                        <span class="card-title grey-text text-darken-4">@Html.DisplayFor(modelItem => modelItem.Titulo)<i class="mdi-navigation-close right"></i></span>
+                                        <hr />
+                                        <p><b>Descricao: </b><br />@Html.DisplayFor(modelItem => modelItem.Descricao)</p>
                                     </div>
                                 </div>
                             </div>

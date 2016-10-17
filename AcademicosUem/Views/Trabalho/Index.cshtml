@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<AcademicosUem.Models.Trabalho>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inicio";
 }
 @*
 
@@ -74,36 +74,44 @@
 
 <!--Navegue pelas areas-->
 <div id="intro" class="section scrollspy">
-    <div class="container">
+    <div class="">
         <div class="row">
             <div class="col s12">
                 <h2 class="center header text_h2" style="margin-top:0; margin-bottom: 60px;"> Navegue pelas <span class="span_h2">areas</span></h2>
             </div>
             <br />
             <br />
-            <div class="col s12 m4 l4">
+            <div class="col s12 m3 l3 promo1" style="padding-left: 30px;">
                 <div class="center promo promo-example">
 
-                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias exactas", "Todos", "Trabalho")</h5>
+                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias Agronomicas", "Todos", "Trabalho")</h5>
                     <br />
-                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias Naturais", "Todos", "Trabalho")</h5>
+                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias Biologicas", "Todos", "Trabalho")</h5>
 
                 </div>
             </div>
-            <div class="col s12 m4 l4">
+            <div class="col s12 m3 l3 promo1">
                 <div class="center promo promo-example">
-                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias de Saude", "Todos", "Trabalho")</h5>
+                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias da Saude", "Todos", "Trabalho")</h5>
                     <br />
-                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias Naturais", "Todos", "Trabalho")</h5>
+                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias Humanas", "Todos", "Trabalho")</h5>
                 </div>
             </div>
-            <div class="col s12 m4 l4">
+            <div class="col s12 m3 l4 promo1" style="padding-right:0;">
                 <div class="center promo promo-example">
-                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">@Html.ActionLink("Artes e Musica", "Todos", "Trabalho")</h5>
+                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias Naturais e exactas", "Todos", "Trabalho")</h5>
                     <br />
-                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">@Html.ActionLink("Educacao", "Todos", "Trabalho")</h5>
+                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">@Html.ActionLink("Ciencias Sociais e Aplicadas", "Todos", "Trabalho")</h5>
                 </div>
             </div>
+            <div class="col s12 m2 l2 promo1" style="padding-right: 30px; padding-left:0">
+                <div class="center promo promo-example">
+                    <i class="small col s1 fa fa-list icon_area"></i><h5 class="promo-caption">@Html.ActionLink("Engenharias", "Todos", "Trabalho")</h5>
+                    <br />
+                    <i class="small col s1 fa fa-list icon_area icon_area1"></i><h5 class="promo-caption">@Html.ActionLink("Letras e Artes", "Todos", "Trabalho")</h5>
+                </div>
+            </div>
+           
         </div>
     </div>
 </div>
@@ -111,25 +119,27 @@
 <!--Trabalhos recentes-->
 <div class="section scrollspy" id="work">
     <div class="container">
-        <h3 class="header text_h2">Trabalhos <span class="span_h2"> recentes</span> <span style="font-size: 20px">@Html.ActionLink("[ Ver todos ]", "Todos", "Trabalho")</span></h3>
+        <h3 class="header text_h2">Trabalhos <span class="span_h2"> recentes</span> <button class="verTodos btn blue">@Html.ActionLink("Ver todos", "Todos", "Trabalho")</button></h3>
         <div class="row">
             @{int i = 0;}
             @foreach (var item in Model)
             {
-                if (i < 3)
+                if (i < 4)
                 {
-                <div class="col s12 m4 l4">
+                <div class="col s12 m3 l3">
                     <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
+                        <div class="card-image waves-effect waves-block waves-light" style="height: 200px;">
                             <img class="activator" src="~/img/pdf.png">
                         </div>
-                        <div class="card-content">
-                            <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
-                            <p class="linkDetalhes">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+                        <div class="card-content" style="height: 130px; max-height: 130px !important; overflow-y:auto">
+                            <span class="card-title activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
                         </div>
+                        <p class="linkDetalhes col m7">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+
                         <div class="card-reveal">
-                            <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-close right"></i></span>
-                            <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+                            <span class="card-title grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-close right"></i></span>
+                           <hr />
+                             <p><b>Descricao: </b><br />@Html.DisplayFor(modelItem => item.Descricao)</p>
                         </div>
                     </div>
                 </div>
@@ -142,25 +152,27 @@
 
         <!--Trabalhos mais populares-->
         <div class="row">
-            <h3 class="header text_h2">Trabalhos <span class="span_h2"> populares </span><span style="font-size: 20px">@Html.ActionLink("[ Ver todos ]", "Todos", "Trabalho")</span></h3>
+            <h3 class="header text_h2">Trabalhos <span class="span_h2"> populares </span><span class="verTodos btn blue">@Html.ActionLink("Ver todos", "Todos", "Trabalho")</span></h3>
 
         @{int j = 0;}
         @foreach (var item in Model)
         {
-            if (j < 3)
+            if (j < 4)
             {
-                <div class="col s12 m4 l4">
+                <div class="col s12 m3 l3">
                     <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
+                        <div class="card-image waves-effect waves-block waves-light" style="height: 200px;">
                             <img class="activator" src="~/img/pdf.png">
                         </div>
-                        <div class="card-content">
-                            <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
-                            <p class="linkDetalhes">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+                        <div class="card-content" style="height: 130px; max-height: 130px !important; overflow-y:auto">
+                            <span class="card-title activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
                         </div>
+                        <p class="linkDetalhes col m7">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</p>
+
                         <div class="card-reveal">
-                            <span class="card-title text_h2 grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-close right"></i></span>
-                            <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+                            <span class="card-title grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-close right"></i></span>
+                            <hr />
+                            <p><b>Descricao: </b><br />@Html.DisplayFor(modelItem => item.Descricao)</p>
                         </div>
                     </div>
                 </div>
@@ -174,9 +186,22 @@
 
 
 <!--Parallax Subscreva-se -->
-<div class="section scrollspy divTema" style="background: url(../../img/Open-Book1.jpg); background-size: cover; color: white !important; ">
-    <div class="container">
-        <h3 class="header center text_h2" style="line-height: 30px;">Veja <span> tambem.. </span> <span style="font-size: 20px; color:white;">@Html.ActionLink("[ Sugestoes de temas para trabalhos de investigacao]", "Todos", "Trabalho")</span></h3>
+<div class="section scrollspy divTema" style="background: url(../../img/bg.jpg); background-attachment:fixed; background-size: cover; color: white !important; height: 300px;">
+    <div style="background: rgba(0, 0, 0, 0.3); height: 300px; margin-top:-15px;">
+        <div class="container">
+
+            <h4 class="header text_tema center text_h2" style="line-height: 40px; margin-top: 40px;">Com dificuldades em escolher um <b>tema</b> para o seu <b>trabalho</b> ?!</h4>
+
+            <h3 style="font-size: 30px; padding-top: 0px; padding-bottom:0;" class="text_h text_tema center header cd-headline letters type">
+                Nós podemos ajudar
+                <span class="cd-words-wrapper waiting">
+                    <b class="is-visible">!</b>
+                    <b>:)</b>
+                </span>
+            </h3>
+
+            <h5 class="text_h2 center text_tema">Clique <button class="btn green">Aqui</button> para ver sugestoes de temas!</h5>
+        </div>
     </div>
 </div>
 
