@@ -145,7 +145,11 @@ a:hover, a:visited, a:focus, a:active{
 }
 
 .renderBody{
-    margin-top: 180px;
+    margin-top: 160px;
+}
+
+.renderBody1{
+    margin-top: 80px;
 }
 
 #btPesquisa{
@@ -474,11 +478,18 @@ footer.page-footer {
 
 @media (max-width: 762px){
     #navDiv{
-        height: 250px !important;
+        height: 235px !important;
+    }
+     #navDiv1{
+        height: 50px !important;
     }
 
     .renderBody{
-        margin-top:230px;
+        margin-top:220px;
+    }
+
+    .renderBody1{
+        margin-top:80px !important;
     }
 
     #opcoes{

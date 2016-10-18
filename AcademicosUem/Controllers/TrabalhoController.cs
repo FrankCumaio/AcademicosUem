@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AcademicosUem.Models;
 using AcademicosUem.ViewModels;
+using System.IO;
 
 namespace AcademicosUem.Controllers
 {
@@ -63,7 +64,7 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores,HttpPostedFileBase file)
         {
             if (selectedAutores != null)
             {
@@ -79,7 +80,10 @@ namespace AcademicosUem.Controllers
             trabalho.Data_Publicacao = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
-     
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/Uploads"), fileName);
+                file.SaveAs(path);
+                trabalho.DirectorioDoc =path;
                 db.Trabalho.Add(trabalho);
                 db.SaveChanges();
                 return RedirectToAction("Index");
