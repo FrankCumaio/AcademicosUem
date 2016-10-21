@@ -21,13 +21,13 @@
                     <a href="/" id="logo-container" class="brand-logo">Academicos MZ</a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="#work">@Html.ActionLink("Trabalhos", "Todos", "Trabalho")</a></li>
-                        <li><a href="#team">Subscricao</a></li>
+                        <li><a href="#work">@Html.ActionLink("Temas", "Index", "Tema")</a></li>
                        @Html.Partial("_LoginPartial")
                     </ul>
                     
                     <ul id="nav-mobile" class="side-nav">
                         <li><a href="#work">@Html.ActionLink("Trabalhos", "Todos", "Trabalho")</a></li>
-                        <li><a href="#team">Subscricao</a></li>
+                        <li><a href="#work">@Html.ActionLink("Temas", "Index", "Tema")</a></li>
                         @Html.Partial("_LoginPartial")
 
                     </ul>
@@ -59,10 +59,14 @@
 
                 <select id="opcoes" name="opcoes" class="validate form-control form-inline white black-text" style="height: 47px; width: auto; display:inline; background">
                     <option selected value="1" style="text-align:center">Mostrar tudo</option>
-                    <option value="1">Ciencias Exactas</option>
-                    <option value="1">Ciencias Naturais</option>
-                    <option value="1">Ciencias de Saude</option>
-                    <option value="1">Educacao</option>
+                    <option value="Ciencias Agronomicas">Ciencias Agronomicas</option>
+                    <option value="Ciencias Biologicas">Ciencias Biologicas</option>
+                    <option value="Ciencias de Saude">Ciencias de Saude</option>
+                    <option value="Ciencias Humanas">Ciencias Humanas</option>
+                    <option value="Ciencias Naturais e Exactas">Ciencias Naturais e Exactas</option>
+                    <option value="Ciencias Sociais e Aplicadas">Ciencias Sociais e Aplicadas</option>
+                    <option value="Engenharia">Engenharia</option>
+                    <option value="Letras e Artes">Letras e Artes</option>
                 </select>
 
                 <input id="icon_prefix" name="name" type="text" class="validate white black-text center" placeholder="Pesquise por trabalhos, temas, etc..">

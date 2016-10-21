@@ -1,4 +1,5 @@
-(function($){
+(function ($) {
+    
   $(function(){
 
     $('.button-collapse').sideNav();
@@ -29,9 +30,19 @@
 	    $(this).attr('data-search-term', $(this).text().toLowerCase());
 	});
 
+	$('#resultadoPesquisaTxt').ready(function () {
+	    $('#resultadoPesquisaTxt').hide();
+	});
+
 	$('#search').on('keyup', function () {
 
 	    var searchTerm = $(this).val().toLowerCase();
+
+	    if ($(this).val() == "")
+	        $('#resultadoPesquisaTxt').hide();
+	    else
+	        $('#resultadoPesquisaTxt').show();
+
 
 	    $('.live-search-list li').each(function () {
 
@@ -43,6 +54,44 @@
 
 	    });
 
+	});
+
+      //nav-pils filtro categorias
+	$('.live-search-list li').each(function () {
+	    $(this).attr('data-search-term', $(this).text().toLowerCase());
+	});
+
+	$('.nav-pills li a').click( function () {
+
+	    var searchTerm = $(this).text().toLowerCase();
+
+	    $('.live-search-list li').each(function () {
+
+	        if (searchTerm == "mostrar todos") {
+	            $(this).show();
+	            return;
+	        }
+
+	        if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+	            $(this).show();
+	        } else {
+	            $(this).hide();
+	        }
+
+	    });
+
+	});
+
+      //Tabs
+	$(function () {
+	    $('a[data-toggle="tab"]').on('shown.tabs', function (e) {
+	        localStorage.setItem('lastTab', $(this).attr('href'));
+	    });
+
+	    var lastTab = localStorage.getItem('lastTab');
+	    if (lastTab) {
+	        $('[href="' + lastTab + '"]').tabs('show');
+	    }
 	});
 
 

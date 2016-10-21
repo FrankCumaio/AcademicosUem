@@ -44,10 +44,10 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
                 .Index(t => t.CursoID);
             
             CreateTable(
-                "SCOTT.Temas1",
+                "SCOTT.Temas",
                 c => new
                     {
-                        Id = c.Decimal(nullable: false, precision: 10, scale: 0),
+                        Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
                         Titulo = c.String(),
                         Descricao = c.String(),
                         AutorID = c.Decimal(nullable: false, precision: 10, scale: 0),
@@ -77,22 +77,6 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
                 .Index(t => t.AreaID);
             
             CreateTable(
-                "SCOTT.Temas",
-                c => new
-                    {
-                        Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
-                        Titulo = c.String(maxLength: 255),
-                        Descricao = c.String(maxLength: 255),
-                        AutorID = c.Decimal(nullable: false, precision: 10, scale: 0),
-                        AreaID = c.Decimal(precision: 10, scale: 0),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("SCOTT.Area", t => t.AreaID)
-                .ForeignKey("SCOTT.Autor", t => t.AutorID, cascadeDelete: true)
-                .Index(t => t.AutorID)
-                .Index(t => t.AreaID);
-            
-            CreateTable(
                 "SCOTT.TrabalhoAutors",
                 c => new
                     {
@@ -109,28 +93,23 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
         
         public override void Down()
         {
-            DropForeignKey("SCOTT.Temas", "AutorID", "SCOTT.Autor");
-            DropForeignKey("SCOTT.Temas", "AreaID", "SCOTT.Area");
             DropForeignKey("SCOTT.TrabalhoAutors", "Trabalho_Id", "SCOTT.Trabalho");
             DropForeignKey("SCOTT.TrabalhoAutors", "Autor_Id", "SCOTT.Autor");
             DropForeignKey("SCOTT.Trabalho", "AreaID", "SCOTT.Area");
-            DropForeignKey("SCOTT.Temas1", "AutorID", "SCOTT.Autor");
-            DropForeignKey("SCOTT.Temas1", "AreaID", "SCOTT.Area");
+            DropForeignKey("SCOTT.Temas", "AutorID", "SCOTT.Autor");
+            DropForeignKey("SCOTT.Temas", "AreaID", "SCOTT.Area");
             DropForeignKey("SCOTT.Autor", "CursoID", "SCOTT.Curso");
             DropForeignKey("SCOTT.Area", "CursoID", "SCOTT.Curso");
             DropIndex("SCOTT.TrabalhoAutors", new[] { "Trabalho_Id" });
             DropIndex("SCOTT.TrabalhoAutors", new[] { "Autor_Id" });
+            DropIndex("SCOTT.Trabalho", new[] { "AreaID" });
             DropIndex("SCOTT.Temas", new[] { "AreaID" });
             DropIndex("SCOTT.Temas", new[] { "AutorID" });
-            DropIndex("SCOTT.Trabalho", new[] { "AreaID" });
-            DropIndex("SCOTT.Temas1", new[] { "AreaID" });
-            DropIndex("SCOTT.Temas1", new[] { "AutorID" });
             DropIndex("SCOTT.Autor", new[] { "CursoID" });
             DropIndex("SCOTT.Area", new[] { "CursoID" });
             DropTable("SCOTT.TrabalhoAutors");
-            DropTable("SCOTT.Temas");
             DropTable("SCOTT.Trabalho");
-            DropTable("SCOTT.Temas1");
+            DropTable("SCOTT.Temas");
             DropTable("SCOTT.Autor");
             DropTable("SCOTT.Curso");
             DropTable("SCOTT.Area");
