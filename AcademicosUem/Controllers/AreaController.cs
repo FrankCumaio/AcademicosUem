@@ -12,7 +12,7 @@ namespace AcademicosUem.Controllers
 {
     public class AreaController : Controller
     {
-        private AcademicosUemDbContext db = new AcademicosUemDbContext();
+        private AcademicosMzDbContext db = new AcademicosMzDbContext();
 
         // GET: Area
         public ActionResult Index()

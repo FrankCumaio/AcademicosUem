@@ -1,4 +1,4 @@
-namespace AcademicosUem.Testes.Models
+namespace AcademicosUem.Models
 {
     using System;
     using System.Collections.Generic;

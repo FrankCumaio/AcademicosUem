@@ -8,110 +8,132 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
         public override void Up()
         {
             CreateTable(
-                "dbo.Area",
+                "SCOTT.Area",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
                         Nome = c.String(),
-                        CursoID = c.Int(nullable: false),
+                        CursoID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Curso", t => t.CursoID, cascadeDelete: true)
+                .ForeignKey("SCOTT.Curso", t => t.CursoID, cascadeDelete: true)
                 .Index(t => t.CursoID);
             
             CreateTable(
-                "dbo.Curso",
+                "SCOTT.Curso",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
                         Nome = c.String(),
+                        Area_conhecimento = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Autor",
+                "SCOTT.Autor",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
                         Nome = c.String(maxLength: 250),
                         Telefone = c.String(maxLength: 50),
                         Email = c.String(maxLength: 50),
-                        CursoID = c.Int(nullable: false),
+                        CursoID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Curso", t => t.CursoID, cascadeDelete: true)
+                .ForeignKey("SCOTT.Curso", t => t.CursoID, cascadeDelete: true)
                 .Index(t => t.CursoID);
             
             CreateTable(
-                "dbo.Temas",
+                "SCOTT.Temas1",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Decimal(nullable: false, precision: 10, scale: 0),
                         Titulo = c.String(),
                         Descricao = c.String(),
-                        AutorID = c.Int(nullable: false),
-                        AreaID = c.Int(),
+                        AutorID = c.Decimal(nullable: false, precision: 10, scale: 0),
+                        AreaID = c.Decimal(precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Area", t => t.AreaID)
-                .ForeignKey("dbo.Autor", t => t.AutorID, cascadeDelete: true)
+                .ForeignKey("SCOTT.Area", t => t.AreaID)
+                .ForeignKey("SCOTT.Autor", t => t.AutorID, cascadeDelete: true)
                 .Index(t => t.AutorID)
                 .Index(t => t.AreaID);
             
             CreateTable(
-                "dbo.Trabalho",
+                "SCOTT.Trabalho",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
                         Titulo = c.String(),
                         Descricao = c.String(),
                         Data_Publicacao = c.String(),
                         Grau_Academico = c.String(),
                         Estado = c.String(),
                         DirectorioDoc = c.String(),
-                        AreaID = c.Int(nullable: false),
+                        AreaID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Area", t => t.AreaID, cascadeDelete: true)
+                .ForeignKey("SCOTT.Area", t => t.AreaID, cascadeDelete: true)
                 .Index(t => t.AreaID);
             
             CreateTable(
-                "dbo.TrabalhoAutors",
+                "SCOTT.Temas",
                 c => new
                     {
-                        Trabalho_Id = c.Int(nullable: false),
-                        Autor_Id = c.Int(nullable: false),
+                        Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
+                        Titulo = c.String(maxLength: 255),
+                        Descricao = c.String(maxLength: 255),
+                        AutorID = c.Decimal(nullable: false, precision: 10, scale: 0),
+                        AreaID = c.Decimal(precision: 10, scale: 0),
                     })
-                .PrimaryKey(t => new { t.Trabalho_Id, t.Autor_Id })
-                .ForeignKey("dbo.Trabalho", t => t.Trabalho_Id)
-                .ForeignKey("dbo.Autor", t => t.Autor_Id)
-                .Index(t => t.Trabalho_Id)
-                .Index(t => t.Autor_Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("SCOTT.Area", t => t.AreaID)
+                .ForeignKey("SCOTT.Autor", t => t.AutorID, cascadeDelete: true)
+                .Index(t => t.AutorID)
+                .Index(t => t.AreaID);
+            
+            CreateTable(
+                "SCOTT.TrabalhoAutors",
+                c => new
+                    {
+                        Autor_Id = c.Decimal(nullable: false, precision: 10, scale: 0),
+                        Trabalho_Id = c.Decimal(nullable: false, precision: 10, scale: 0),
+                    })
+                .PrimaryKey(t => new { t.Autor_Id, t.Trabalho_Id })
+                .ForeignKey("SCOTT.Autor", t => t.Autor_Id, cascadeDelete: true)
+                .ForeignKey("SCOTT.Trabalho", t => t.Trabalho_Id, cascadeDelete: true)
+                .Index(t => t.Autor_Id)
+                .Index(t => t.Trabalho_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.TrabalhoAutors", "Autor_Id", "dbo.Autor");
-            DropForeignKey("dbo.TrabalhoAutors", "Trabalho_Id", "dbo.Trabalho");
-            DropForeignKey("dbo.Trabalho", "AreaID", "dbo.Area");
-            DropForeignKey("dbo.Temas", "AutorID", "dbo.Autor");
-            DropForeignKey("dbo.Temas", "AreaID", "dbo.Area");
-            DropForeignKey("dbo.Autor", "CursoID", "dbo.Curso");
-            DropForeignKey("dbo.Area", "CursoID", "dbo.Curso");
-            DropIndex("dbo.TrabalhoAutors", new[] { "Autor_Id" });
-            DropIndex("dbo.TrabalhoAutors", new[] { "Trabalho_Id" });
-            DropIndex("dbo.Trabalho", new[] { "AreaID" });
-            DropIndex("dbo.Temas", new[] { "AreaID" });
-            DropIndex("dbo.Temas", new[] { "AutorID" });
-            DropIndex("dbo.Autor", new[] { "CursoID" });
-            DropIndex("dbo.Area", new[] { "CursoID" });
-            DropTable("dbo.TrabalhoAutors");
-            DropTable("dbo.Trabalho");
-            DropTable("dbo.Temas");
-            DropTable("dbo.Autor");
-            DropTable("dbo.Curso");
-            DropTable("dbo.Area");
+            DropForeignKey("SCOTT.Temas", "AutorID", "SCOTT.Autor");
+            DropForeignKey("SCOTT.Temas", "AreaID", "SCOTT.Area");
+            DropForeignKey("SCOTT.TrabalhoAutors", "Trabalho_Id", "SCOTT.Trabalho");
+            DropForeignKey("SCOTT.TrabalhoAutors", "Autor_Id", "SCOTT.Autor");
+            DropForeignKey("SCOTT.Trabalho", "AreaID", "SCOTT.Area");
+            DropForeignKey("SCOTT.Temas1", "AutorID", "SCOTT.Autor");
+            DropForeignKey("SCOTT.Temas1", "AreaID", "SCOTT.Area");
+            DropForeignKey("SCOTT.Autor", "CursoID", "SCOTT.Curso");
+            DropForeignKey("SCOTT.Area", "CursoID", "SCOTT.Curso");
+            DropIndex("SCOTT.TrabalhoAutors", new[] { "Trabalho_Id" });
+            DropIndex("SCOTT.TrabalhoAutors", new[] { "Autor_Id" });
+            DropIndex("SCOTT.Temas", new[] { "AreaID" });
+            DropIndex("SCOTT.Temas", new[] { "AutorID" });
+            DropIndex("SCOTT.Trabalho", new[] { "AreaID" });
+            DropIndex("SCOTT.Temas1", new[] { "AreaID" });
+            DropIndex("SCOTT.Temas1", new[] { "AutorID" });
+            DropIndex("SCOTT.Autor", new[] { "CursoID" });
+            DropIndex("SCOTT.Area", new[] { "CursoID" });
+            DropTable("SCOTT.TrabalhoAutors");
+            DropTable("SCOTT.Temas");
+            DropTable("SCOTT.Trabalho");
+            DropTable("SCOTT.Temas1");
+            DropTable("SCOTT.Autor");
+            DropTable("SCOTT.Curso");
+            DropTable("SCOTT.Area");
         }
     }
 }
