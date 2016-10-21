@@ -73,9 +73,10 @@ a:visited, a:after a:active{
    font-weight: 200;
     margin-left: -5px !important;
     height: 25px;
+    text-align:center;
     border-radius: 0px;
-    background-color: #5b4f4f;
     margin-bottom: 30px !important;
+    background-color: #5b4f4f !important;
 }
 
 .linkDetalhes a{
@@ -91,9 +92,20 @@ a:visited, a:after a:active{
     color: black !important;
 }
 
+.dropdown-menu{
+    position: absolute;
+}
 
-.nav-pills a:hover, a:focus{
-    background-color:  rgba(201, 203, 203, 0.85) !important;
+.dropdown-menu li:hover, li:visited, li:after, li:active{
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-pills a:hover, a:focus, a:active, a:visited{
+    background-color:  rgba(201, 203, 203, 0.92) !important;
 }
 
 .tabs .tab a:focus{
@@ -145,11 +157,7 @@ a:hover, a:visited, a:focus, a:active{
 }
 
 .renderBody{
-    margin-top: 160px;
-}
-
-.renderBody1{
-    margin-top: 80px;
+    margin-top: 180px;
 }
 
 #btPesquisa{
@@ -176,7 +184,24 @@ a:hover, a:visited, a:focus, a:active{
       font-size: 16px;
     color: white;
     font-family: Roboto, Roboto-Light !important;
+}
 
+.verResultadosTemas{
+    float: right;
+    font-size: 20px;
+    margin-top: 18px;
+    background-color: #5b4f4f !important;
+}
+
+.verResultadosTemas a{
+      font-size: 12px;
+      padding:5px;
+    color: white;
+    font-family: Roboto, Roboto-Light !important;
+}
+
+#navDiv{
+    height: 170px;
 }
 
 .verDetalhes{
@@ -190,6 +215,11 @@ a:hover, a:visited, a:focus, a:active{
     color: white;
     font-family: Roboto, Roboto-Light !important;
 
+}
+
+.sidebar{
+    margin-left:20px !important;
+     padding-right: 0;
 }
 
 .verTodos a{
@@ -232,6 +262,10 @@ a:hover, a:visited, a:focus, a:active{
   font-family: Roboto, Roboto-Light;
 }
 
+#search{
+    width: 400px;
+}
+
 
 .brand-logo{
     position: absolute;
@@ -261,6 +295,14 @@ a:hover, a:visited, a:focus, a:active{
     display: block;
 }
 .card-content a {color: #5b4f4f;}
+
+.card-content{
+    padding-bottom:0 !important;
+    padding-top:0 !important;
+    height: 110px;
+    max-height: 115px !important;
+    overflow-y:auto
+}
 
  .card-title{
     font-size: 18px !important;
@@ -478,18 +520,11 @@ footer.page-footer {
 
 @media (max-width: 762px){
     #navDiv{
-        height: 235px !important;
-    }
-     #navDiv1{
-        height: 50px !important;
+        height: 210px !important;
     }
 
     .renderBody{
-        margin-top:220px;
-    }
-
-    .renderBody1{
-        margin-top:80px !important;
+        margin-top:210px;
     }
 
     #opcoes{
@@ -516,6 +551,29 @@ footer.page-footer {
 
     .promo1{
         padding-left: 30px !important;
+    }
+
+    .sidebar{
+        margin-left:10px !important;
+         padding-left: 0 ;
+    }
+
+    .container2{
+        margin-left: 30px !important;
+    }
+    
+    .live-search-list{
+        margin-left: 0!important;
+    }
+
+    .text_resultados{
+        font-size: 25px;
+        line-height:30px;
+    }
+
+    .verResultadosTemas{
+        margin-top:0;
+        margin-bottom:20px;
     }
 
 }

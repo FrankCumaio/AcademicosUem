@@ -1,5 +1,4 @@
-﻿//Search Admin
-$(document).ready(function () {
+﻿$(document).ready(function () {
     var activeSystemClass = $('.list-group-item.active');
 
     //something is entered in search form
@@ -40,8 +39,6 @@ $(document).ready(function () {
         }
     });
 });
-
-//Menu de login
 $(function () {
     $('#login-form-link').click(function (e) {
         $("#login-form").delay(100).fadeIn(100);

@@ -9,7 +9,7 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             MigrationsDirectory = @"Migrations\AcademicosUemDbContext";
         }
 

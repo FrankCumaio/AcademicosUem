@@ -15,7 +15,7 @@ namespace AcademicosUem.Models
         public virtual DbSet<Area> Area { get; set; }
         public virtual DbSet<Autor> Autor { get; set; }
         public virtual DbSet<Curso> Curso { get; set; }
-        public virtual DbSet<Tema> Temas { get; set; }
+        public virtual DbSet<Temas> Temas { get; set; }
         public virtual DbSet<Trabalho> Trabalho { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

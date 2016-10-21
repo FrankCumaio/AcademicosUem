@@ -8,81 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using AcademicosUem.Models;
 using AcademicosUem.ViewModels;
-using System.IO;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Drive.v2;
-using System.Threading;
-using Google.Apis.Util.Store;
-using Google.Apis.Services;
-using Google.Apis.Drive.v2.Data;
-using System.Diagnostics;
 
 namespace AcademicosUem.Controllers
 {
     public class TrabalhoController : Controller
     {
-        private AcademicosUemDbContext db = new AcademicosUemDbContext();
-        static string[] Scopes = { DriveService.Scope.Drive };
-        static string ApplicationName = "Drive API Quickstart";
-
-        public void UploadFile()
-        {
-            UserCredential credential;
-            var path = Server.MapPath(@"~/Scripts/client_secret.json");
-            using (var stream =
-                new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                string credPath = System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/drive-dotnet-Demo");
-
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
-
-            // Create Drive API service.
-            var service = new DriveService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
-
-            Google.Apis.Drive.v2.Data.File body = new Google.Apis.Drive.v2.Data.File();
-            body.Title = "test upload";
-            body.Description = "test upload";
-            body.MimeType = "application/pdf";
-            var parentId = "0BwiuFVfOZIECU0w1dnA0WlR6UkU";
-            if (!String.IsNullOrEmpty(parentId))
-            {
-                body.Parents = new List<ParentReference>()
-          {new ParentReference() {Id = parentId}};
-            }
-            // File's content.
-            byte[] byteArray = System.IO.File.ReadAllBytes("/GuiaPagamentoReport.pdf");
-            MemoryStream streamf = new MemoryStream(byteArray);
-            try
-            {
-                FilesResource.InsertMediaUpload request = service.Files.Insert(body, streamf, "application/pdf");
-                request.Upload();
-
-                Google.Apis.Drive.v2.Data.File file = request.ResponseBody;
-
-                // Uncomment the following line to print the File ID.
-               Debug.WriteLine("File ID: " + file.Id);
-
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("An error occurred: " + e.Message);
-            }
-
-        }
+        private AcademicosMzDbContext db = new AcademicosMzDbContext();
 
         // GET: Trabalho
         public ActionResult Index()
@@ -93,6 +24,8 @@ namespace AcademicosUem.Controllers
 
         public ActionResult Todos()
         {
+            ViewBag.Cursos = db.Curso.ToList();
+            ViewBag.autores = db.Autor.ToList();
             var trabalho = db.Trabalho.Include(t => t.Area);
             return View(trabalho.ToList());
         }
@@ -132,33 +65,8 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores,HttpPostedFileBase ficheiro)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores)
         {
-            UserCredential credential;
-            var path = Server.MapPath(@"~/Scripts/client_secret.json");
-            using (var stream =
-                new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                string credPath = System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/drive-dotnet-Demo");
-
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
-
-            // Create Drive API service.
-            var service = new DriveService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
             if (selectedAutores != null)
             {
                 trabalho.Autor = new List<Autor>();
@@ -173,46 +81,10 @@ namespace AcademicosUem.Controllers
             trabalho.Data_Publicacao = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
-
-                Google.Apis.Drive.v2.Data.File body = new Google.Apis.Drive.v2.Data.File();
-                body.Title = ficheiro.FileName;
-                body.Description = ficheiro.FileName;
-                Debug.WriteLine(ficheiro.GetType().ToString());
-                Debug.WriteLine(ficheiro.ContentType);
-                body.MimeType = "application/pdf";
-                var parentId = "0BwiuFVfOZIECU0w1dnA0WlR6UkU";
-                if (!String.IsNullOrEmpty(parentId))
-                {
-                    body.Parents = new List<ParentReference>()
-          {new ParentReference() {Id = parentId}};
-                }
-                // File's content.
-                byte[] byteArray = System.IO.File.ReadAllBytes("/GuiaPagamentoReport.pdf");
-                MemoryStream streamf = new MemoryStream(byteArray);
-                try
-                {
-                    FilesResource.InsertMediaUpload request = service.Files.Insert(body, streamf, "application/pdf");
-                    request.Upload();
-
-                    Google.Apis.Drive.v2.Data.File file = request.ResponseBody;
-
-                    // Uncomment the following line to print the File ID.
-                    Debug.WriteLine("File ID: " + file.Id);
-                    trabalho.DirectorioDoc = file.Id;
-
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine("An error occurred: " + e.Message);
-                }
-
-                //                var fileName = Path.GetFileName(file.FileName);
-                //              var path = Path.Combine(Server.MapPath("~/App_Data/Uploads"), fileName);
-                //            file.SaveAs(path);
-                //          trabalho.DirectorioDoc =path;
+     
                 db.Trabalho.Add(trabalho);
                 db.SaveChanges();
-                return null;//RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
 
 
@@ -220,17 +92,7 @@ namespace AcademicosUem.Controllers
             ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", trabalho.AreaID);
             return View(trabalho);
         }
-        public static Google.Apis.Drive.v2.Data.File updateFile(DriveService service, string _uploadFile)
-        {
-            Google.Apis.Drive.v2.Data.File file = new Google.Apis.Drive.v2.Data.File();
-            byte[] byteArray = System.IO.File.ReadAllBytes(_uploadFile);
-            System.IO.MemoryStream stream = new System.IO.MemoryStream(byteArray);
-            FilesResource.InsertMediaUpload request = service.Files.Insert(file, stream, "application/pdf");
 
-            request.Upload();
-            Google.Apis.Drive.v2.Data.File updatedFile = request.ResponseBody;
-            return updatedFile;
-        }
         // GET: Trabalho/Edit/5
         public ActionResult Edit(int? id)
         {

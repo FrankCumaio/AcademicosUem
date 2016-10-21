@@ -13,8 +13,10 @@
 </head>
 <body>
 
+    <!--MANTER O SIDEBAR NO LAYOUT DEPOIS DE ALTERAR O LAYOUT THIRD-->
+
     <!--Navigation-->
-    <div class="navbar navbar navbar-fixed-top" id="navDiv"  style="height: 170px; background-color: rgba(91, 79, 79, .90) !important;">
+    <div class="navbar navbar navbar-fixed-top" id="navDiv"  style="background-color: rgba(91, 79, 79, .90) !important;">
         <nav id="nav_f" class="default_color" role="navigation" style="background-color: rgba(74, 64, 64, .98) !important;">
             <div class="">
                 <div class="nav-wrapper" style="margin-left: 60px; margin-right: 10px;">
@@ -22,6 +24,8 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="#work">@Html.ActionLink("Inicio", "Index", "Trabalho")</a></li>
                         <li><a href="#work">@Html.ActionLink("Trabalhos", "Todos", "Trabalho")</a></li>
+                        <li><a href="#work">@Html.ActionLink("Temas", "Index", "Tema")</a></li>
+
                         @Html.Partial("_LoginPartial")
                  
                     </ul>
@@ -29,6 +33,8 @@
                     <ul id="nav-mobile" class="side-nav">
                         <li><a href="#work">@Html.ActionLink("Inicio", "Index", "Trabalho")</a></li>
                         <li><a href="#work">@Html.ActionLink("Trabalhos", "Todos", "Trabalho")</a></li>
+                        <li><a href="#work">@Html.ActionLink("Temas", "Index", "Tema")</a></li>
+
                         @Html.Partial("_LoginPartial")
 
                     </ul>
@@ -45,11 +51,15 @@
             
              <div class="input-field col m12" id="searchfield">
                 
-                <input  id="search" name="name" type="text" class="validate white black-text" placeholder="Pesquise por trabalhos, temas, etc..">
+                <input  id="search" name="name" type="text" class="validate white black-text" placeholder="Pesquise pelo titulo, area, curso, data de publicacao, etc..">
                 <button id="btPesquisa" class="btn darken-1" type="submit" style="height: 47px;">Pesquisar</button>
             </div>
         </div>
     </div>
+
+  
+
+
 
     <div class="renderBody">
         @RenderBody()
@@ -63,13 +73,13 @@
                         <h5 class="white-text">Siga-nos</h5>
                         <ul>
                             <li>
-                                <a class="white-text" href="https://www.facebook.com/">
+                                <a class="white-text" href="https://www.facebook.com/joash.c.pereira">
                                     <i class="small fa fa-facebook-square white-text"></i> Facebook
                                 </a>
                             </li>
                      
                             <li>
-                                <a class="white-text" href="https://www.google.com">
+                                <a class="white-text" href="https://www.linkedin.com/in/joashp">
                                     <i class="small fa fa-google-plus-square white-text"></i> Google +
                                 </a>
                             </li>
@@ -132,16 +142,6 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/modernizr")
-    
-    <script>
-        $(document).ready(function () {
-            $('.collapsible').collapsible({
-                accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-            });
-        });
-
-    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
