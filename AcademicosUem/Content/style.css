@@ -160,6 +160,11 @@ a:hover, a:visited, a:focus, a:active{
     margin-top: 160px;
 }
 
+.renderBody1{
+    margin-top: 50px;
+}
+
+
 #btPesquisa{
     margin-top: -3px;
     background: rgba(0,0,0,.1);
@@ -382,6 +387,52 @@ nav ul a {
     visibility: visible;
 }
 
+
+.descHome{
+    font-size: 18px !important;
+    font-weight: 200;
+}
+
+
+
+/*Vertical tabs*/
+ 
+  .tabs-vertical  .tabs {
+        height: auto;
+        -ms-flex-direction: column;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+
+.tab {
+    width: 100%;
+}
+     .tab .active {
+            -moz-transition: border-color .5s ease;
+            -o-transition: border-color .5s ease;
+            -webkit-transition: border-color .5s ease;
+            transition: border-color .5s ease;
+            border-left: 3px solid #424242;
+        }
+
+     .tab span{
+         text-align:center !important; 
+         margin-left:10px;
+         font-weight: 200;
+     }
+
+  .tabs-vertical  .tabs  .indicator {
+        display: none;
+    }
+
+
+  .icon2{
+      margin-right: 20px;
+      margin-top: 10px;
+      font-size: 24px !important;
+  }
+
+
 @-webkit-keyframes cd-pulse {
     0% {
         -webkit-transform: translateY(-50%) scale(1);
@@ -577,5 +628,3 @@ footer.page-footer {
     }
 
 }
-
-/*tabela admin*/

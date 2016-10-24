@@ -233,21 +233,14 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\avatar1.png" />
-    <Content Include="img\avatar2.png" />
-    <Content Include="img\avatar3.png" />
-    <Content Include="img\avatar4.png" />
     <Content Include="img\bg.jpg" />
     <Content Include="img\Open-Book.jpg" />
     <Content Include="img\Open-Book1.jpg" />
-    <Content Include="img\parallax1.png" />
     <Content Include="img\pdf.png" />
     <Content Include="img\pdffoto.png" />
-    <Content Include="img\project1.jpg" />
-    <Content Include="img\project2.jpeg" />
-    <Content Include="img\project3.png" />
-    <Content Include="img\project4.jpg" />
-    <Content Include="img\project5.png" />
-    <Content Include="img\project6.jpeg" />
+    <Content Include="img\tema2.png" />
+    <Content Include="img\trabalho1.png" />
+    <Content Include="img\trabalho4.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -366,6 +359,7 @@
     <Content Include="Views\Tema\Details.cshtml" />
     <Content Include="Views\Tema\Edit.cshtml" />
     <Content Include="Views\Tema\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutThird.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

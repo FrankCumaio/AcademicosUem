@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Minha Conta";
-    Layout = "~/Views/Shared/_LayoutSecundary.cshtml";
+    Layout = "~/Views/Shared/_LayoutThird.cshtml";
 }
 
 <p class="text-success">@ViewBag.StatusMessage</p>
@@ -105,20 +105,90 @@
                                
                             </div>
                         </div>
-                    <hr style="margin-top:0;" />
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><i class="small col s1 fa fa-home"></i><a href="#" style="text-align:center;">Inicio</a></li>
-                        <li><i class="small col s1 fa fa-star"></i><a href="#"  style="text-align:center;">Trabalhos Favoritos</a></li>
-                        <li><i class="small col s1 fa fa-star"></i><a href="#" style="text-align:center;">Temas Favoritos</a></li>
-                        <li><i class="small col s1 fa fa-dashboard"></i><a href="#" style="text-align:center;">Definicoes da conta</a></li>
 
-                    </ul>
+                    <div class="row">
+                        <div class="tabs-vertical">
+                            <div class="col s1 m1">
+                                <ul class="tabs">
+                                    <li class="tab">
+                                        <a class="active" href="#home"><i class="small col s1 fa fa-home icon2"></i><span>Bem Vindo</span></a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="#favoritos"><i class="small col s1 fa fa-star icon2"></i><span>Favoritos</span></a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="#minhasPub"><i class="small col s1 fa fa-upload icon2"></i><span>Minhas publicacoes</span></a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="#configuracoes"><i class="small col s1 fa fa-dashboard icon2"></i><span>Configuracoes da conta</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-        <div class="col m8 s10 container2" style="margin-left:40px; max-height:800px; overflow-y:auto; margin-top:10px; padding: 0; background-color: rgba(247,247,247,.25)">
-            @*Resultados pesquisa*@
+        <div class="col m8 s10 container2" style="margin-left:40px; margin-top:10px; padding: 0; background-color: rgba(247,247,247,.25)">
+            <div id="home" class="tab-content">
+
+                <div class="col m10 s12 offset-l1">
+                    <h4 class="text_h2" style="text-align: center; line-height:35px;">Bem Vindo a sua conta do <span class="span_h2">Academicos Mz </span></h4>
+                </div>
+     
+                <div class="col s12 m4 offset-l1">
+                    <div class="card card-avatar">
+                        <div class="waves-block waves-light">
+                            <img class="activator" src="~/img/trabalho4.png" style="margin-left: 23%;">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title text_h2 activator grey-text text-darken-4">
+                                <br />
+                                <b><span><a class="span_h2" href="#">Trabalhos</a></span></b>
+                            </span>
+         
+                        </div>
+                    </div>
+                    <span class="span_h2 descHome" >Aceda a milhares de <b>trabalhos</b> de investigacao de forma simples e rapida, e contribua para o desenvolvimento da comunidade academica partilhando os seus proprios trabalhos.</span>
+                    <button class="btn blue col s12 m12" style="margin-bottom: 20px; margin-top: 10px;">Partilhar trabalhos</button>
+                </div>
+
+                    <div class="col s12 m4 offset-l1">
+                        <div class="card card-avatar">
+                            <div class="waves-block waves-light">
+                                <img class="" src="~/img/tema2.png" style="margin-left: 23%;">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title text_h2 activator grey-text text-darken-4">
+                                     <br />
+                                    <span><a class="span_h2" href="#">Temas</a></span>
+                                </span>
+
+                            </div>
+                        </div>
+                        <span class="span_h2 descHome">Encontre sugestoes de <b>temas</b> e ideias para os seus trabalhos de investigacao. Partilhe tambem as suas ideias e troque experiencia com a vasta comunidade de academicos em Mocambique.</span>
+                        <button class="btn blue col s12 m12" style="margin-bottom: 20px; margin-top: 10px;">Sugerir temas</button>
+
+                    </div>              
+              </div>
+
+            </div>
+            <div id="favoritos" class="tab-content">
+                Favoritos
+            </div>
+            <div id="minhasPub" class="tab-content">
+                Minhas publicacoes
+            </div>
+            <div id="configuracoes" class="tab-content">
+                Configuracoes da conta
+            </div>
+        </div>
+
+        @*<div class="col m8 s10 container2" style="margin-left:40px; max-height:800px; overflow-y:auto; margin-top:10px; padding: 0; background-color: rgba(247,247,247,.25)">
+    
             <h4 id="resultadoPesquisaTxt" type="text" class="center text_resultados text_h2" style="margin-bottom:0; margin-top:0;">Resultados da <span class="span_h2">pesquisa...</span> </h4>
 
             <ul class="live-search-list" style="margin-left: 10px;">
@@ -133,7 +203,7 @@
             </ul>
 
 
-        </div>
+        </div>*@
 
     </div>
 </div>
