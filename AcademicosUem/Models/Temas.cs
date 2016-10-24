@@ -20,6 +20,16 @@ namespace AcademicosUem.Models
 
         public int? AreaID { get; set; }
 
+        public string _Data_Publicacao = DateTime.Now.ToString();
+        public string Data_Publicacao
+        {
+            get
+            {
+                return _Data_Publicacao;
+            }
+            set { _Data_Publicacao = value; }
+        }
+
         public virtual Area Area { get; set; }
 
         public virtual Autor Autor { get; set; }

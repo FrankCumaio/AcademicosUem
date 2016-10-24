@@ -41,7 +41,7 @@ namespace AcademicosUem.Controllers
             ViewBag.trabalhosRelacionados = db.Trabalho.ToList();
 
             if (trabalho == null)
-            {
+            {  
                 return HttpNotFound();
             }
             return View(trabalho);

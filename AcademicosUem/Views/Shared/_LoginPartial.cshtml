@@ -7,8 +7,9 @@
 
     <ul class="left hide-on-med-and-down">
         <li>
-            @Html.ActionLink("Ola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
+            @*@Html.ActionLink("Ola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+            @Html.ActionLink("Minha Conta", "Index", "Manage")
+         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }

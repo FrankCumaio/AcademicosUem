@@ -1,12 +1,13 @@
 ﻿@model AcademicosUem.Models.IndexViewModel
+@using Microsoft.AspNet.Identity
+
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Minha Conta";
+    Layout = "~/Views/Shared/_LayoutSecundary.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
-
 <p class="text-success">@ViewBag.StatusMessage</p>
-<div>
+@*<div>
     <h4>Aqui teremos a pagina da conta do usuario com seus trabalhos favoritos, configs etc</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -56,12 +57,12 @@
                 }
             </dd>
         *@
-        <dt>Two-Factor Authentication:</dt>
+        @*<dt>Two-Factor Authentication:</dt>
         <dd>
             <p>
                 There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
                 for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
+            </p>*@
             @*@if (Model.TwoFactor)
                 {
                     using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -82,6 +83,60 @@
                         </text>
                     }
                 }*@
-        </dd>
+        @*</dd>
     </dl>
+</div>*@
+
+<div class="section scrollspy">
+    <div class="row">
+        <div class="container col m3 offset-m1 sidebar">
+            @*Trabalhos*@
+            <div id="test1" class="col s12 m12" style="padding-right: 0;">
+                <div class="col s12 m12" style="padding:0; margin-top: 10px;">
+
+                        <div class="card-avatar">
+                            <div class="waves-block waves-notransition">
+                                <img class="activator" src="img/avatar1.png" style="margin-left:25%">
+                            </div>
+                            <div class="card-content" style="height: 50px;">
+                                <span class="card-title activator grey-text text-darken-4">
+                                    @User.Identity.GetUserName() <br />
+                                </span>
+                               
+                            </div>
+                        </div>
+                    <hr style="margin-top:0;" />
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><i class="small col s1 fa fa-home"></i><a href="#" style="text-align:center;">Inicio</a></li>
+                        <li><i class="small col s1 fa fa-star"></i><a href="#"  style="text-align:center;">Trabalhos Favoritos</a></li>
+                        <li><i class="small col s1 fa fa-star"></i><a href="#" style="text-align:center;">Temas Favoritos</a></li>
+                        <li><i class="small col s1 fa fa-dashboard"></i><a href="#" style="text-align:center;">Definicoes da conta</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col m8 s10 container2" style="margin-left:40px; max-height:800px; overflow-y:auto; margin-top:10px; padding: 0; background-color: rgba(247,247,247,.25)">
+            @*Resultados pesquisa*@
+            <h4 id="resultadoPesquisaTxt" type="text" class="center text_resultados text_h2" style="margin-bottom:0; margin-top:0;">Resultados da <span class="span_h2">pesquisa...</span> </h4>
+
+            <ul class="live-search-list" style="margin-left: 10px;">
+               
+                    <li>
+                        <h5 class="listaTema"><span class="span_h2">Titulo: </span>as</h5>
+                        <h6><span class="span_h2">Tags: </span>sa</h6>
+                        <hr />
+                        <p class="hidden">s</p>
+                    </li>
+               
+            </ul>
+
+
+        </div>
+
+    </div>
 </div>
+
+
+

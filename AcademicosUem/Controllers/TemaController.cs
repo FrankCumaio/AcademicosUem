@@ -29,6 +29,9 @@ namespace AcademicosUem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Temas temas = db.Temas.Find(id);
+            ViewBag.temasRelacionados = db.Temas.ToList();
+            ViewBag.autores = db.Autor.ToList();
+
             if (temas == null)
             {
                 return HttpNotFound();
@@ -51,6 +54,8 @@ namespace AcademicosUem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,AutorID,AreaID")] Temas temas)
         {
+            temas.Data_Publicacao = DateTime.Now.ToString();
+
             if (ModelState.IsValid)
             {
                 db.Temas.Add(temas);
