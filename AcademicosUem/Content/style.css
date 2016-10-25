@@ -271,6 +271,22 @@ a:hover, a:visited, a:focus, a:active{
     width: 400px;
 }
 
+.listaTema{
+    font-size: 20px !important;
+}
+
+#favoritos .tabs .tab{
+        background-color: rgba(247,247,247,.25);
+}
+
+#favoritos .tabs .tab:active, .tab:focus, .tab:visited, .tab:after{
+    background-color: rgba(247,247,247,.25) !important;
+}
+
+.btfavDetails a{
+    font-size: 12px;
+    color: white;
+}
 
 .brand-logo{
     position: absolute;
@@ -404,10 +420,10 @@ nav ul a {
         flex-direction: column;
     }
 
-.tab {
+.tabs-vertical .tab {
     width: 100%;
 }
-     .tab .active {
+    .tabs-vertical .tab .active {
             -moz-transition: border-color .5s ease;
             -o-transition: border-color .5s ease;
             -webkit-transition: border-color .5s ease;
@@ -610,7 +626,7 @@ footer.page-footer {
     }
 
     .container2{
-        margin-left: 30px !important;
+       
     }
     
     .live-search-list{

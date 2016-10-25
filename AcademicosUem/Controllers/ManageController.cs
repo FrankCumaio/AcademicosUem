@@ -7,12 +7,16 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AcademicosUem.Models;
+using System.Data;
+using System.Data.Entity;
 
 namespace AcademicosUem.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        private AcademicosMzDbContext db = new AcademicosMzDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -62,6 +66,10 @@ namespace AcademicosUem.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
+
+
+            ViewBag.trabalhos = db.Trabalho.ToList();
+            ViewBag.temas = db.Temas.ToList();
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
