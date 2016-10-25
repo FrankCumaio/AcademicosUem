@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_LayoutSecundary.cshtml";
+    Layout = "~/Views/Shared/_LayoutThird.cshtml";
 }
 
 @*<h2>Details</h2>
@@ -75,10 +75,10 @@
                 <div class="col m12 m4 l4">
                     <div class="card">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="~/img/pdf.png">
+                            <img class="activator" src="~/img/lamp2.png">
                         </div>
                         <div class="card-content">
-                            <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(model => model.Titulo) .pdf<i class="mdi-navigation-more-vert right"></i></span>
+                            <span class="card-title text_h2 activator grey-text text-darken-4">@Html.DisplayFor(model => model.Titulo)<i class="mdi-navigation-more-vert right"></i></span>
                         </div>
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">@Html.DisplayFor(model => model.Titulo) <i class="mdi-navigation-close right"></i></span>
@@ -92,15 +92,8 @@
                     <div style="margin-left: 50px;">
                         <h5 style="margin-bottom: 20px;"><span class="span_h2">Titulo:</span> <small style="color: black"> @Html.DisplayFor(model => model.Titulo) </small></h5>
                         <h5 style="margin-bottom: 20px;">
-                            <span class="span_h2">Autor(es):</span><small style="color: black">
-                                @{
-                                    foreach (var autor in ViewBag.autores)
-                                    {
-                                        if(autor.Nome == Model.Autor.Nome) { 
-                                            @autor.Nome<span>,</span>
-                                        }
-                                    }
-                                }
+                            <span class="span_h2">Publicado por:</span><small style="color: black">
+                            @Html.DisplayFor(model => model.Autor.Nome)
                             </small>
                         </h5>
 
@@ -139,7 +132,7 @@
     <div class="row">
         <div class="container">
 
-            <h4 class="text_h2" style="margin-bottom: 0px;">Trabalhos <span class="span_h2">relacionados</span></h4>
+            <h4 class="text_h2" style="margin-bottom: 0px;">Temas <span class="span_h2">relacionados</span></h4>
             <hr />
             <ul class="live-search-list" style="margin-left: 10px;">
                 @{
@@ -152,10 +145,15 @@
                             if (item.Area.Id == Model.Area.Id || item.Area.Curso.Id == Model.Area.Curso.Id)
                             {
                                 <li>
-                                    <h5 class="listaTema"><span class="span_h2">Titulo: </span>@Html.DisplayFor(modelItem => item.Titulo) <button class="btn blue" style="float: right; color:white !important; margin-bottom:10px;">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</button></h5>
+                                    <h5 class="listaTema"><span class="span_h2">Titulo: </span>@Html.DisplayFor(modelItem => item.Titulo)</h5>
+                                    <p class=""><span class="span_h2">Publicado por: </span>@Html.DisplayFor(modelItem => item.Autor.Nome)</p>
                                     <h6><span class="span_h2">Tags: </span>@Html.DisplayFor(modelItem => item.Area.Curso.Nome), @Html.DisplayFor(modelItem => item.Area.Nome)</h6>
+
+                                    <br />
+                                    <span class="btn btfavDetails blue col m2 s5" style="float: left; color:white !important; margin-bottom:10px; padding: 0; font-size: 18px;">@Html.ActionLink("Ver detalhes", "Details", new { id = item.Id })</span>
+                                    <br />
+                                    <br />
                                     <hr />
-                                    <p class="hidden">@Html.DisplayFor(modelItem => item.Autor.Nome)</p>
                                 </li>
                                 i++;
                             }

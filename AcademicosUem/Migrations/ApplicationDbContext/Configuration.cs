@@ -5,7 +5,7 @@ namespace AcademicosUem.Migrations.ApplicationDbContext
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AcademicosUem.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AcademicosUem.Models.AcademicosMzDbContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace AcademicosUem.Migrations.ApplicationDbContext
             MigrationsDirectory = @"Migrations\ApplicationDbContext";
         }
 
-        protected override void Seed(AcademicosUem.Models.ApplicationDbContext context)
+        protected override void Seed(AcademicosUem.Models.AcademicosMzDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
