@@ -76,8 +76,10 @@
     </div>
     <div class="row">
         <div class="container offset-l3">
+            <a href="/ViewerJS/#../4.pdf">PDF</a>
+           <a href="file:///C:\Users\Frank%20Cumaio\Source\Repos\AcademicosUem\AcademicosUem\App_Data\uploads\4.pdf" target="_blank">Link Text</a>
             <div id="LerDoc" class="collapse">
-                <iframe src="@Url.Action("GetPDF")"width="100%" height="1000"></iframe>
+                <iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(model => model.Id)).pdf" width='1000' height='1000' allowfullscreen webkitallowfullscreen></iframe>             
             </div>
         </div>
     </div>
