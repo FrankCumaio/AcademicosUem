@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using AcademicosUem.Models;
 using AcademicosUem.ViewModels;
+using System.IO;
+using System.Diagnostics;
 
 namespace AcademicosUem.Controllers
 {
@@ -29,7 +31,11 @@ namespace AcademicosUem.Controllers
             var trabalho = db.Trabalho.Include(t => t.Area);
             return View(trabalho.ToList());
         }
-
+        public FileStreamResult GetPDF()
+        {
+            FileStream fs = new FileStream(Server.MapPath("~/App_Data/uploads/4.pdf"), FileMode.Open, FileAccess.Read);
+            return File(fs, "application/pdf");
+        }
         // GET: Trabalho/Details/5
         public ActionResult Details(int? id)
         {
@@ -65,8 +71,9 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores, HttpPostedFileBase ficheiro)
         {
+
             if (selectedAutores != null)
             {
                 trabalho.Autor = new List<Autor>();
@@ -76,14 +83,26 @@ namespace AcademicosUem.Controllers
                     trabalho.Autor.Add(autorAdd);
                 }
             }
+            // Verify that the user selected a file
+
 
             trabalho.Estado = "Registado";
             trabalho.Data_Publicacao = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
-     
+
                 db.Trabalho.Add(trabalho);
                 db.SaveChanges();
+                var last_insert_id = trabalho.Id.ToString() + ".pdf";
+                if (ficheiro != null && ficheiro.ContentLength > 0)
+                {
+                    // extract only the filename
+                    var fileName = Path.GetFileName(ficheiro.FileName);
+                    Debug.WriteLine(fileName);
+                    // store the file inside ~/App_Data/uploads folder
+                    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), last_insert_id);
+                    ficheiro.SaveAs(path);
+                }
                 return RedirectToAction("Index");
             }
 
