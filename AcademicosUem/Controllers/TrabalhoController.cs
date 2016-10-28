@@ -31,11 +31,6 @@ namespace AcademicosUem.Controllers
             var trabalho = db.Trabalho.Include(t => t.Area);
             return View(trabalho.ToList());
         }
-        public FileStreamResult GetPDF()
-        {
-            FileStream fs = new FileStream(Server.MapPath("~/App_Data/uploads/4.pdf"), FileMode.Open, FileAccess.Read);
-            return File(fs, "application/pdf");
-        }
         // GET: Trabalho/Details/5
         public ActionResult Details(int? id)
         {
@@ -100,7 +95,7 @@ namespace AcademicosUem.Controllers
                     var fileName = Path.GetFileName(ficheiro.FileName);
                     Debug.WriteLine(fileName);
                     // store the file inside ~/App_Data/uploads folder
-                    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), last_insert_id);
+                    var path = Path.Combine(Server.MapPath("~/uploads"), last_insert_id);
                     ficheiro.SaveAs(path);
                 }
                 return RedirectToAction("Index");
