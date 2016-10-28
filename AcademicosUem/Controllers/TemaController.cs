@@ -44,7 +44,7 @@ namespace AcademicosUem.Controllers
         {
             ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
             ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome");
-            return View();
+            return PartialView("Create", new AcademicosUem.Models.Temas());
         }
 
         // POST: Tema/Create

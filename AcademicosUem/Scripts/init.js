@@ -30,6 +30,24 @@
 	initHeadline();
 	
 
+      //home-info
+	$('#partilharTrabalho').click(function () {
+	    $('#home-info').hide();
+	});
+
+	$('#partilharTema').click(function () {
+	    $('#home-info').hide();
+	});
+
+	$('.bt-voltar-home').click(function () {
+	    $('#home-info').show();
+	});
+
+	$('.bt-voltar-home1').click(function () {
+	    $('#home-info').show();
+	});
+
+
       //pesquisa trabalhos/temas
 	$('.live-search-list li').each(function () {
 	    $(this).attr('data-search-term', $(this).text().toLowerCase());

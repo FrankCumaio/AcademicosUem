@@ -9,6 +9,8 @@ using Microsoft.Owin.Security;
 using AcademicosUem.Models;
 using System.Data;
 using System.Data.Entity;
+using System.Collections.Generic;
+using AcademicosUem.ViewModels;
 
 namespace AcademicosUem.Controllers
 {
@@ -67,6 +69,12 @@ namespace AcademicosUem.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
+            var trabalho = new Trabalho();
+
+
+            ViewBag.AutorID = new MultiSelectList(db.Autor, "Id", "Nome");
+            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
+            var autor = new List<Autor>();
 
             ViewBag.trabalhos = db.Trabalho.ToList();
             ViewBag.temas = db.Temas.ToList();

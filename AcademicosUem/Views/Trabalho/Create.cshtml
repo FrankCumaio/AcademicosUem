@@ -9,136 +9,107 @@
     <title>Create</title>
 </head>
 <body>
-@using (Html.BeginForm("Create", "Trabalho", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-            @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Create", "Trabalho", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+         @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                <h4>Trabalho</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Grau_Academico, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-
-                        @{ 
-                            var listaGrauAcademico = new List<SelectListItem>();
-                            listaGrauAcademico.Add(new SelectListItem
-                            {
-                                Text = "Licenciatura",
-                                Value = "Licenciatura"
-                            });
-
-                            listaGrauAcademico.Add(new SelectListItem
-                            {
-                                Text = "Mestrado",
-                                Value = "Mestrado"
-                            });
-                        }
-
-                        @Html.DropDownListFor(model => model.Grau_Academico, listaGrauAcademico, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Grau_Academico, "", new { @class = "text-danger"})
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.AreaID, "AreaID", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("AreaID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AreaID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                @*<div class="form-control">
-                    <div class="input-field">
-                        <select multiple>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                        </select>
-                    </div>
-                </div>*@
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <table>
-                            <tr>
-                                @{
-                                    int cnt = 0;
-                                    List<AcademicosUem.ViewModels.AssignedAutorData> autores = ViewBag.Autores;
-
-                                    foreach (var autor in autores)
-                                    {
-                                        if (cnt++ % 3 == 0)
-                                        {
-                                            @:</tr><tr>
-                                }
-                                        @:<td>
+         <div class="form-horizontal">
+             <hr />
+             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+             <div class="form-group">
+                 @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+                 <div class="col-md-10">
+                     @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+                 </div>
+             </div>
 
 
-                                           
-                                            <input type="checkbox" name="selectedAutores" id="@autor.AutorID" value="@autor.AutorID"  @(Html.Raw(autor.Assigned ? "checked=\"checked\"" : "")) />
-                                            <label for="@autor.AutorID">@autor.AutorID @autor.Nome</label>
-                                           
-                                            
-                                             @:</td>
-                            }
-                                    @:</tr>
-                                }
-                            </table>
+             <div class="form-group">
+                 @Html.LabelFor(model => model.Grau_Academico, htmlAttributes: new { @class = "control-label col-md-2" })
+                 <div class="col-md-10">
 
-                           
+                     @{
+                         var listaGrauAcademico = new List<SelectListItem>();
+                         listaGrauAcademico.Add(new SelectListItem
+                         {
+                             Text = "Licenciatura",
+                             Value = "Licenciatura"
+                         });
 
-                        </div>
-                    </div>
+                         listaGrauAcademico.Add(new SelectListItem
+                         {
+                             Text = "Mestrado",
+                             Value = "Mestrado"
+                         });
+                     }
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DirectorioDoc, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @{
-                            <div class="file-field input-field">
-                                <div class="btn">
-                                    <span>Browse</span>
-                                    <input type="file" name="ficheiro" id="ficheiro">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Upload file">
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
+                     @Html.DropDownList("Grau Academico", listaGrauAcademico, htmlAttributes: new { @class = "form-control" })
+                     @Html.ValidationMessageFor(model => model.Grau_Academico, "", new { @class = "text-danger" })
+                 </div>
+             </div>
+
+             <div class="form-group">
+                 @Html.Label("Area", htmlAttributes: new { @class = "control-label col-md-2" })
+                 <div class="col-md-10">
+                     @Html.DropDownList("AreaID", null, htmlAttributes: new { @class = "form-control" })
+                     @Html.ValidationMessageFor(model => model.AreaID, "", new { @class = "text-danger" })
+                 </div>
+             </div>
+
+             <div class="form-group">
+                 @Html.Label("Autor(es)", htmlAttributes: new { @class = "control-label col-md-2" })
+                 <div class="col-md-offset-2 col-md-10" style="max-height: 80px; overflow-y:auto;">
+                  @{
+                   List<AcademicosUem.ViewModels.AssignedAutorData> autores = ViewBag.Autores;
+                   var listaAutores = new List<SelectListItem>();
+                   foreach (var autor in autores)
+                   {
+                     <input type="checkbox" name="selectedAutores" id="@autor.AutorID" value="@autor.AutorID" @(Html.Raw(autor.Assigned ? "checked=\"checked\"" : "")) />
+                     <label for="@autor.AutorID">@autor.Nome </label>
+                     <br />
+                    }
+                   }
+                     </div>
+                 </div>
+
+                 <div class="form-group">
+                     @Html.Label("Documento", htmlAttributes: new { @class = "control-label col-md-2" })
+                     <div class="col-md-10">
+                         @{
+                             <div class="file-field input-field">
+                                 <div class="btn">
+                                     <span>Browse</span>
+                                     <input type="file" name="ficheiro" id="ficheiro">
+                                 </div>
+                                 <div class="file-path-wrapper">
+                                     <input class="file-path validate" type="text" placeholder="Upload file">
+                                 </div>
+                             </div>
+                         }
+                     </div>
+                 </div>
 
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                 <div class="form-group">
+                     @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+                     <div class="col-md-12" style="height: 70px;">
+                         @Html.TextAreaFor(model => model.Descricao, new { rows= 12 })
+                         @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                     </div>
+                 </div>
 
 
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>
-        }
+                 <div class="form-group">
+                     <div class="col-md-offset-2 col-md-10">
+                         <input type="submit" value="Publicar" class="btn green" />
+                         <input type="button" data-toggle="collapse"  data-target="#registroTrabalho" value="Voltar" class="btn bt-voltar-home" />
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+                     </div>
+                 </div>
+             </div>
+                             }
 
 </body>
 </html>

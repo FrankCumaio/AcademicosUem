@@ -61,7 +61,7 @@ namespace AcademicosUem.Controllers
             var trabalho = new Trabalho();
             trabalho.Autor = new List<Autor>();
             PopulateAssignedAutorData(trabalho);
-            return View();
+            return PartialView("Create", new AcademicosUem.Models.Trabalho());
         }
 
 
