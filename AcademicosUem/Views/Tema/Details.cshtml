@@ -4,51 +4,6 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutThird.cshtml";
 }
-
-@*<h2>Details</h2>
-
-<div>
-    <h4>Temas</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Area.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Area.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Autor.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Autor.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
 <!DOCTYPE html>
 
 <html>
@@ -106,7 +61,7 @@
                     </div>
 
                     <div class="row" style="margin-top: 50px; margin-left:10px;">
-                        <button class="btn blue darken-1" type="button" style="height: 47px; width:250px; margin-bottom: 10px;">Adicionar aos favoritos</button>
+                        <button class="btn blue darken-1 z-depth-1-half btAddFav" type="button"><i class="small col m1 s1 fa fa-star iconbtFav"></i>Adicionar aos favoritos</button>
                     </div>
 
                 </div>
@@ -126,7 +81,7 @@
         <div class="container offset-l3">
             <h4 class="text_h2" style="margin-bottom: 0px;">Comentarios</h4>
             <hr />
-            <div class="fb-comments" data-href="https://www.facebook.com/AcademicosMz/ @Html.DisplayFor(model => model.Id)" data-numposts="5"></div>
+            <div class="fb-comments" data-href="https://www.facebook.com/AcademicosMz/ tema @Html.DisplayFor(model => model.Id)" data-numposts="5"></div>
         </div>
     </div>
     <div class="row">

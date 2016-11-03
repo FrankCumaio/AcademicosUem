@@ -10,12 +10,18 @@ using AcademicosUem.Models;
 using AcademicosUem.ViewModels;
 using System.IO;
 using System.Diagnostics;
+using Microsoft.AspNet.Identity;
 
 namespace AcademicosUem.Controllers
 {
     public class TrabalhoController : Controller
     {
         private AcademicosMzDbContext db = new AcademicosMzDbContext();
+
+        protected ApplicationDbContext ApplicationDbContext { get; set; }
+
+        protected UserManager<ApplicationUser> UserManager { get; set; }
+
 
         // GET: Trabalho
         public ActionResult Index()
@@ -28,6 +34,10 @@ namespace AcademicosUem.Controllers
         {
             ViewBag.Cursos = db.Curso.ToList();
             ViewBag.autores = db.Autor.ToList();
+
+            ViewBag.userId = User.Identity.GetUserId();
+
+
             var trabalho = db.Trabalho.Include(t => t.Area);
             return View(trabalho.ToList());
         }
@@ -66,7 +76,7 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores, HttpPostedFileBase ficheiro)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,userId,AreaID")] Trabalho trabalho,string[] selectedAutores, HttpPostedFileBase ficheiro)
         {
 
             if (selectedAutores != null)
@@ -82,6 +92,9 @@ namespace AcademicosUem.Controllers
 
 
             trabalho.Estado = "Registado";
+            trabalho.userId = User.Identity.GetUserId();
+            
+
             trabalho.Data_Publicacao = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {

@@ -26,7 +26,7 @@
 
 
              <div class="form-group">
-                 @Html.LabelFor(model => model.Grau_Academico, htmlAttributes: new { @class = "control-label col-md-2" })
+                 @Html.Label("Grau Academico", htmlAttributes: new { @class = "control-label col-md-2" })
                  <div class="col-md-10">
 
                      @{
@@ -44,7 +44,7 @@
                          });
                      }
 
-                     @Html.DropDownList("Grau Academico", listaGrauAcademico, htmlAttributes: new { @class = "form-control" })
+                     @Html.DropDownListFor(model => model.Grau_Academico, listaGrauAcademico, htmlAttributes: new { @class = "form-control" })
                      @Html.ValidationMessageFor(model => model.Grau_Academico, "", new { @class = "text-danger" })
                  </div>
              </div>
@@ -58,18 +58,31 @@
              </div>
 
              <div class="form-group">
+               
+
                  @Html.Label("Autor(es)", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                 <div class="col-md-10">
+                     <input id="search" type="search" placeholder="Pesquisar autores" />
+                 </div>
+
                  <div class="col-md-offset-2 col-md-10" style="max-height: 80px; overflow-y:auto;">
                   @{
-                   List<AcademicosUem.ViewModels.AssignedAutorData> autores = ViewBag.Autores;
-                   var listaAutores = new List<SelectListItem>();
-                   foreach (var autor in autores)
-                   {
-                     <input type="checkbox" name="selectedAutores" id="@autor.AutorID" value="@autor.AutorID" @(Html.Raw(autor.Assigned ? "checked=\"checked\"" : "")) />
-                     <label for="@autor.AutorID">@autor.Nome </label>
-                     <br />
-                    }
-                   }
+                      List<AcademicosUem.ViewModels.AssignedAutorData> autores = ViewBag.Autores;
+                      var listaAutores = new List<SelectListItem>();
+                    @:<ul class="live-search-list">
+                        foreach (var autor in autores)
+
+                      {
+                        <li>
+                            <input type="checkbox" name="selectedAutores" id="@autor.AutorID" value="@autor.AutorID" @(Html.Raw(autor.Assigned ? "checked=\"checked\"" : "")) />
+                            <label for="@autor.AutorID">@autor.Nome </label>
+                            <br />
+                        </li>
+                      }
+
+                    @:</ul>
+                }
                      </div>
                  </div>
 
