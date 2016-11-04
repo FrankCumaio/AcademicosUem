@@ -24,13 +24,38 @@ namespace AcademicosUem.Controllers
             return View(trabalho.ToList());
         }
 
-        public ActionResult Todos()
+        //public ActionResult Todos()
+        //{
+        //    ViewBag.Cursos = db.Curso.ToList();
+        //    ViewBag.autores = db.Autor.ToList();
+        //    var trabalho = db.Trabalho.Include(t => t.Area);
+        //    return View(trabalho.ToList());
+        //}
+
+        //GET: Pesquisa
+
+        public ActionResult Todos(string Area, string searchString)
         {
-            ViewBag.Cursos = db.Curso.ToList();
-            ViewBag.autores = db.Autor.ToList();
-            var trabalho = db.Trabalho.Include(t => t.Area);
-            return View(trabalho.ToList());
+ 
+            if (searchString!=null && Area!=null)
+            {
+                var trabalhoRes = db.Trabalho.Include(t => t.Area).Where(t => t.Area.Curso.Area_conhecimento.Equals(Area) && t.Titulo.Equals(searchString, StringComparison.OrdinalIgnoreCase));
+                    //from t in db.Trabalho
+                    //           where t.Area.Curso.Area_conhecimento.Equals(Area) 
+                    //           select t;
+                return View(trabalhoRes.ToList());
+            }
+            else
+            {
+                ViewBag.Cursos = db.Curso.ToList();
+                ViewBag.autores = db.Autor.ToList();
+                var trabalho = db.Trabalho.Include(t => t.Area);
+                return View(trabalho.ToList());
+            }
+            var GenreLst = new List<string>();
+ 
         }
+
         // GET: Trabalho/Details/5
         public ActionResult Details(int? id)
         {

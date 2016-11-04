@@ -13,7 +13,7 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
         
         string IMigrationMetadata.Id
         {
-            get { return "201610091420168_init"; }
+            get { return "201611031609132_init"; }
         }
         
         string IMigrationMetadata.Source

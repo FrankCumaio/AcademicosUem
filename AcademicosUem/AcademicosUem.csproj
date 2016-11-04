@@ -190,9 +190,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\AcademicosUemDbContext\201610091420168_init.cs" />
-    <Compile Include="Migrations\AcademicosUemDbContext\201610091420168_init.Designer.cs">
-      <DependentUpon>201610091420168_init.cs</DependentUpon>
+    <Compile Include="Migrations\AcademicosUemDbContext\201611031609132_init.cs" />
+    <Compile Include="Migrations\AcademicosUemDbContext\201611031609132_init.Designer.cs">
+      <DependentUpon>201611031609132_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AcademicosUemDbContext\Configuration.cs" />
     <Compile Include="Migrations\ApplicationDbContext\201610091416548_init.cs" />
@@ -393,8 +393,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\AcademicosUemDbContext\201610091420168_init.resx">
-      <DependentUpon>201610091420168_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AcademicosUemDbContext\201611031609132_init.resx">
+      <DependentUpon>201611031609132_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\ApplicationDbContext\201610091416548_init.resx">
       <DependentUpon>201610091416548_init.cs</DependentUpon>

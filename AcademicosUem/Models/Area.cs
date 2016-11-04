@@ -18,6 +18,7 @@
 
         public int Id { get; set; }
 
+        [StringLength(255, MinimumLength = 3, ErrorMessage = "My Error Message")]
         public string Nome { get; set; }
 
         public int CursoID { get; set; }

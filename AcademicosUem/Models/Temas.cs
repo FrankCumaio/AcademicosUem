@@ -11,9 +11,9 @@ namespace AcademicosUem.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
+        [StringLength(255, MinimumLength = 3, ErrorMessage = "My Error Message")]
         public string Titulo { get; set; }
-
+        [StringLength(255, MinimumLength = 3, ErrorMessage = "My Error Message")]
         public string Descricao { get; set; }
 
         public int AutorID { get; set; }

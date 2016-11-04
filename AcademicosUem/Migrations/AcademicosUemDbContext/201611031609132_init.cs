@@ -12,7 +12,7 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
                 c => new
                     {
                         Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
-                        Nome = c.String(),
+                        Nome = c.String(maxLength: 255),
                         CursoID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.Id)
@@ -24,8 +24,8 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
                 c => new
                     {
                         Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
-                        Nome = c.String(),
-                        Area_conhecimento = c.String(),
+                        Nome = c.String(maxLength: 255),
+                        Area_conhecimento = c.String(maxLength: 255),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -48,8 +48,8 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
                 c => new
                     {
                         Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
-                        Titulo = c.String(),
-                        Descricao = c.String(),
+                        Titulo = c.String(maxLength: 255),
+                        Descricao = c.String(maxLength: 255),
                         AutorID = c.Decimal(nullable: false, precision: 10, scale: 0),
                         AreaID = c.Decimal(precision: 10, scale: 0),
                         Data_Publicacao = c.String(),
@@ -65,11 +65,11 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
                 c => new
                     {
                         Id = c.Decimal(nullable: false, precision: 10, scale: 0, identity: true),
-                        Titulo = c.String(),
-                        Descricao = c.String(),
-                        Data_Publicacao = c.String(),
-                        Grau_Academico = c.String(),
-                        Estado = c.String(),
+                        Titulo = c.String(maxLength: 255),
+                        Descricao = c.String(maxLength: 255),
+                        Data_Publicacao = c.String(maxLength: 255),
+                        Grau_Academico = c.String(maxLength: 255),
+                        Estado = c.String(maxLength: 255),
                         DirectorioDoc = c.String(),
                         AreaID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
