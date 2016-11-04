@@ -24,13 +24,6 @@ namespace AcademicosUem.Controllers
             return View(trabalho.ToList());
         }
 
-        //public ActionResult Todos()
-        //{
-        //    ViewBag.Cursos = db.Curso.ToList();
-        //    ViewBag.autores = db.Autor.ToList();
-        //    var trabalho = db.Trabalho.Include(t => t.Area);
-        //    return View(trabalho.ToList());
-        //}
 
         //GET: Pesquisa
 
@@ -39,11 +32,9 @@ namespace AcademicosUem.Controllers
  
             if (searchString!=null && Area!=null)
             {
-                var trabalhoRes = db.Trabalho.Include(t => t.Area).Where(t => t.Area.Curso.Area_conhecimento.Equals(Area) && t.Titulo.Equals(searchString, StringComparison.OrdinalIgnoreCase));
-                    //from t in db.Trabalho
-                    //           where t.Area.Curso.Area_conhecimento.Equals(Area) 
-                    //           select t;
-                return View(trabalhoRes.ToList());
+                var trabalho = db.Trabalho.Include(t => t.Area).Where(t => t.Area.Curso.Area_conhecimento.Equals(Area) 
+                && t.Titulo.Equals(searchString, StringComparison.InvariantCultureIgnoreCase));
+                return View(trabalho.ToList());
             }
             else
             {
