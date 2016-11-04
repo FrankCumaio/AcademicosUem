@@ -320,6 +320,8 @@
                                         @{
                                             foreach (var item in trabalhos)
                                             {
+                                                if (item.userId == User.Identity.GetUserId())
+                                                {
                                                 <li>
                                                     <h5 class="listaTema"><span class="span_h2">Titulo: </span>@Html.DisplayFor(modelItem => item.Titulo) </h5>
                                                     <h6 class="hidden"><span class="span_h2">Tags: </span>@Html.DisplayFor(modelItem => item.Area.Curso.Nome), @Html.DisplayFor(modelItem => item.Area.Nome)</h6>
@@ -337,8 +339,9 @@
                                                         }
                                                     }
                                                 </li>
-                                           }
-                                        }
+                                                                }
+                                                            }
+                                                        }
                                     </ul>
                                 </div>
 

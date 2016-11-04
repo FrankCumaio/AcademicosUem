@@ -91,9 +91,7 @@ namespace AcademicosUem.Controllers
             // Verify that the user selected a file
 
 
-            trabalho.Estado = "Registado";
-            trabalho.userId = User.Identity.GetUserId();
-            
+            trabalho.Estado = "Registado";           
 
             trabalho.Data_Publicacao = DateTime.Now.ToString();
             if (ModelState.IsValid)
