@@ -238,8 +238,12 @@
     <Content Include="img\lamp3.png" />
     <Content Include="img\Open-Book.jpg" />
     <Content Include="img\Open-Book1.jpg" />
+    <Content Include="img\pdf-512.png" />
     <Content Include="img\pdf.png" />
+    <Content Include="img\pdf00.png" />
+    <Content Include="img\pdf01.png" />
     <Content Include="img\pdffoto.png" />
+    <Content Include="img\pdf_black.png" />
     <Content Include="img\tema2.png" />
     <Content Include="img\tema3.png" />
     <Content Include="img\trabalho1.png" />

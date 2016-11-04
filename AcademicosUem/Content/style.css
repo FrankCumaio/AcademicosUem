@@ -164,6 +164,22 @@ a:hover, a:visited, a:focus, a:active{
     margin-top: 60px;
 }
 
+.btAddFav{
+    height: 47px !important;
+     width: 270px !important;
+      margin-bottom: 10px !important;
+}
+
+.btLerTodoDoc {
+    height: 47px !important;
+    width: 270px !important;
+    margin-bottom: 10px !important;
+}
+.iconbtFav{
+    padding: 0 !important;
+    margin-left: -10px !important;
+    margin-right: 10px !important;
+}
 
 #btPesquisa{
     margin-top: -3px;
@@ -448,6 +464,10 @@ nav ul a {
       font-size: 24px !important;
   }
 
+  .icon3{
+      margin-top: 5px !important;
+  }
+
 
 @-webkit-keyframes cd-pulse {
     0% {
@@ -625,10 +645,10 @@ footer.page-footer {
          padding-left: 0 ;
     }
 
-    .container2{
-       
-    }
-    
+  .icon3{
+      margin-right: 20px !important;
+  }
+
     .live-search-list{
         margin-left: 0!important;
     }
@@ -641,6 +661,10 @@ footer.page-footer {
     .verResultadosTemas{
         margin-top:0;
         margin-bottom:20px;
+    }
+
+    .titulo-tabs-conta{
+        font-size: 25px !important;
     }
 
 }

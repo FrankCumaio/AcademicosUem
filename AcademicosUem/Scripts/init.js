@@ -48,6 +48,7 @@
 	});
 
 
+
       //pesquisa trabalhos/temas
 	$('.live-search-list li').each(function () {
 	    $(this).attr('data-search-term', $(this).text().toLowerCase());
@@ -55,6 +56,51 @@
 
 	$('#resultadoPesquisaTxt').ready(function () {
 	    $('#resultadoPesquisaTxt').hide();
+	});
+
+
+	$('#searchFav').on('keyup', function () {
+
+	    var searchTerm = $(this).val().toLowerCase();
+
+	    if ($(this).val() == "")
+	        $('#resultadoPesquisaTxt').hide();
+	    else
+	        $('#resultadoPesquisaTxt').show();
+
+
+	    $('.live-search-list li').each(function () {
+
+	        if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+	            $(this).show();
+	        } else {
+	            $(this).hide();
+	        }
+
+	    });
+
+	});
+
+	$('#searchFav2').on('keyup', function () {
+
+	    var searchTerm = $(this).val().toLowerCase();
+
+	    if ($(this).val() == "")
+	        $('#resultadoPesquisaTxt').hide();
+	    else
+	        $('#resultadoPesquisaTxt').show();
+
+
+	    $('.live-search-list li').each(function () {
+
+	        if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+	            $(this).show();
+	        } else {
+	            $(this).hide();
+	        }
+
+	    });
+
 	});
 
 	$('#search').on('keyup', function () {

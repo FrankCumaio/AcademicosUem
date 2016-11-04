@@ -36,6 +36,8 @@
 
         public string DirectorioDoc { get; set; }
 
+        public string userId { get; set; }
+
         public int AreaID { get; set; }
             
         public virtual Area Area { get; set; }

@@ -71,6 +71,7 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
                         Grau_Academico = c.String(maxLength: 255),
                         Estado = c.String(maxLength: 255),
                         DirectorioDoc = c.String(),
+                        userId = c.String(),
                         AreaID = c.Decimal(nullable: false, precision: 10, scale: 0),
                     })
                 .PrimaryKey(t => t.Id)

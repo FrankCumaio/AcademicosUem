@@ -70,6 +70,7 @@ namespace AcademicosUem.Controllers
                 : "";
 
             var trabalho = new Trabalho();
+            ViewBag.user = UserManager.FindById(User.Identity.GetUserId());
 
 
             ViewBag.AutorID = new MultiSelectList(db.Autor, "Id", "Nome");

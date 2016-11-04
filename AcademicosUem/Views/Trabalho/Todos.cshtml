@@ -73,15 +73,16 @@
             @*Resultados pesquisa*@
             <h4 id="resultadoPesquisaTxt" type="text" class="center text_resultados text_h2" style="margin-bottom:0; margin-top:0;">Resultados da <span class="span_h2">pesquisa...</span></h4>
 
+            @*<script>alert(@ViewBag.userId);</script>*@
+
             <ul class="live-search-list" style="margin-left: 10px;">
                 @foreach (var item in Model)
                 {
                     <li>
-                        <div class="col s12 m3 l3">
-                            <div class="card">
-                                <div class="card-image waves-effect waves-block waves-light" style="height: 200px;">
-                                    <img class="activator" src="~/img/pdf.png">
-                                </div>
+                        <div class="col s12 m3 l3" style="">
+                            <div class="" style="background: url(../../img/pdf.png); background-size: cover">
+                             <div class="card" style="background: rgba(255, 255, 255, 0.95);">
+                                
                                 <div class="card-content">
                                     <b> <span class="card-title activator grey-text text-darken-4">@Html.DisplayFor(modelItem => item.Titulo)<i class="mdi-navigation-more-vert right"></i></span></b>
                                 </div>
@@ -92,8 +93,9 @@
                                     <p class="hidden">@Html.DisplayFor(modelItem => item.Area.Curso.Area_conhecimento)</p>
                                     <p class="hidden">@Html.DisplayFor(modelItem => item.Area.Curso.Nome)</p>
                                     <p class="hidden">@Html.DisplayFor(modelItem => item.Data_Publicacao)</p>
+                                    <p class="hidden">@Html.DisplayFor(modelItem => item.Grau_Academico)</p>
                                     <p class="hidden">@Html.DisplayFor(modelItem => item.Area.Nome)</p>
-                                    <p class="hidden">@Html.DisplayFor(modelItem => item.Area.Nome)</p>
+                                    <p class="">@Html.DisplayFor(modelItem => item.userId)</p>
 
                                     @{
 
@@ -109,6 +111,7 @@
                                         </p>
                         </div>
                             </div>
+                                </div>
                         </div>
                         </li>
                         }
