@@ -25,7 +25,7 @@
                  </div>
              </div>
                 
-             @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control hidden", @Value = @User.Identity.GetUserName() } })
+             @Html.EditorFor(model => model.userId, new { htmlAttributes = new { @class = "form-control hidden", @Value = @User.Identity.GetUserId() } })
 
              <div class="form-group">
                  @Html.Label("Grau Academico", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -44,7 +44,7 @@
                              Text = "Mestrado",
                              Value = "Mestrado"
                          });
-                     }
+                     }  
 
                      @Html.DropDownListFor(model => model.Grau_Academico, listaGrauAcademico, htmlAttributes: new { @class = "form-control" })
                      @Html.ValidationMessageFor(model => model.Grau_Academico, "", new { @class = "text-danger" })

@@ -82,7 +82,7 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores, HttpPostedFileBase ficheiro)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,userId,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores, HttpPostedFileBase ficheiro)
         {
 
             if (selectedAutores != null)
@@ -94,7 +94,6 @@ namespace AcademicosUem.Controllers
                     trabalho.Autor.Add(autorAdd);
                 }
             }
-            // Verify that the user selected a file
 
 
             trabalho.Estado = "Registado";

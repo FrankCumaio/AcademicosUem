@@ -52,7 +52,7 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,AutorID,AreaID")] Temas temas)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,AutorID,AreaID,userId")] Temas temas)
         {
             temas.Data_Publicacao = DateTime.Now.ToString();
 
