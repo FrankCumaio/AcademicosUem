@@ -32,6 +32,8 @@ namespace AcademicosUem.Models
 
         public virtual Area Area { get; set; }
 
+        public string userId { get; set; }
+
         public virtual Autor Autor { get; set; }
     }
 }

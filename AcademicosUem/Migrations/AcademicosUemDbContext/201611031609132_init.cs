@@ -53,6 +53,7 @@ namespace AcademicosUem.Migrations.AcademicosUemDbContext
                         AutorID = c.Decimal(nullable: false, precision: 10, scale: 0),
                         AreaID = c.Decimal(precision: 10, scale: 0),
                         Data_Publicacao = c.String(),
+                        userId = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("SCOTT.Area", t => t.AreaID)
