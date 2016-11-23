@@ -8,34 +8,35 @@ namespace AcademicosUem.Migrations.ApplicationDbContext
         public override void Up()
         {
             CreateTable(
-                "SCOTT.AspNetRoles",
+                "dbo.IdentityRoles",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
+                        Name = c.String(),
                     })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "SCOTT.AspNetUserRoles",
+                "dbo.AspNetUserRoles",
                 c => new
                     {
                         UserId = c.String(nullable: false, maxLength: 128),
                         RoleId = c.String(nullable: false, maxLength: 128),
+                        IdentityRole_Id = c.String(maxLength: 128),
+                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("SCOTT.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("SCOTT.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
+                .ForeignKey("dbo.IdentityRoles", t => t.IdentityRole_Id)
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.IdentityRole_Id)
+                .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
-                "SCOTT.AspNetUsers",
+                "dbo.ApplicationUsers",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        Email = c.String(maxLength: 256),
+                        Email = c.String(),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
@@ -45,55 +46,54 @@ namespace AcademicosUem.Migrations.ApplicationDbContext
                         LockoutEndDateUtc = c.DateTime(),
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(nullable: false, maxLength: 256),
+                        UserName = c.String(),
                     })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "SCOTT.AspNetUserClaims",
+                "dbo.IdentityUserClaims",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserId = c.String(nullable: false, maxLength: 128),
+                        UserId = c.String(),
                         ClaimType = c.String(),
                         ClaimValue = c.String(),
+                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("SCOTT.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId);
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
-                "SCOTT.AspNetUserLogins",
+                "dbo.AspNetUserLogins",
                 c => new
                     {
                         LoginProvider = c.String(nullable: false, maxLength: 128),
                         ProviderKey = c.String(nullable: false, maxLength: 128),
                         UserId = c.String(nullable: false, maxLength: 128),
+                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
-                .ForeignKey("SCOTT.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId);
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("SCOTT.AspNetUserRoles", "UserId", "SCOTT.AspNetUsers");
-            DropForeignKey("SCOTT.AspNetUserLogins", "UserId", "SCOTT.AspNetUsers");
-            DropForeignKey("SCOTT.AspNetUserClaims", "UserId", "SCOTT.AspNetUsers");
-            DropForeignKey("SCOTT.AspNetUserRoles", "RoleId", "SCOTT.AspNetRoles");
-            DropIndex("SCOTT.AspNetUserLogins", new[] { "UserId" });
-            DropIndex("SCOTT.AspNetUserClaims", new[] { "UserId" });
-            DropIndex("SCOTT.AspNetUsers", "UserNameIndex");
-            DropIndex("SCOTT.AspNetUserRoles", new[] { "RoleId" });
-            DropIndex("SCOTT.AspNetUserRoles", new[] { "UserId" });
-            DropIndex("SCOTT.AspNetRoles", "RoleNameIndex");
-            DropTable("SCOTT.AspNetUserLogins");
-            DropTable("SCOTT.AspNetUserClaims");
-            DropTable("SCOTT.AspNetUsers");
-            DropTable("SCOTT.AspNetUserRoles");
-            DropTable("SCOTT.AspNetRoles");
+            DropForeignKey("dbo.AspNetUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.AspNetUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.IdentityUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.AspNetUserRoles", "IdentityRole_Id", "dbo.IdentityRoles");
+            DropIndex("dbo.AspNetUserLogins", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.IdentityUserClaims", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "IdentityRole_Id" });
+            DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.IdentityUserClaims");
+            DropTable("dbo.ApplicationUsers");
+            DropTable("dbo.AspNetUserRoles");
+            DropTable("dbo.IdentityRoles");
         }
     }
 }

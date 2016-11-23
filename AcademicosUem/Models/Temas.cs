@@ -6,7 +6,7 @@ namespace AcademicosUem.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("SCOTT.Temas")]
+    [Table("Temas")]
     public partial class Temas
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
