@@ -15,7 +15,7 @@ namespace AcademicosUem.Controllers
 {
     public class TrabalhoController : Controller
     {
-        private AcademicosMzDbContext db = new AcademicosMzDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Trabalho
         public ActionResult Index()

@@ -12,7 +12,7 @@ namespace AcademicosUem.Controllers
 {
     public class CursoController : Controller
     {
-        private AcademicosMzDbContext db = new AcademicosMzDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Curso
         public ActionResult Index()

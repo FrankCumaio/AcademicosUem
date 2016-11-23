@@ -190,24 +190,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\AcademicosUemDbContext\201611031609132_init.cs" />
-    <Compile Include="Migrations\AcademicosUemDbContext\201611031609132_init.Designer.cs">
-      <DependentUpon>201611031609132_init.cs</DependentUpon>
+    <Compile Include="Migrations\201611231138515_init.cs" />
+    <Compile Include="Migrations\201611231138515_init.Designer.cs">
+      <DependentUpon>201611231138515_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\AcademicosUemDbContext\Configuration.cs" />
-    <Compile Include="Migrations\ApplicationDbContext\201610091416548_init.cs" />
-    <Compile Include="Migrations\ApplicationDbContext\201610091416548_init.Designer.cs">
-      <DependentUpon>201610091416548_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Autor.cs" />
     <Compile Include="Models\Curso.cs" />
-    <Compile Include="Models\DAL\AcademicosMzDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\DAL\AcademicosUemDbContext.cs" />
     <Compile Include="Models\Temas.cs" />
     <Compile Include="Models\Trabalho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -397,16 +390,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\AcademicosUemDbContext\201611031609132_init.resx">
-      <DependentUpon>201611031609132_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ApplicationDbContext\201610091416548_init.resx">
-      <DependentUpon>201610091416548_init.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="uploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611231138515_init.resx">
+      <DependentUpon>201611231138515_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
