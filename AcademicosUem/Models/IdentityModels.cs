@@ -24,6 +24,27 @@ namespace AcademicosUem.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public virtual DbSet<Area> Area { get; set; }
+        public virtual DbSet<Autor> Autor { get; set; }
+        public virtual DbSet<Curso> Curso { get; set; }
+        public virtual DbSet<Temas> Temas { get; set; }
+        public virtual DbSet<Trabalho> Trabalho { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Autor>()
+                .HasMany(e => e.Trabalhos)
+                .WithMany(e => e.Autor)
+                .Map(m => m.ToTable("TrabalhoAutors", "dbo"));
+
+            modelBuilder.Entity<IdentityUserRole>()
+            .HasKey(r => new { r.UserId, r.RoleId })
+            .ToTable("AspNetUserRoles");
+
+            modelBuilder.Entity<IdentityUserLogin>()
+                .HasKey(l => new { l.LoginProvider, l.ProviderKey, l.UserId })
+                .ToTable("AspNetUserLogins");
+        }
 
         public static ApplicationDbContext Create()
         {

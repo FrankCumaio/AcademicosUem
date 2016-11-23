@@ -17,7 +17,7 @@ namespace AcademicosUem.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        private AcademicosMzDbContext db = new AcademicosMzDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

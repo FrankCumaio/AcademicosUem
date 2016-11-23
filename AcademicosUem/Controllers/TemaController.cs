@@ -12,7 +12,7 @@ namespace AcademicosUem.Controllers
 {
     public class TemaController : Controller
     {
-        private AcademicosMzDbContext db = new AcademicosMzDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tema
         public ActionResult Index()
