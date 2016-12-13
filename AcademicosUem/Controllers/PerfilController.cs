@@ -10,112 +10,112 @@ using AcademicosUem.Models;
 
 namespace AcademicosUem.Controllers
 {
-    public class AutorController : Controller
+    public class PerfilController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Autor
+        // GET: Perfil
         public ActionResult Index()
         {
-            var autor = db.Autor.Include(a => a.Curso);
-            return View(autor.ToList());
+            var perfil = db.Perfil.Include(p => p.Curso);
+            return View(perfil.ToList());
         }
 
-        // GET: Autor/Details/5
+        // GET: Perfil/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autor autor = db.Autor.Find(id);
-            if (autor == null)
+            Perfil perfil = db.Perfil.Find(id);
+            if (perfil == null)
             {
                 return HttpNotFound();
             }
-            return View(autor);
+            return View(perfil);
         }
 
-        // GET: Autor/Create
+        // GET: Perfil/Create
         public ActionResult Create()
         {
             ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome");
             return View();
         }
 
-        // POST: Autor/Create
+        // POST: Perfil/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Telefone,Email,CursoID")] Autor autor)
+        public ActionResult Create([Bind(Include = "Id,Nome,Numero,Telefone,Email,CursoID,UserID")] Perfil perfil)
         {
             if (ModelState.IsValid)
             {
-                db.Autor.Add(autor);
+                db.Perfil.Add(perfil);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", autor.CursoID);
-            return View(autor);
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", perfil.CursoID);
+            return View(perfil);
         }
 
-        // GET: Autor/Edit/5
+        // GET: Perfil/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autor autor = db.Autor.Find(id);
-            if (autor == null)
+            Perfil perfil = db.Perfil.Find(id);
+            if (perfil == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", autor.CursoID);
-            return View(autor);
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", perfil.CursoID);
+            return View(perfil);
         }
 
-        // POST: Autor/Edit/5
+        // POST: Perfil/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Telefone,Email,CursoID")] Autor autor)
+        public ActionResult Edit([Bind(Include = "Id,Nome,Numero,Telefone,Email,CursoID,UserID")] Perfil perfil)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(autor).State = EntityState.Modified;
+                db.Entry(perfil).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", autor.CursoID);
-            return View(autor);
+            ViewBag.CursoID = new SelectList(db.Curso, "Id", "Nome", perfil.CursoID);
+            return View(perfil);
         }
 
-        // GET: Autor/Delete/5
+        // GET: Perfil/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autor autor = db.Autor.Find(id);
-            if (autor == null)
+            Perfil perfil = db.Perfil.Find(id);
+            if (perfil == null)
             {
                 return HttpNotFound();
             }
-            return View(autor);
+            return View(perfil);
         }
 
-        // POST: Autor/Delete/5
+        // POST: Perfil/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Autor autor = db.Autor.Find(id);
-            db.Autor.Remove(autor);
+            Perfil perfil = db.Perfil.Find(id);
+            db.Perfil.Remove(perfil);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -39,7 +39,7 @@ namespace AcademicosUem.Controllers
             else
             {
                 ViewBag.Cursos = db.Curso.ToList();
-                ViewBag.autores = db.Autor.ToList();
+                ViewBag.Perfiles = db.Perfil.ToList();
                 var trabalho = db.Trabalho.Include(t => t.Area);
                 return View(trabalho.ToList());
             }
@@ -67,11 +67,11 @@ namespace AcademicosUem.Controllers
         // GET: Trabalho/Create
         public ActionResult Create()
         {
-            ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome");
+            ViewBag.PerfilID = new SelectList(db.Perfil, "Id", "Nome");
             ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
             var trabalho = new Trabalho();
-            trabalho.Autor = new List<Autor>();
-            PopulateAssignedAutorData(trabalho);
+            trabalho.Perfil = new List<Perfil>();
+            PopulateAssignedPerfilData(trabalho);
             return PartialView("Create", new AcademicosUem.Models.Trabalho());
         }
 
@@ -82,16 +82,16 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,userId,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedAutores, HttpPostedFileBase ficheiro)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Data_Publicacao,Grau_Academico,Estado,userId,DirectorioDoc,AreaID")] Trabalho trabalho,string[] selectedPerfiles, HttpPostedFileBase ficheiro)
         {
 
-            if (selectedAutores != null)
+            if (selectedPerfiles != null)
             {
-                trabalho.Autor = new List<Autor>();
-                foreach (var autor in selectedAutores)
+                trabalho.Perfil = new List<Perfil>();
+                foreach (var Perfil in selectedPerfiles)
                 {
-                    var autorAdd = db.Autor.Find(int.Parse(autor));
-                    trabalho.Autor.Add(autorAdd);
+                    var PerfilAdd = db.Perfil.Find(int.Parse(Perfil));
+                    trabalho.Perfil.Add(PerfilAdd);
                 }
             }
 
@@ -190,21 +190,21 @@ namespace AcademicosUem.Controllers
             base.Dispose(disposing);
         }
 
-        private void PopulateAssignedAutorData(Trabalho trabalho)
+        private void PopulateAssignedPerfilData(Trabalho trabalho)
         {
-            var allAutors = db.Autor;
-            var trabalhoAutores = new HashSet<int>(trabalho.Autor.Select(c => c.Id));
-            var viewModel = new List<AssignedAutorData>();
-            foreach (var autor in allAutors)
+            var allPerfils = db.Perfil;
+            var trabalhoPerfiles = new HashSet<int>(trabalho.Perfil.Select(c => c.Id));
+            var viewModel = new List<AssignedPerfilData>();
+            foreach (var Perfil in allPerfils)
             {
-                viewModel.Add(new AssignedAutorData
+                viewModel.Add(new AssignedPerfilData
                 {
-                    AutorID = autor.Id,
-                    Nome = autor.Nome,
-                    Assigned = trabalhoAutores.Contains(autor.Id)
+                    PerfilID = Perfil.Id,
+                    Nome = Perfil.Nome,
+                    Assigned = trabalhoPerfiles.Contains(Perfil.Id)
                 });
             }
-            ViewBag.Autores = viewModel;
+            ViewBag.Perfiles = viewModel;
         }
     }
 }

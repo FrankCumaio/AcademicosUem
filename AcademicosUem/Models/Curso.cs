@@ -13,22 +13,16 @@
         public Curso()
         {
             Area = new HashSet<Area>();
-            Autor = new HashSet<Autor>();
+            Autor = new HashSet<Perfil>();
         }
-
         public int Id { get; set; }
-
-        [StringLength(255, MinimumLength = 3, ErrorMessage = "My Error Message")]
         public string Nome { get; set; }
-
-        [StringLength(255, MinimumLength = 3, ErrorMessage = "My Error Message")]
         public string Area_conhecimento { get; set; }
-
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Area> Area { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Autor> Autor { get; set; }
+        public virtual ICollection<Perfil> Autor { get; set; }
     }
 }

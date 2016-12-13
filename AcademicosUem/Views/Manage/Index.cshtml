@@ -240,7 +240,7 @@
                                     <br />
                                      <hr />
                                       @{
-                                          foreach (var autor in item.Autor)
+                                          foreach (var autor in item.Perfil)
                                           {
                                             <p class="hidden">@autor.Nome<span>,</span></p>
                                               }
@@ -274,7 +274,7 @@
                                         <br />
                                         <br />
                                         <hr />
-                                        <p class="hidden">@Html.DisplayFor(modelItem => item.Autor.Nome)</p>
+                                        <p class="hidden">@Html.DisplayFor(modelItem => item.Perfil.Nome)</p>
     
                                     </li>
                                             }
@@ -333,7 +333,7 @@
                                                     <br />
                                                     <hr />
                                                     @{
-                                                        foreach (var autor in item.Autor)
+                                                        foreach (var autor in item.Perfil)
                                                         {
                                                             <p class="hidden">@autor.Nome<span>,</span></p>
                                                         }
@@ -366,7 +366,7 @@
                                                     <br />
                                                     <br />
                                                     <hr />
-                                                    <p class="hidden">@Html.DisplayFor(modelItem => item.Autor.Nome)</p>
+                                                    <p class="hidden">@Html.DisplayFor(modelItem => item.Perfil.Nome)</p>
 
                                                 </li>
                                             }

@@ -5,18 +5,13 @@ namespace AcademicosUem.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-
-    [Table("SCOTT.Temas")]
     public partial class Temas
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [StringLength(255, MinimumLength = 3, ErrorMessage = "My Error Message")]
         public string Titulo { get; set; }
-        [StringLength(255, MinimumLength = 3, ErrorMessage = "My Error Message")]
         public string Descricao { get; set; }
 
-        public int AutorID { get; set; }
+        public int PerfilID { get; set; }
 
         public int? AreaID { get; set; }
 
@@ -34,6 +29,6 @@ namespace AcademicosUem.Models
 
         public string userId { get; set; }
 
-        public virtual Autor Autor { get; set; }
+        public virtual Perfil Perfil { get; set; }
     }
 }

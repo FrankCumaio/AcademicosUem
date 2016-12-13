@@ -17,7 +17,7 @@ namespace AcademicosUem.Controllers
         // GET: Tema
         public ActionResult Index()
         {
-            var temas = db.Temas.Include(t => t.Area).Include(t => t.Autor);
+            var temas = db.Temas.Include(t => t.Area).Include(t => t.Perfil);
             return View(temas.ToList());
         }
 
@@ -30,7 +30,7 @@ namespace AcademicosUem.Controllers
             }
             Temas temas = db.Temas.Find(id);
             ViewBag.temasRelacionados = db.Temas.ToList();
-            ViewBag.autores = db.Autor.ToList();
+            ViewBag.Perfiles = db.Perfil.ToList();
 
             if (temas == null)
             {
@@ -43,7 +43,7 @@ namespace AcademicosUem.Controllers
         public ActionResult Create()
         {
             ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
-            ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome");
+            ViewBag.PerfilID = new SelectList(db.Perfil, "Id", "Nome");
             return PartialView("Create", new AcademicosUem.Models.Temas());
         }
 
@@ -52,7 +52,7 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,AutorID,AreaID,userId")] Temas temas)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,PerfilID,AreaID,userId")] Temas temas)
         {
             temas.Data_Publicacao = DateTime.Now.ToString();
 
@@ -64,7 +64,7 @@ namespace AcademicosUem.Controllers
             }
 
             ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", temas.AreaID);
-            ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome", temas.AutorID);
+            ViewBag.PerfilID = new SelectList(db.Perfil, "Id", "Nome", temas.PerfilID);
             return View(temas);
         }
 
@@ -81,7 +81,7 @@ namespace AcademicosUem.Controllers
                 return HttpNotFound();
             }
             ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", temas.AreaID);
-            ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome", temas.AutorID);
+            ViewBag.PerfilID = new SelectList(db.Perfil, "Id", "Nome", temas.PerfilID);
             return View(temas);
         }
 
@@ -90,7 +90,7 @@ namespace AcademicosUem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo,Descricao,AutorID,AreaID")] Temas temas)
+        public ActionResult Edit([Bind(Include = "Id,Titulo,Descricao,PerfilID,AreaID")] Temas temas)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace AcademicosUem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome", temas.AreaID);
-            ViewBag.AutorID = new SelectList(db.Autor, "Id", "Nome", temas.AutorID);
+            ViewBag.PerfilID = new SelectList(db.Perfil, "Id", "Nome", temas.PerfilID);
             return View(temas);
         }
 

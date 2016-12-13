@@ -1,8 +1,8 @@
-﻿@model IEnumerable<AcademicosUem.Models.Autor>
+﻿@model IEnumerable<AcademicosUem.Models.Perfil>
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutSecundary.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Index</h2>
@@ -19,10 +19,16 @@
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Telefone)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
         </th>
         <th></th>
     </tr>
@@ -36,10 +42,16 @@
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Numero)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Telefone)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
