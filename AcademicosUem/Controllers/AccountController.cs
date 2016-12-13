@@ -452,7 +452,7 @@ namespace AcademicosUem.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Trabalho");
+            return RedirectToAction("Manage", "Index");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
