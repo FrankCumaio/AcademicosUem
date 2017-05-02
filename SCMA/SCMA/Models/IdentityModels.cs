@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace AcademicosUem.Models
+namespace SCMA.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -24,34 +24,10 @@ namespace AcademicosUem.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public virtual DbSet<Area> Area { get; set; }
-        public virtual DbSet<Perfil> Perfil { get; set; }
-        public virtual DbSet<Curso> Curso { get; set; }
-        public virtual DbSet<Temas> Temas { get; set; }
-        public virtual DbSet<Trabalho> Trabalho { get; set; }
-        public virtual DbSet<TrabalhoFiles> TrabalhoFiles { get; set; }
-        public virtual DbSet<Evento> Evento { get; set; }
-        public virtual DbSet<EventoCategoria> EventoCategoria { get; set; }
-        public virtual DbSet<Papel> Papel { get; set; }
-        public virtual DbSet<Participacao> Participacao { get; set; }
-        public virtual DbSet<Supervisao> Supervisao { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-
-            modelBuilder.Entity<IdentityUserRole>()
-            .HasKey(r => new { r.UserId, r.RoleId })
-            .ToTable("AspNetUserRoles");
-
-            modelBuilder.Entity<IdentityUserLogin>()
-                .HasKey(l => new { l.LoginProvider, l.ProviderKey, l.UserId })
-                .ToTable("AspNetUserLogins");
-        }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
-
-            }
+    }
 }
