@@ -1,5 +1,6 @@
 namespace AcademicosUem.Migrations
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,17 @@ namespace AcademicosUem.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.Roles.AddOrUpdate(
+              p => p.Name,
+              new IdentityRole { Name = "Admin" },
+              new IdentityRole { Name = "RA" },
+              new IdentityRole { Name = "CC" },
+              new IdentityRole { Name = "MI" }
+
+
+
+            );
         }
     }
 }

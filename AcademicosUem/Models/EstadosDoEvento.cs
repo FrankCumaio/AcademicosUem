@@ -5,17 +5,16 @@ using System.Web;
 
 namespace AcademicosUem.Models
 {
-    public class TrabalhoFiles
+    public class EstadosDoEvento
     {
         public int Id { get; set; }
-        public string Path { get; set; }
-        public int TrabalhoID { get; set; }
-        public virtual Trabalho Trabalho { get; set; }
-        public int CatFilesID { get; set; }
-        public virtual catFiles CatFiles { get; set; }
+        public int EventoID { get; set; }
+        public int EstadoEventoID { get; set; }
+        public virtual Evento Evento { get; set; }
+        public virtual EstadoEvento EstadoEvento { get; set; }
         //Permite criar timestamp logo na bd
         public DateTime Data { get; set; }
-        public TrabalhoFiles()
+        public EstadosDoEvento()
         {
             Data = DateTime.Now;
         }

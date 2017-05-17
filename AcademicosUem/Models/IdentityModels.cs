@@ -24,18 +24,20 @@ namespace AcademicosUem.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        public virtual DbSet<Area> Area { get; set; }
-        public virtual DbSet<Perfil> Perfil { get; set; }
-        public virtual DbSet<Curso> Curso { get; set; }
-        public virtual DbSet<Temas> Temas { get; set; }
-        public virtual DbSet<Trabalho> Trabalho { get; set; }
-        public virtual DbSet<TrabalhoFiles> TrabalhoFiles { get; set; }
+        public virtual DbSet<catFiles> catFiles { get; set; }
+        public virtual DbSet<Docente> Docente { get; set; }
+        public virtual DbSet<DocenteAssociado> DocenteAssociado { get; set; }
+        public virtual DbSet<EstadoEvento> EstadoEvento { get; set; }
+        public virtual DbSet<EstadosDoEvento> EstadosDoEvento { get; set; }
+        public virtual DbSet<EstadosDoTrabalho> EstadosDoTrabalho { get; set; }
+        public virtual DbSet<EstadoTrabalho> EstadoTrabalho { get; set; }
+        public virtual DbSet<Estudante> Estudante { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<EventoCategoria> EventoCategoria { get; set; }
-        public virtual DbSet<Papel> Papel { get; set; }
-        public virtual DbSet<Participacao> Participacao { get; set; }
-        public virtual DbSet<Supervisao> Supervisao { get; set; }
-
+        public virtual DbSet<Funcao> Funcao { get; set; }
+        public virtual DbSet<Trabalho> Trabalho { get; set; }
+        public virtual DbSet<TrabalhoFiles> TrabalhoFiles { get; set; }
+      
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 

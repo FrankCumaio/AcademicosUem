@@ -5,9 +5,12 @@ using System.Web;
 
 namespace AcademicosUem.Models
 {
-    public class EventoCategoria
+    public class Docente
     {
         public int Id { get; set; }
-        public string descricao { get; set; }
+        public string apelido { get; set; }
+        public string nome { get; set; }
+        public string seccao { get; set; }
+
     }
 }

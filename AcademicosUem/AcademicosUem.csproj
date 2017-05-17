@@ -178,35 +178,39 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AreaController.cs" />
-    <Compile Include="Controllers\CursoController.cs" />
+    <Compile Include="Controllers\catFilesController.cs" />
+    <Compile Include="Controllers\DocenteAssociadoesController.cs" />
+    <Compile Include="Controllers\DocentesController.cs" />
+    <Compile Include="Controllers\EstudantesController.cs" />
+    <Compile Include="Controllers\EventoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\TemaController.cs" />
-    <Compile Include="Controllers\TrabalhoController.cs" />
+    <Compile Include="Controllers\TrabalhoControllerbk.cs" />
+    <Compile Include="Controllers\TrabalhoesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612131143219_init.cs" />
-    <Compile Include="Migrations\201612131143219_init.Designer.cs">
-      <DependentUpon>201612131143219_init.cs</DependentUpon>
+    <Compile Include="Migrations\201705171610021_init.cs" />
+    <Compile Include="Migrations\201705171610021_init.Designer.cs">
+      <DependentUpon>201705171610021_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Area.cs" />
+    <Compile Include="Models\catFiles.cs" />
+    <Compile Include="Models\EstadoEvento.cs" />
+    <Compile Include="Models\EstadosDoEvento.cs" />
     <Compile Include="Models\Evento.cs" />
+    <Compile Include="Models\Docente.cs" />
+    <Compile Include="Models\DocenteAssociado.cs" />
+    <Compile Include="Models\EstadosDoTrabalho.cs" />
+    <Compile Include="Models\EstadoTrabalho.cs" />
+    <Compile Include="Models\Estudante.cs" />
     <Compile Include="Models\EventoCategoria.cs" />
-    <Compile Include="Models\Participacao.cs" />
-    <Compile Include="Models\Papel.cs" />
-    <Compile Include="Models\Perfil.cs" />
-    <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\Funcao.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Supervisao.cs" />
-    <Compile Include="Models\Temas.cs" />
     <Compile Include="Models\Trabalho.cs" />
     <Compile Include="Models\TrabalhoFiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -352,17 +356,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Trabalho\Create.cshtml" />
-    <Content Include="Views\Trabalho\Delete.cshtml" />
-    <Content Include="Views\Trabalho\Details.cshtml" />
-    <Content Include="Views\Trabalho\Edit.cshtml" />
-    <Content Include="Views\Trabalho\Index.cshtml" />
-    <Content Include="Views\Area\Create.cshtml" />
-    <Content Include="Views\Area\Delete.cshtml" />
-    <Content Include="Views\Area\Details.cshtml" />
-    <Content Include="Views\Area\Edit.cshtml" />
-    <Content Include="Views\Area\Index.cshtml" />
-    <Content Include="Views\Trabalho\Todos.cshtml" />
+    <Content Include="Views\Trabalhobk\Create.cshtml" />
+    <Content Include="Views\Trabalhobk\Delete.cshtml" />
+    <Content Include="Views\Trabalhobk\Details.cshtml" />
+    <Content Include="Views\Trabalhobk\Edit.cshtml" />
+    <Content Include="Views\Trabalhobk\Index.cshtml" />
+    <Content Include="Views\Trabalhobk\Todos.cshtml" />
     <Content Include="Views\Shared\_LayoutSecundary.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
@@ -370,22 +369,43 @@
     <Content Include="Views\Roles\ManageUserRoles.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Curso\Create.cshtml" />
-    <Content Include="Views\Curso\Delete.cshtml" />
-    <Content Include="Views\Curso\Details.cshtml" />
-    <Content Include="Views\Curso\Edit.cshtml" />
-    <Content Include="Views\Curso\Index.cshtml" />
-    <Content Include="Views\Tema\Create.cshtml" />
-    <Content Include="Views\Tema\Delete.cshtml" />
-    <Content Include="Views\Tema\Details.cshtml" />
-    <Content Include="Views\Tema\Edit.cshtml" />
-    <Content Include="Views\Tema\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutThird.cshtml" />
-    <Content Include="Views\Perfil\Create.cshtml" />
-    <Content Include="Views\Perfil\Delete.cshtml" />
-    <Content Include="Views\Perfil\Details.cshtml" />
-    <Content Include="Views\Perfil\Edit.cshtml" />
-    <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\catFiles\Create.cshtml" />
+    <Content Include="Views\catFiles\Delete.cshtml" />
+    <Content Include="Views\catFiles\Details.cshtml" />
+    <Content Include="Views\catFiles\Edit.cshtml" />
+    <Content Include="Views\catFiles\Index.cshtml" />
+    <Content Include="Views\Docentes\Create.cshtml" />
+    <Content Include="Views\Docentes\Delete.cshtml" />
+    <Content Include="Views\Docentes\Details.cshtml" />
+    <Content Include="Views\Docentes\Edit.cshtml" />
+    <Content Include="Views\Docentes\Index.cshtml" />
+    <Content Include="Views\DocenteAssociadoes\Create.cshtml" />
+    <Content Include="Views\DocenteAssociadoes\Delete.cshtml" />
+    <Content Include="Views\DocenteAssociadoes\Details.cshtml" />
+    <Content Include="Views\DocenteAssociadoes\Edit.cshtml" />
+    <Content Include="Views\DocenteAssociadoes\Index.cshtml" />
+    <Content Include="Views\Docentes1\Create.cshtml" />
+    <Content Include="Views\Docentes1\Delete.cshtml" />
+    <Content Include="Views\Docentes1\Details.cshtml" />
+    <Content Include="Views\Docentes1\Edit.cshtml" />
+    <Content Include="Views\Docentes1\Index.cshtml" />
+    <Content Include="Views\Estudantes\Create.cshtml" />
+    <Content Include="Views\Estudantes\Delete.cshtml" />
+    <Content Include="Views\Estudantes\Details.cshtml" />
+    <Content Include="Views\Estudantes\Edit.cshtml" />
+    <Content Include="Views\Estudantes\Index.cshtml" />
+    <Content Include="Views\Eventoes\Create.cshtml" />
+    <Content Include="Views\Eventoes\Delete.cshtml" />
+    <Content Include="Views\Eventoes\Details.cshtml" />
+    <Content Include="Views\Eventoes\Edit.cshtml" />
+    <Content Include="Views\Eventoes\Index.cshtml" />
+    <Content Include="Views\Trabalhoes\Create.cshtml" />
+    <Content Include="Views\Trabalhoes\Delete.cshtml" />
+    <Content Include="Views\Trabalhoes\Details.cshtml" />
+    <Content Include="Views\Trabalhoes\Edit.cshtml" />
+    <Content Include="Views\Trabalhoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -400,8 +420,8 @@
     <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612131143219_init.resx">
-      <DependentUpon>201612131143219_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705171610021_init.resx">
+      <DependentUpon>201705171610021_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -16,6 +16,7 @@ namespace AcademicosUem.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        ApplicationDbContext context = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -141,6 +142,8 @@ namespace AcademicosUem.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = list;
             return View();
         }
 
@@ -157,7 +160,10 @@ namespace AcademicosUem.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    ApplicationUser userToAssign = context.Users.Where(u => u.Email.Equals(model.Email, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+                    var account = new AccountController();
+                    account.UserManager.AddToRole(userToAssign.Id,model.Role.ToString());
+                    await SignInManager.SignInAsync(userToAssign, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

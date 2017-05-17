@@ -5,9 +5,10 @@ using System.Web;
 
 namespace AcademicosUem.Models
 {
-    public class EventoCategoria
+    public class catFiles
     {
         public int Id { get; set; }
-        public string descricao { get; set; }
+        public string Designacao { get; set; }
+        public string Desc { get; set; }
     }
 }

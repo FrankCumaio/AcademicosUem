@@ -9,29 +9,18 @@
     [Table("Trabalho")]
     public partial class Trabalho
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Trabalho()
-        {
-            Perfil = new HashSet<Perfil>();
-        }
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
-        public string _Data_Publicacao = DateTime.Now.ToString();
-        public string Data_Publicacao {
-            get {
-                return _Data_Publicacao;
-            }
-            set{ _Data_Publicacao = value; }
-        }
         public string Grau_Academico { get; set; }
-        public string Estado { get; set; }
-        public string DirectorioDoc { get; set; }
-        public string userId { get; set; }
-        public int AreaID { get; set; }
-        public virtual Area Area { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Perfil> Perfil { get; set; }
+        public string EstudanteID { get; set; }
+        public virtual Estudante Estudante { get; set; }
+        //Permite criar timestamp logo na bd
+        public DateTime Data { get; set; }
+        public Trabalho()
+        {
+            Data = DateTime.Now;
+        }
     }
+
 }

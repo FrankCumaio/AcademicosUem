@@ -1,0 +1,66 @@
+﻿@model AcademicosUem.Models.Estudante
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estudante</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.apelido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apelido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataNasc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataNasc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.morada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.morada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seccao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seccao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.curso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.curso)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

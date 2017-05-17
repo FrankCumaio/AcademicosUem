@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.WebPages.Html;
 
 namespace AcademicosUem.Models
 {
@@ -102,6 +103,10 @@ namespace AcademicosUem.Models
         [Display(Name = "Repita a password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Role")]
+        public string Role { get; set; }
     }
 
     public class ResetPasswordViewModel

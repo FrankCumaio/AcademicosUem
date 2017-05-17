@@ -73,12 +73,12 @@ namespace AcademicosUem.Controllers
             ViewBag.user = UserManager.FindById(User.Identity.GetUserId());
 
 
-            ViewBag.AutorID = new MultiSelectList(db.Perfil, "Id", "Nome");
-            ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
-            var autor = new List<Perfil>();
+            //ViewBag.AutorID = new MultiSelectList(db.Perfil, "Id", "Nome");
+            //ViewBag.AreaID = new SelectList(db.Area, "Id", "Nome");
+            //var autor = new List<Perfil>();
 
-            ViewBag.trabalhos = db.Trabalho.ToList();
-            ViewBag.temas = db.Temas.ToList();
+            //ViewBag.trabalhos = db.Trabalho.ToList();
+            //ViewBag.temas = db.Temas.ToList();
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
