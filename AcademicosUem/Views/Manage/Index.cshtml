@@ -6,7 +6,7 @@
 
 @{
     ViewBag.Title = "Minha Conta";
-    Layout = "~/Views/Shared/_LayoutThird.cshtml";
+    Layout = "~/Views/Shared/_LayoutFront.cshtml";
 }
 
 <p class="text-success">@ViewBag.StatusMessage</p>
@@ -65,7 +65,7 @@
                     <div class="col m10 s12 offset-l1">
                         <h4 class="text_h2 titulo-tabs-conta" style="text-align: left; line-height:35px;">Publique os seus <span class="span_h2">trabalhos </span></h4>
                     </div>
-                      @{Html.RenderAction("Create", "Trabalho");}
+                      @{Html.RenderAction("Create", "Trabalhoes");}
                 </div>
 
                 @*Create Temas*@
@@ -73,7 +73,7 @@
                     <div class="col m10 s12 offset-l1">
                         <h4 class="text_h2 titulo-tabs-conta" style="text-align: left; line-height:35px;">Publique as suas sugestoes de <span class="span_h2">temas </span></h4>
                     </div>
-                    @{Html.RenderAction("Create", "Tema");}
+                   
                 </div>
 
 
@@ -146,7 +146,7 @@
                         <br />
                          <ul class="live-search-list" style="margin-left: 10px;">
                         @{ 
-                            List<AcademicosUem.Models.Trabalho> trabalhos = ViewBag.trabalhos;
+                            @*List<AcademicosUem.Models.Trabalho> trabalhos = ViewBag.trabalhos;
 
                             foreach (var item in trabalhos)
                             {
@@ -167,7 +167,7 @@
                                               }
                                           }
                                 </li>
-                            }
+                            }*@
                             }
                         </ul>
 
@@ -180,7 +180,7 @@
                         <br />
                         <br />
                         <ul class="live-search-list" style="margin-left: 10px;">
-                            @{
+                            @*@{
                                 List<AcademicosUem.Models.Temas> temas = ViewBag.temas;
 
                                 foreach (var item in temas)
@@ -199,7 +199,7 @@
     
                                     </li>
                                             }
-                            }
+                            }*@
                         </ul>
 
                     </div>
@@ -238,7 +238,7 @@
                                     <br />
                                     <br />
                                     <ul class="live-search-list" style="margin-left: 10px;">
-                                        @{
+                                        @*@{
                                             foreach (var item in trabalhos)
                                             {
                                                 if (item.userId == User.Identity.GetUserId())
@@ -262,7 +262,7 @@
                                                 </li>
                                                                 }
                                                             }
-                                                        }
+                                                        }*@
                                     </ul>
                                 </div>
 
@@ -275,22 +275,22 @@
                                     <ul class="live-search-list" style="margin-left: 10px;">
                                         @{
 
-                                            foreach (var item in temas)
-                                            {
-                                                <li>
-                                                    <h5 class="listaTema"><span class="span_h2">Titulo: </span>@Html.DisplayFor(modelItem => item.Titulo) </h5>
-                                                    <h6 class="hidden"><span class="span_h2">Tags: </span>@Html.DisplayFor(modelItem => item.Area.Curso.Nome), @Html.DisplayFor(modelItem => item.Area.Nome)</h6>
-                                                    <br />
-                                                    <span class="btn btfavDetails blue col m2 s5" style="float: left; color:white !important; margin-bottom:10px; padding: 0; font-size: 18px;">@Html.ActionLink("Ver detalhes", "Details", "Tema", new { id = item.Id }, null)</span>
-                                                    <span class="btn btfavDetails red col m2 s5" style="float: left; color:white !important; margin-bottom:10px; margin-left: 10px; font-size: 18px;">@Html.ActionLink("Remover", "Details", new { id = item.Id })</span>
+                                            @*foreach (var item in temas)
+    {
+        <li>
+            <h5 class="listaTema"><span class="span_h2">Titulo: </span>@Html.DisplayFor(modelItem => item.Titulo) </h5>
+            <h6 class="hidden"><span class="span_h2">Tags: </span>@Html.DisplayFor(modelItem => item.Area.Curso.Nome), @Html.DisplayFor(modelItem => item.Area.Nome)</h6>
+            <br />
+            <span class="btn btfavDetails blue col m2 s5" style="float: left; color:white !important; margin-bottom:10px; padding: 0; font-size: 18px;">@Html.ActionLink("Ver detalhes", "Details", "Tema", new { id = item.Id }, null)</span>
+            <span class="btn btfavDetails red col m2 s5" style="float: left; color:white !important; margin-bottom:10px; margin-left: 10px; font-size: 18px;">@Html.ActionLink("Remover", "Details", new { id = item.Id })</span>
 
-                                                    <br />
-                                                    <br />
-                                                    <hr />
-                                                    <p class="hidden">@Html.DisplayFor(modelItem => item.Perfil.Nome)</p>
+            <br />
+            <br />
+            <hr />
+            <p class="hidden">@Html.DisplayFor(modelItem => item.Perfil.Nome)</p>
 
-                                                </li>
-                                            }
+        </li>
+    }*@
                                         }
                                     </ul>
                                     </div>

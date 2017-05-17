@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Academicos UEM</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/materializeIcons")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/js")
+
+
+</head>
+<body>
+
+    <!--Navigation-->
+    <div class="navbar navbar navbar-fixed-top">
+        <nav id="nav_f" class="default_color" role="navigation">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="/" id="logo-container" class="brand-logo">Academicos MZ</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#work">@Html.ActionLink("Trabalhos", "Todos", "Trabalho")</a></li>
+                        <li><a href="#work">@Html.ActionLink("Temas", "Index", "Tema")</a></li>
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+
+                    <ul id="nav-mobile" class="side-nav">
+                        <li><a href="#work">@Html.ActionLink("Trabalhos", "Todos", "Trabalho")</a></li>
+                        <li><a href="#work">@Html.ActionLink("Temas", "Index", "Tema")</a></li>
+                        @Html.Partial("_LoginPartial")
+
+                    </ul>
+
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                </div>
+
+            </div>
+
+
+        </nav>
+    </div>
+
+    <!--Hero-->
+
+
+
+    <div class="section scrollspy">
+        <div class="row">
+            <div class="container col m3 offset-m1 sidebar">
+                @*Trabalhos*@
+                <div id="test1" class="col s12 m12" style="padding-right: 0;">
+                    <div class="col s12 m12" style="padding:0; margin-top: 10px;">
+
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+                    </div>
+                        <!--Footer-->
+                        <footer id="contact" class="page-footer default_color scrollspy">
+                            <div class="container">
+                                <div class="row">
+
+
+                                    <div class="col l3 s12">
+                                        <h5 class="white-text">Siga-nos</h5>
+                                        <ul>
+                                            <li>
+                                                <a class="white-text" href="https://www.facebook.com/joash.c.pereira">
+                                                    <i class="small fa fa-facebook-square white-text"></i> Facebook
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a class="white-text" href="https://www.linkedin.com/in/joashp">
+                                                    <i class="small fa fa-google-plus-square white-text"></i> Google +
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col l3 s12">
+                                        <h5 class="white-text">Contacte Nos</h5>
+                                        <ul>
+                                            <li>
+                                                <span class="white-text">
+                                                    E-mail:
+                                                    <a class="white-text" href="">
+                                                        academicosmz@info.com
+                                                    </a>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="white-text">
+                                                    Telefone:
+                                                    <a class="white-text">
+                                                        842584654
+                                                    </a>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="white-text">
+                                                    Telefone:
+                                                    <a class="white-text">
+                                                        842586454
+                                                    </a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col l3 s12">
+                                        <h5 class="white-text">Sobre Nós</h5>
+                                        <ul>
+                                            <li>
+                                                <a class="white-text" href="">
+                                                    Saiba quem somos
+                                                </a>
+
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-copyright default_color">
+                                <div class="container">
+                                    Developed by Inercio Belton & Frank Cumaio
+                                </div>
+                            </div>
+
+
+                        </footer>
+                    </div>
+
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/bootstrap")
+                    @RenderSection("scripts", required: false)
+</body>
+
+
+
+</html>
+
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
