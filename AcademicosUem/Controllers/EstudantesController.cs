@@ -27,7 +27,7 @@ namespace AcademicosUem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estudante estudante = db.Estudante.Find(id);
+            EstudanteDetails estudante = db.Estudante.Find(id);
             if (estudante == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace AcademicosUem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,apelido,nome,dataNasc,morada,seccao,curso")] Estudante estudante)
+        public ActionResult Create([Bind(Include = "Id,apelido,nome,dataNasc,morada,seccao,curso")] EstudanteDetails estudante)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace AcademicosUem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estudante estudante = db.Estudante.Find(id);
+            EstudanteDetails estudante = db.Estudante.Find(id);
             if (estudante == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace AcademicosUem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,apelido,nome,dataNasc,morada,seccao,curso")] Estudante estudante)
+        public ActionResult Edit([Bind(Include = "Id,apelido,nome,dataNasc,morada,seccao,curso")] EstudanteDetails estudante)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace AcademicosUem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estudante estudante = db.Estudante.Find(id);
+            EstudanteDetails estudante = db.Estudante.Find(id);
             if (estudante == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace AcademicosUem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Estudante estudante = db.Estudante.Find(id);
+            EstudanteDetails estudante = db.Estudante.Find(id);
             db.Estudante.Remove(estudante);
             db.SaveChanges();
             return RedirectToAction("Index");

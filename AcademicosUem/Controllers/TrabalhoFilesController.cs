@@ -7,12 +7,42 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AcademicosUem.Models;
+using Microsoft.AspNet.Identity;
+using System.Web.Security;
 
 namespace AcademicosUem.Controllers
 {
+    [Authorize]
     public class TrabalhoFilesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        
+        // GET: Dashboard
+        public ActionResult Dashboard()
+        {
+            string[] userRoles = Roles.GetRolesForUser(User.Identity.Name);
+            for (var i = 0; i < userRoles.Length; i++)
+            { }
+                
+                if (Roles.IsUserInRole("Estudante"))
+                {
+                    object id = User.Identity.GetUserId();
+                    return View("dashboard", db.TrabalhoFiles.Where(t => t.Trabalho.ApplicationUser.Id == id));
+                }
+                else
+                if (Roles.IsUserInRole("RA"))
+            {
+                return View("dashboard", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Pendente")));
+            }
+            if (Roles.IsUserInRole("CC"))
+            {
+                return View("dashboard", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Aprovado")));
+            }
+            else {
+                return Redirect("/Account/Login"); }
+            
+            
+        }
 
         // GET: TrabalhoFiles
         public ActionResult Index()

@@ -9,9 +9,12 @@ using System.Web.Mvc;
 using AcademicosUem.Models;
 using System.IO;
 using System.Diagnostics;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
 
 namespace AcademicosUem.Controllers
 {
+    [Authorize]
     public class TrabalhoesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -19,8 +22,7 @@ namespace AcademicosUem.Controllers
         // GET: Trabalhoes
         public ActionResult Index()
         {
-            var trabalho = db.Trabalho.Include(t => t.Estudante);
-            return View(trabalho.ToList());
+            return View(db.Trabalho.ToList());
         }
 
         // GET: Trabalhoes/Details/5
@@ -41,7 +43,9 @@ namespace AcademicosUem.Controllers
         // GET: Trabalhoes/Create
         public ActionResult Create()
         {
-            ViewBag.EstudanteID = new SelectList(db.Estudante, "Id", "apelido");
+            ViewBag.CatFilesID = new SelectList(db.catFiles, "Id", "designacao");
+            ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "username");
+            ViewBag.DocentesID = new SelectList(db.Docente, "Id", "nome");
             return View();
         }
 
@@ -50,18 +54,51 @@ namespace AcademicosUem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Grau_Academico,EstudanteID")] Trabalho trabalho, HttpPostedFileBase ficheiro)
+        public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Grau_Academico,ApplicationUserID,Data")] Trabalho trabalho, HttpPostedFileBase ficheiro,int DocentesID, int CatFilesID)
         {
             TrabalhoFiles files = new TrabalhoFiles();
+            DocenteAssociado docentes = new DocenteAssociado();
             if (ModelState.IsValid)
             {
+                //Gravacao do trabalho
+                if(Roles.IsUserInRole("Estudante")){
+                    trabalho.ApplicationUserID = User.Identity.GetUserId();
+                    trabalho.Grau_Academico = "Licenciatura";
+                }
                 db.Trabalho.Add(trabalho);
-                files.Path = trabalho.Id.ToString() + ".pdf";
-                files.TrabalhoID = trabalho.Id;
-                files.CatFilesID = db.catFiles.Where(u => u.Designacao.Equals("Protocolo", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
-                db.TrabalhoFiles.Add(files);
                 db.SaveChanges();
-                var last_insert_id = trabalho.Id.ToString() + ".pdf";
+
+                //associacao do documento
+                var last_insert_id = trabalho.Id.ToString() + "Protocolo.pdf";
+                files.Path = last_insert_id;
+                files.TrabalhoID = trabalho.Id;
+                if(Roles.IsUserInRole("Estudante")){
+                    files.CatFilesID = CatFilesID;
+                    if (db.catFiles.Where(c =>c.Id == CatFilesID).FirstOrDefault().Designacao == "Tese")
+                    {
+                        files.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(u => u.Designacao.Equals("Aprovado", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+
+                    }
+                    else
+                    {
+                        files.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(u => u.Designacao.Equals("Pendente", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+
+                    }
+                }
+                else
+                {
+                    files.CatFilesID = db.catFiles.Where(u => u.Designacao.Equals("Protocolo", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+
+                }
+                db.TrabalhoFiles.Add(files);
+
+                //Associacao do supervisor
+                docentes.DocenteID = DocentesID;
+                docentes.FuncaoID = db.Funcao.Where(u => u.Designacao.Equals("Supervisor", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+                docentes.TrabalhoID = trabalho.Id;
+                db.DocenteAssociado.Add(docentes);
+                db.SaveChanges();
+
                 if (ficheiro != null && ficheiro.ContentLength > 0)
                 {
                     // extract only the filename
@@ -74,7 +111,7 @@ namespace AcademicosUem.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EstudanteID = new SelectList(db.Estudante, "Id", "apelido", trabalho.EstudanteID);
+            ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "username");
             return View(trabalho);
         }
 
@@ -90,7 +127,6 @@ namespace AcademicosUem.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EstudanteID = new SelectList(db.Estudante, "Id", "apelido", trabalho.EstudanteID);
             return View(trabalho);
         }
 
@@ -99,7 +135,7 @@ namespace AcademicosUem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Titulo,Descricao,Grau_Academico,EstudanteID,Data")] Trabalho trabalho)
+        public ActionResult Edit([Bind(Include = "Id,Titulo,Descricao,Grau_Academico,ApplicationUserID,Data")] Trabalho trabalho)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +143,6 @@ namespace AcademicosUem.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EstudanteID = new SelectList(db.Estudante, "Id", "apelido", trabalho.EstudanteID);
             return View(trabalho);
         }
 

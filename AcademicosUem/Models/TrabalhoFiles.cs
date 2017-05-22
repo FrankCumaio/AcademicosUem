@@ -13,6 +13,8 @@ namespace AcademicosUem.Models
         public virtual Trabalho Trabalho { get; set; }
         public int CatFilesID { get; set; }
         public virtual catFiles CatFiles { get; set; }
+        public int EstadoTrabalhoFileID { get; set; }
+        public virtual EstadoTrabalhoFile EstadoTrabalhoFile { get; set; }
         //Permite criar timestamp logo na bd
         public DateTime Data { get; set; }
         public TrabalhoFiles()

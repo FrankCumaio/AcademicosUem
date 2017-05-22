@@ -12,8 +12,8 @@
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public string Grau_Academico { get; set; }
-        public int EstudanteID { get; set; }
-        public virtual Estudante Estudante { get; set; }
+        public string ApplicationUserID { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
         //Permite criar timestamp logo na bd
         public DateTime Data { get; set; }
         public Trabalho()

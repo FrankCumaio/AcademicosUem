@@ -34,6 +34,7 @@ namespace AcademicosUem.Migrations
               new IdentityRole { Name = "Admin" },
               new IdentityRole { Name = "RA" },
               new IdentityRole { Name = "CC" },
+              new IdentityRole { Name = "Estudante" },
               new IdentityRole { Name = "MI" }
             );
             context.catFiles.AddOrUpdate(c => c.Designacao,
@@ -62,9 +63,11 @@ new EstadoTrabalho { Designacao = "Publicado" }
   new Funcao { Designacao = "Presidente" },
   new Funcao { Designacao = "Supervisor" },
   new Funcao { Designacao = "Co-supervisor" }
-
-
-
+);
+            context.EstadoTrabalhoFile.AddOrUpdate(c => c.Designacao,
+new EstadoTrabalhoFile { Designacao = "Pendente" },
+new EstadoTrabalhoFile { Designacao = "Aprovado" },
+new EstadoTrabalhoFile { Designacao = "Removido" }
 );
         }
     }

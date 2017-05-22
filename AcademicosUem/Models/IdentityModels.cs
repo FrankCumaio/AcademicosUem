@@ -31,7 +31,8 @@ namespace AcademicosUem.Models
         public virtual DbSet<EstadosDoEvento> EstadosDoEvento { get; set; }
         public virtual DbSet<EstadosDoTrabalho> EstadosDoTrabalho { get; set; }
         public virtual DbSet<EstadoTrabalho> EstadoTrabalho { get; set; }
-        public virtual DbSet<Estudante> Estudante { get; set; }
+        public virtual DbSet<EstadoTrabalhoFile> EstadoTrabalhoFile { get; set; }
+        public virtual DbSet<EstudanteDetails> Estudante { get; set; }
         public virtual DbSet<Evento> Evento { get; set; }
         public virtual DbSet<EventoCategoria> EventoCategoria { get; set; }
         public virtual DbSet<Funcao> Funcao { get; set; }
