@@ -82,7 +82,7 @@ namespace AcademicosUem.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "Trabalho");
+                    return RedirectToAction("dashboard", "trabalhofiles");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -171,7 +171,7 @@ namespace AcademicosUem.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Manage");
+                    return RedirectToAction("Index", "dashboard");
                 }
                 AddErrors(result);
             }
@@ -400,7 +400,7 @@ namespace AcademicosUem.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Trabalho");
+            return RedirectToAction("index", "Home");
         }
 
         //

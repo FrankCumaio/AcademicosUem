@@ -32,20 +32,37 @@ namespace AcademicosUem.Controllers
                 else
                 if (Roles.IsUserInRole("RA"))
             {
-                return View("dashboard", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Pendente")));
+                return View("dashboardRA", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Pendente")));
             }
             if (Roles.IsUserInRole("CC"))
             {
-                return View("dashboard", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Aprovado")));
+                return View("dashboardCC", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Aprovado")));
             }
             else {
                 return Redirect("/Account/Login"); }
-            
-            
+               
         }
 
-        // GET: TrabalhoFiles
-        public ActionResult Index()
+        public ActionResult AprovarDoc(int? id)
+        {
+              if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TrabalhoFiles trabalhoFiles = db.TrabalhoFiles.Find(id);
+                if (trabalhoFiles == null)
+                {
+                    return HttpNotFound();
+                }
+            
+            trabalhoFiles.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(a=>a.Designacao == "Aprovado").FirstOrDefault().Id;
+            db.Entry(trabalhoFiles).State = EntityState.Modified;
+            db.SaveChanges();
+            return View("dashboard", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Pendente")));
+            }
+
+            // GET: TrabalhoFiles
+            public ActionResult Index()
         {
             var trabalhoFiles = db.TrabalhoFiles.Include(t => t.CatFiles).Include(t => t.Trabalho);
             return View(trabalhoFiles.ToList());

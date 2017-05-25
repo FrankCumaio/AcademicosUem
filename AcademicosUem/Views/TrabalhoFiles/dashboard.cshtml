@@ -3,42 +3,68 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <div class="row col-md-12">
     <div class="input-field col s6">
-        <input placeholder="Pesquisar" id="first_name" type="text" class="validate">
+        <div class="col s6">
+            <input placeholder="Pesquisar" id="first_name" type="text" class="validate">
+        </div>
+        <div class="col s6">
+            <button class="btn btn-default">Pesquisar</button>
+            @if (Roles.IsUserInRole("Estudante"))
+            { 
+                <a href="/trabalhoes/create" class="waves-effect waves-light btn"><i class="material-icons">backup</i> Submeter Documento</a>
+                }
+        </div>
+
     </div>
-    <a href="/trabalhoes/create" class="waves-effect waves-light btn"><i class="material-icons">backup</i> Submeter Documento</a>
+
     </div>
-  
+
+
 @foreach (var item in Model)
             {
     <div class="card white darken-1">
         <div class="card-content">
-            <span class="card-title">@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</span>
             <p>
-            <p>Tipo de documento: @Html.DisplayFor(modelItem => item.CatFiles.Designacao)</p>
-            <p>Supervisor: @Html.DisplayFor(modelItem => item.Data)</p>
-            <p>Nivel Academico: @Html.DisplayFor(modelItem => item.Trabalho.Grau_Academico)</p>
-            <p>Data de Subissao: @Html.DisplayFor(modelItem => item.Data)</p>
-            <p>Estado do documento: @Html.DisplayFor(modelItem => item.EstadoTrabalhoFile.Designacao)</p>
-            </p>
+            <span class="card-title"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</span><p>
+            <span class="card-title"><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</span>
+            <hr />
+            <p><b>Tipo de documento:</b>Informatica @*@Html.DisplayFor(modelItem => item.Trabalho.Appli)*@</p>
+            <p><b>Tipo de documento:</b> @Html.DisplayFor(modelItem => item.CatFiles.Designacao)</p>
+            <p><b>Supervisor:</b> @Html.DisplayFor(modelItem => item.Data)</p>
+            <p><b>Nivel Academico: </b>@Html.DisplayFor(modelItem => item.Trabalho.Grau_Academico)</p>
+            <p><b>Data de Subissao:</b>@Html.DisplayFor(modelItem => item.Data)</p>
+            <p><b>Estado do documento:</b> @Html.DisplayFor(modelItem => item.EstadoTrabalhoFile.Designacao)</p>
         </div>
         @if (Roles.IsUserInRole("Estudante"))
         {
             <div class="card-action">
-                <a href="#">Ler Documento</a>
+                <a href="#modal@(Html.DisplayFor(modelItem => item.Id))" class="modal-trigger">Ler Documento</a>
                 <a href="#">Remover Documento</a>
             </div>
+            <!-- Modal Structure -->
+            <div id="modal@(Html.DisplayFor(modelItem => item.Id))" class="modal">
+                <div class="modal-content">
+                    <iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf"width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>
+                </div>
 
-        }
-        @if (Roles.IsUserInRole("RA"))
-        {
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+                </div>
+                }
+                @if (Roles.IsUserInRole("RA"))
+                {
+                <div class="card-action">
+                    <a href="/trabalhofiles/AprovarDoc/@item.Id">Aprovar Documento</a>
+                    <a href="#">Reprovar Documento</a>
+                </div>
+                }
+        @if (Roles.IsUserInRole("CC"))
+                {
             <div class="card-action">
-                <a href="#">Aprovar Documento</a>
-                <a href="#">Reprovar Documento</a>
+                <a href="/trabalhofiles/AprovarDoc/@item.Id">Marcar Defesa</a>
             </div>
-
         }
     </div>
     <tr>

@@ -108,7 +108,7 @@ namespace AcademicosUem.Controllers
                     var path = Path.Combine(Server.MapPath("~/uploads"), last_insert_id);
                     ficheiro.SaveAs(path);
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("/trabalhofiles/dashboard");
             }
 
             ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "username");
@@ -127,6 +127,8 @@ namespace AcademicosUem.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "username");
+
             return View(trabalho);
         }
 

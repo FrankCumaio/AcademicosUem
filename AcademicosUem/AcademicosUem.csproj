@@ -866,6 +866,9 @@
     <Content Include="Views\Trabalhoes3\Details.cshtml" />
     <Content Include="Views\Trabalhoes3\Edit.cshtml" />
     <Content Include="Views\Trabalhoes3\Index.cshtml" />
+    <Content Include="Views\Manage\Index - Copy.cshtml" />
+    <Content Include="Views\TrabalhoFiles\dashboardCC.cshtml" />
+    <Content Include="Views\TrabalhoFiles\dashboardRA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

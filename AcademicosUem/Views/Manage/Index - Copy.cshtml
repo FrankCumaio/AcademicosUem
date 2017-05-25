@@ -1,0 +1,323 @@
+﻿@using AcademicosUem.Models
+
+@model AcademicosUem.Models.IndexViewModel
+
+@using Microsoft.AspNet.Identity
+<p class="text-success">@ViewBag.StatusMessage</p>
+
+<div class="section scrollspy">
+    <div class="row">
+        <div class="container col m3 offset-m1 sidebar">
+            @*Trabalhos*@
+            <div id="test1" class="col s12 m12" style="padding-right: 0;">
+                <div class="col s12 m12" style="padding:0; margin-top: 10px;">
+
+                        <div class="card-avatar">
+                            <div class="waves-block waves-notransition">
+                                <img class="activator" src="img/avatar1.png" style="margin-left:25%">
+                            </div>
+                            <div class="card-content" style="height: 50px;">
+                                <span class="card-title activator grey-text text-darken-4">
+                                    @User.Identity.GetUserName() <br />
+                                </span>
+                               
+                            </div>
+                        </div>
+
+                    <div class="row">
+                        <div class="tabs-vertical">
+                            <div class="col s1 m1">
+                                <ul class="tabs">
+                                    <li class="tab">
+                                        <a class="active" href="#home"><i class="small col s1 fa fa-home icon2"></i><span>Inicio</span></a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="#favoritos"><i class="small col s1 fa fa-star icon2"></i><span>Favoritos</span></a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="#minhasPub"><i class="small col s1 fa fa-upload icon2"></i><span>Minhas publicacoes</span></a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="#configuracoes"><i class="small col s1 fa fa-dashboard icon2"></i><span>Configuracoes da conta</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        @*Pagina inicio*@
+        <div class="col m8 s10 container2" style="margin-left:40px; margin-top:10px; padding: 0; background-color: rgba(247,247,247,.25);">
+            <div id="home" class="tab-content">
+
+                @*Create Trabalho*@
+                <div id="registroTrabalho" class="collapse col m10 s12">
+                    <div class="col m10 s12 offset-l1">
+                        <h4 class="text_h2 titulo-tabs-conta" style="text-align: left; line-height:35px;">Publique os seus <span class="span_h2">trabalhos </span></h4>
+                    </div>
+                      @{Html.RenderAction("Create", "Trabalhoes");}
+                </div>
+
+                @*Create Temas*@
+                <div id="registroTema" class="collapse col m10 s12">
+                    <div class="col m10 s12 offset-l1">
+                        <h4 class="text_h2 titulo-tabs-conta" style="text-align: left; line-height:35px;">Publique as suas sugestoes de <span class="span_h2">temas </span></h4>
+                    </div>
+                   
+                </div>
+
+
+                <div id="home-info">
+                    <div class="col m10 s12 offset-l1">
+                        <h4 class="text_h2 titulo-tabs-conta" style="text-align: center; line-height:35px;">Bem Vindo a sua conta do <span class="span_h2">Academicos Mz </span></h4>
+                    </div>
+
+                    <div class="col s12 m4 offset-l1">
+                        <div class="card card-avatar">
+                            <div class="waves-block waves-light">
+                                <img class="activator" src="~/img/trabalho4.png" style="margin-left: 23%;">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title text_h2 activator grey-text text-darken-4">
+                                    <br />
+                                    <b><span><a class="span_h2" href="#">Trabalhos</a></span></b>
+                                </span>
+
+                            </div>
+                        </div>
+                        <span class="span_h2 descHome">Aceda a milhares de <b>trabalhos</b> de investigacao de forma simples e rapida, e contribua para o desenvolvimento da comunidade academica partilhando os seus proprios trabalhos.</span>
+                        <button data-toggle="collapse" id="partilharTrabalho" data-target="#registroTrabalho" class="btn blue col s12 m12" style="margin-bottom: 20px; margin-top: 10px;">Partilhar trabalhos</button>
+                    </div>
+
+                    <div class="col s12 m4 offset-l1">
+                        <div class="card card-avatar">
+                            <div class="waves-block waves-light">
+                                <img class="" src="~/img/tema2.png" style="margin-left: 23%;">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title text_h2 activator grey-text text-darken-4">
+                                    <br />
+                                    <span><a class="span_h2" href="#">Temas</a></span>
+                                </span>
+
+                            </div>
+                        </div>
+                        <span class="span_h2 descHome">Encontre sugestoes de <b>temas</b> e ideias para os seus trabalhos de investigacao. Partilhe tambem as suas ideias e troque experiencia com a vasta comunidade de academicos em Mocambique.</span>
+                        <button data-toggle="collapse" id="partilharTema" data-target="#registroTema" class="btn blue col s12 m12" style="margin-bottom: 20px; margin-top: 10px;">Sugerir temas</button>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        @*Pagina Favoritos*@
+        <div class="col m8 s10 container2" style="margin-left:40px; margin-top:10px; padding: 0; background-color: rgba(247,247,247,.25);">
+            <div id="favoritos" class="tab-content">
+                <div class="col m10 s12 offset-l1">
+                        <h4 class="text_h2 titulo-tabs-conta" style="text-align: left; line-height: 35px;">
+                            <i class="small col s1 fa fa-star icon3"></i>Lista de <span class="span_h2">favoritos</span>
+                        </h4>
+                    <hr>
+                    <ul class="tabs">
+                        <li class="tab">
+                            <a class="active" href="#trabalho"><span>Trabalhos  </span></a>
+                        </li>
+
+                        <li class="tab">
+                            <a href="#temas"><span>Temas</span></a>
+                        </li>
+                    </ul>
+
+                    @*Trabalhos*@
+                    <div id="trabalho" class="tab-content" style="max-height: 640px; overflow-y: auto">                        
+                           
+                       <input id="searchFav" type="search" placeholder="Pesquise por titulo, autor, data, etc  "/>
+                       <br />
+                        <br />
+                         <ul class="live-search-list" style="margin-left: 10px;">
+                        @{ 
+                            @*List<AcademicosUem.Models.Trabalho> trabalhos = ViewBag.trabalhos;
+
+                            foreach (var item in trabalhos)
+                            {
+                                <li>
+                                    <h5 class="listaTema"><span class="span_h2">Titulo: </span>@Html.DisplayFor(modelItem => item.Titulo) </h5>
+                                    <h6 class="hidden"><span class="span_h2">Tags: </span>@Html.DisplayFor(modelItem => item.Area.Curso.Nome), @Html.DisplayFor(modelItem => item.Area.Nome)</h6>
+                                   <br />
+                                     <span class="btn btfavDetails blue col m2 s5" style="float: left; color:white !important; margin-bottom:10px; padding: 0; font-size: 18px;">@Html.ActionLink("Ver detalhes", "Details", "Trabalho", new { id = item.Id }, null)</span>
+                                    <span class="btn btfavDetails red col m2 s5" style="float: left; color:white !important; margin-bottom:10px; margin-left: 10px; font-size: 18px;">@Html.ActionLink("Remover", "Details", new { id = item.Id })</span>
+
+                                    <br />
+                                    <br />
+                                     <hr />
+                                      @{
+                                          foreach (var autor in item.Perfil)
+                                          {
+                                            <p class="hidden">@autor.Nome<span>,</span></p>
+                                              }
+                                          }
+                                </li>
+                            }*@
+                            }
+                        </ul>
+
+                    </div>
+
+                    @*Temas*@
+                    <div id="temas" class="tab-content" style="max-height: 640px; overflow-y: auto">
+
+                        <input id="searchFav" type="search" placeholder="Pesquise por titulo, autor, data, etc  " />
+                        <br />
+                        <br />
+                        <ul class="live-search-list" style="margin-left: 10px;">
+                            @*@{
+                                List<AcademicosUem.Models.Temas> temas = ViewBag.temas;
+
+                                foreach (var item in temas)
+                                {
+                                    <li>
+                                        <h5 class="listaTema"><span class="span_h2">Titulo: </span>@Html.DisplayFor(modelItem => item.Titulo) </h5>
+                                        <h6 class="hidden"><span class="span_h2">Tags: </span>@Html.DisplayFor(modelItem => item.Area.Curso.Nome), @Html.DisplayFor(modelItem => item.Area.Nome)</h6>
+                                        <br />
+                                        <span class="btn btfavDetails blue col m2 s5" style="float: left; color:white !important; margin-bottom:10px; padding: 0; font-size: 18px;">@Html.ActionLink("Ver detalhes", "Details", "Tema", new { id = item.Id }, null)</span>
+                                        <span class="btn btfavDetails red col m2 s5" style="float: left; color:white !important; margin-bottom:10px; margin-left: 10px; font-size: 18px;">@Html.ActionLink("Remover", "Details", new { id = item.Id })</span>
+
+                                        <br />
+                                        <br />
+                                        <hr />
+                                        <p class="hidden">@Html.DisplayFor(modelItem => item.Perfil.Nome)</p>
+    
+                                    </li>
+                                            }
+                            }*@
+                        </ul>
+
+                    </div>
+
+
+                    </div>
+            </div>
+         </div> 
+
+
+
+        @*Pagina Minhas publicacoes*@
+                <div class="col m8 s10 container2" style="margin-left:40px; margin-top:10px; padding: 0; background-color: rgba(247,247,247,.25);">
+                    <div id="minhasPub" class="tab-content">
+
+                        <div id="favoritosP" class="tab-content">
+                            <div class="col m10 s12 offset-l1">
+                                <h4 class="text_h2 titulo-tabs-conta" style="text-align: left; line-height: 35px;">
+                                    <i class="small col s1 fa fa-upload icon3"></i>Minhas <span class="span_h2">publicacoes</span>
+                                </h4>
+                                <hr>
+                                <ul class="tabs">
+                                    <li class="tab">
+                                        <a class="active" href="#trabalhoP"><span>Trabalhos  </span></a>
+                                    </li>
+
+                                    <li class="tab">
+                                        <a href="#temasP"><span>Temas</span></a>
+                                    </li>
+                                </ul>
+
+                                @*Trabalhos*@
+                                <div id="trabalhoP" class="tab-content" style="max-height: 640px; overflow-y: auto">
+
+                                    <input id="searchFav2" type="search" placeholder="Pesquise por titulo, autor, data, etc " />
+                                    <br />
+                                    <br />
+                                    <ul class="live-search-list" style="margin-left: 10px;">
+                                        @*@{
+                                            foreach (var item in trabalhos)
+                                            {
+                                                if (item.userId == User.Identity.GetUserId())
+                                                {
+                                                <li>
+                                                    <h5 class="listaTema"><span class="span_h2">Titulo: </span>@Html.DisplayFor(modelItem => item.Titulo) </h5>
+                                                    <h6 class="hidden"><span class="span_h2">Tags: </span>@Html.DisplayFor(modelItem => item.Area.Curso.Nome), @Html.DisplayFor(modelItem => item.Area.Nome)</h6>
+                                                    <br />
+                                                    <span class="btn btfavDetails blue col m2 s5" style="float: left; color:white !important; margin-bottom:10px; padding: 0; font-size: 18px;">@Html.ActionLink("Ver detalhes", "Details", "Trabalho", new { id = item.Id }, null)</span>
+                                                    <span class="btn btfavDetails red col m2 s5" style="float: left; color:white !important; margin-bottom:10px; margin-left: 10px; font-size: 18px;">@Html.ActionLink("Remover", "Delete", "Trabalho", new { id = item.Id }, null)</span>
+
+                                                    <br />
+                                                    <br />
+                                                    <hr />
+                                                    @{
+                                                        foreach (var autor in item.Perfil)
+                                                        {
+                                                            <p class="hidden">@autor.Nome<span>,</span></p>
+                                                        }
+                                                    }
+                                                </li>
+                                                                }
+                                                            }
+                                                        }*@
+                                    </ul>
+                                </div>
+
+                                @*Temas*@
+                                <div id="temasP" class="tab-content" style="max-height: 640px; overflow-y: auto">
+
+                                    <input id="searchFav2" type="search" placeholder="Pesquise por titulo, autor, data, etc  " />
+                                    <br />
+                                    <br />
+                                    <ul class="live-search-list" style="margin-left: 10px;">
+                                        @{
+
+                                            @*foreach (var item in temas)
+    {
+        <li>
+            <h5 class="listaTema"><span class="span_h2">Titulo: </span>@Html.DisplayFor(modelItem => item.Titulo) </h5>
+            <h6 class="hidden"><span class="span_h2">Tags: </span>@Html.DisplayFor(modelItem => item.Area.Curso.Nome), @Html.DisplayFor(modelItem => item.Area.Nome)</h6>
+            <br />
+            <span class="btn btfavDetails blue col m2 s5" style="float: left; color:white !important; margin-bottom:10px; padding: 0; font-size: 18px;">@Html.ActionLink("Ver detalhes", "Details", "Tema", new { id = item.Id }, null)</span>
+            <span class="btn btfavDetails red col m2 s5" style="float: left; color:white !important; margin-bottom:10px; margin-left: 10px; font-size: 18px;">@Html.ActionLink("Remover", "Details", new { id = item.Id })</span>
+
+            <br />
+            <br />
+            <hr />
+            <p class="hidden">@Html.DisplayFor(modelItem => item.Perfil.Nome)</p>
+
+        </li>
+    }*@
+                                        }
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        @*Configuracoes da conta*@
+            <div id="configuracoes" class="tab-content">
+                Configuracoes da conta
+            </div>
+        </div>
+
+        @*<div class="col m8 s10 container2" style="margin-left:40px; max-height:800px; overflow-y:auto; margin-top:10px; padding: 0; background-color: rgba(247,247,247,.25)">
+    
+            <h4 id="resultadoPesquisaTxt" type="text" class="center text_resultados text_h2" style="margin-bottom:0; margin-top:0;">Resultados da <span class="span_h2">pesquisa...</span> </h4>
+
+            <ul class="live-search-list" style="margin-left: 10px;">
+               
+                    <li>
+                        <h5 class="listaTema"><span class="span_h2">Titulo: </span>as</h5>
+                        <h6><span class="span_h2">Tags: </span>sa</h6>
+                        <hr />
+                        <p class="hidden">s</p>
+                    </li>
+               
+            </ul>
+
+
+        </div>*@
+
+    </div>
+
+
+
