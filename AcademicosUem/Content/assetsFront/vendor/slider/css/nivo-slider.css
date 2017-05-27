@@ -263,7 +263,7 @@ Default Theme
 
 	left:0; 
 
-	top:0;  
+    margin-top: 50px;
 
 	width: 100%;
 
@@ -464,6 +464,8 @@ custom slider
 }
 
 .s-tb-c{
+
+    padding-top: 130px;
 
 	display: table-cell;
 
