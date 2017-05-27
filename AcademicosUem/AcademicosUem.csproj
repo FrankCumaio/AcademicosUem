@@ -873,6 +873,8 @@
     <Content Include="Views\TrabalhoFiles\dashboardCC.cshtml" />
     <Content Include="Views\TrabalhoFiles\dashboardRA.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Trabalhoes\ListaTrabalhos.cshtml" />
+    <Content Include="Views\Trabalhoes\DetalhesTrabalho.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

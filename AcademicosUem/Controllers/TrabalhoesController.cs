@@ -40,6 +40,20 @@ namespace AcademicosUem.Controllers
             return View(trabalho);
         }
 
+        public ActionResult DetalhesTrabalho(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Trabalho trabalho = db.Trabalho.Find(id);
+            if (trabalho == null)
+            {
+                return HttpNotFound();
+            }
+            return View("detalhesTrabalho",trabalho);
+        }
+
         // GET: Trabalhoes/Create
         public ActionResult Create()
         {
@@ -47,6 +61,11 @@ namespace AcademicosUem.Controllers
             ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "username");
             ViewBag.DocentesID = new SelectList(db.Docente, "Id", "nome");
             return View();
+        }
+
+        public ActionResult ListaTrabalhos()
+        {
+            return View("listaTrabalhos", db.Trabalho.ToList());
         }
 
         // POST: Trabalhoes/Create

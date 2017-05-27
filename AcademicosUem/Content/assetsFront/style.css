@@ -1609,7 +1609,8 @@ ul {
   text-transform: capitalize;
   font-weight: 700;
   margin-bottom: 5px;
-  font-size: 48px;
+  margin-top: 50px;
+  font-size: 24px;
   color: #ffffff;
 }
 @media (min-width: 480px) and (max-width: 767px) {
@@ -5063,6 +5064,16 @@ ul.course-feature2 li:before {
     overflow-y: auto;
 }
 
+.courses-content-wrapper hr{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.listaTrabalhos {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
 .courses-content-wrapper p {
     margin-bottom: 0 !important;
     font-size: 17px;
@@ -8383,6 +8394,7 @@ ul.course-feature2 li:before {
 }
 .product-details-tab-area .tab-content {
   padding: 10px 35px 15px 35px;
+  margin-top: 0px;
 }
 @media only screen and (max-width: 479px) {
   .product-details-tab-area .tab-content {
