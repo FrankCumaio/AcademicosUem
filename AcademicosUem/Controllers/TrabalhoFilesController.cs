@@ -12,12 +12,13 @@ using System.Web.Security;
 
 namespace AcademicosUem.Controllers
 {
-    [Authorize]
+   
     public class TrabalhoFilesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
         // GET: Dashboard
+        [Authorize]
         public ActionResult Dashboard()
         {
             string[] userRoles = Roles.GetRolesForUser(User.Identity.Name);
@@ -43,6 +44,25 @@ namespace AcademicosUem.Controllers
                
         }
 
+        public ActionResult ListaTrabalhos()
+        {
+            return View("listaTrabalhos", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Aprovado")));
+        }
+
+        public ActionResult DetalhesTrabalho(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TrabalhoFiles trabalhoFile = db.TrabalhoFiles.Find(id);
+            if (trabalhoFile == null)
+            {
+                return HttpNotFound();
+            }
+            return View("detalhesTrabalho", trabalhoFile);
+        }
+        [Authorize]
         public ActionResult AprovarDoc(int? id)
         {
               if (id == null)
@@ -60,14 +80,14 @@ namespace AcademicosUem.Controllers
             db.SaveChanges();
             return View("dashboard", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Pendente")));
             }
-
-            // GET: TrabalhoFiles
-            public ActionResult Index()
+        [Authorize]
+        // GET: TrabalhoFiles
+        public ActionResult Index()
         {
             var trabalhoFiles = db.TrabalhoFiles.Include(t => t.CatFiles).Include(t => t.Trabalho);
             return View(trabalhoFiles.ToList());
         }
-
+        [Authorize]
         // GET: TrabalhoFiles/Details/5
         public ActionResult Details(int? id)
         {
@@ -82,7 +102,7 @@ namespace AcademicosUem.Controllers
             }
             return View(trabalhoFiles);
         }
-
+        [Authorize]
         // GET: TrabalhoFiles/Create
         public ActionResult Create()
         {
@@ -94,6 +114,7 @@ namespace AcademicosUem.Controllers
         // POST: TrabalhoFiles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Path,TrabalhoID,CatFilesID,Data")] TrabalhoFiles trabalhoFiles)

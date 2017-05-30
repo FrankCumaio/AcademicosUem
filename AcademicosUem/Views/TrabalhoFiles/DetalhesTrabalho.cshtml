@@ -1,4 +1,4 @@
-﻿@model AcademicosUem.Models.Trabalho
+﻿@model AcademicosUem.Models.TrabalhoFiles
 
 @{
     ViewBag.Title = "DetalhesTrabalho";
@@ -11,7 +11,7 @@
             <h2>Detalhes do trabalho</h2>
             <ul>
                 <li><a href="#">Home</a> -</li>
-                <li>DetslhesTrabalho</li>
+                <li>DetalhesTrabalho</li>
             </ul>
         </div>
     </div>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                 <div class="inner-product-details-right">
-                                    <h3>@Html.DisplayFor(model => model.Titulo)</h3>
+                                    <h3>@Html.DisplayFor(model => model.Trabalho.Titulo)</h3>
                                     <ul>
                                         <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                         <li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -40,8 +40,8 @@
                                         <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                     </ul>
                                     <div class="product-details-content">
-                                        <p><span>Autor:</span> @Html.DisplayFor(model => model.ApplicationUser.UserName)</p>
-                                        <p><span>Data:</span> @Html.DisplayFor(model => model.Data)</p>
+                                        <p><span>Autor:</span> @Html.DisplayFor(model => model.Trabalho.ApplicationUser.UserName)</p>
+                                        <p><span>Data:</span> @Html.DisplayFor(model => model.Trabalho.Data)</p>
                                     </div>
                                     <ul class="product-details-social">
                                         <li>Partilhar trabalho:</li>
@@ -50,6 +50,9 @@
                                         <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                         <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                                     </ul>
+                                    <div class="form-group">
+                                        <button class="sidebar-search-btn disabled" >Ler documento</button>
+                                    </div>
                                   
                                 </div>
                             </div>
@@ -117,9 +120,7 @@
                                     <h3 class="item-title"><a href="#">Sistema de Gestao Hospitalar</a></h3>
                                     <span class="item-price">Informatica</span>
                                 </div>
-                                <div class="buy-now-btn-area">
-                                    <a href="#" class="ghost-btn">Buy Now</a>
-                                </div>
+                               
                             </div>
                         </div>
 
@@ -220,7 +221,7 @@
                             <div class="sidebar-find-course">
                                 <form id="checkout-form">
                                     <div class="form-group course-name">
-                                        <input id="first-name" placeholder="Course Name" class="form-control" type="text" />
+                                        <input id="first-name" placeholder="Titulo do trabalho" class="form-control" type="text" />
                                     </div>
                                     <div class="form-group">
                                         <button class="sidebar-search-btn disabled" type="submit" value="Login">Pesquisar</button>

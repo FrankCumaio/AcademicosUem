@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AcademicosUem.Models.Trabalho>
+﻿@model IEnumerable<AcademicosUem.Models.TrabalhoFiles>
 
 @{
     ViewBag.Title = "ListaTrabalhos";
@@ -62,10 +62,10 @@
                                                 </div>
                                                 <div class="courses-content-wrapper">
                                                     <h3 class="item-title"><a href="#">Informatica</a></h3>
-                                                    <p class="item-content"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Titulo)</p>
+                                                    <p class="item-content"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</p>
                                                     <hr />
                                                     <p><b>Data: </b>@Html.DisplayFor(modelItem => item.Data)</p>
-                                                    <p><b>Autor: </b>@Html.DisplayFor(modelItem => item.ApplicationUser.UserName)</p>
+                                                    <p><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</p>
                                                 </div>
                                             </div>
                                         </div>
