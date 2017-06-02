@@ -875,6 +875,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Trabalhoes\ListaTrabalhos.cshtml" />
     <Content Include="Views\Trabalhoes\DetalhesTrabalho.cshtml" />
+    <Content Include="Views\TrabalhoFiles\DetalhesTrabalho.cshtml" />
+    <Content Include="Views\TrabalhoFiles\ListaTrabalhos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

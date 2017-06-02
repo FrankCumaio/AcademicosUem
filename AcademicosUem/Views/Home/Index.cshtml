@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AcademicosUem.Models.Trabalho>
+﻿@model IEnumerable<AcademicosUem.Models.TrabalhoFiles>
 
 
 
@@ -20,16 +20,14 @@
             <div id="slider-direction-1" class="t-cn slider-direction" style="margin-top: 30px;">
                 <div class="slider-content s-tb slide-1">
                     <div class="title-container s-tb-c">
-                        <h1 class="title1">Os melhores Trabalhos feitos</h1>
-                        <p>Emply dummy text of the printing and typesetting industry orem Ipsum has been the industry's standard<br>dummy text ever sinceprinting and typesetting industry. </p>                    
+                        <h1 class="title1">Encontre Trabalhos feitos</h1>
                     </div>
                 </div>
             </div>
             <div id="slider-direction-2" class="t-cn slider-direction">
                 <div class="slider-content s-tb slide-2">
                     <div class="title-container s-tb-c">
-                        <h1 class="title1">Os melhores Trabalhos feitos</h1>
-                        <p>Emply dummy text of the printing and typesetting industry orem Ipsum has been the industry's standard<br>dummy text ever sinceprinting and typesetting industry. </p>
+                        <h1 class="title1">Encontre trabalhos na sua area de interesse</h1>
                        
                     </div>
                 </div>
@@ -37,8 +35,7 @@
             <div id="slider-direction-3" class="t-cn slider-direction">
                 <div class="slider-content s-tb slide-3">
                     <div class="title-container s-tb-c">
-                        <h1 class="title1">Trabalhos de alta qualidade</h1>
-                        <p>Emply dummy text of the printing and typesetting industry orem Ipsum has been the industry's standard<br>dummy text ever sinceprinting and typesetting industry. </p>
+                        <h1 class="title1">Poupe esforcos na busca por trabalhos cientificos</h1>
                       
                     </div>
                 </div>
@@ -58,13 +55,14 @@
                 <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
                     <div class="search-input">
                         <form>
-                            <input type="text" class="search-form" placeholder="Digite as palavras chave . . ." required="">
+                            <input type="text" class="search-form" id="pesquisaValueHome" placeholder="Digite as palavras chave . . ." required="">
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                     <div class="search-submit">
-                        <a href="#" class="join-now-btn">Pesquisar</a>
+                        @Html.ActionLink("Pesquisar", "ListaTrabalhos", "TrabalhoFiles", null, new { @class = "join-now-btn", @id = "pesquisaHome" })
+
                     </div>
                 </div>
             </div>
@@ -118,7 +116,19 @@
                         </div>
                         <div class="featured-content-holder">
                             <h3><a href="#">Departamento de Matematica e Informatica</a></h3>
-                            <p>Rimply dummy text of the printing and typesetting industry when an unknown printer took a galley scrambled.</p>
+                            <p>
+                                O Departamento de Matemática e Informática (DMI) é um Departamento Académico da Faculdade de Ciências
+                            da UEM. Pela sua natureza, é uma unidade científica da Faculdade que, de forma organizada e hierárquica, 
+                            engloba um conjunto de áreas científicas afins, capazes de leccionar, 
+                            desenvolver a investigação e extensão e realizar a gestão dos recursos colocados à sua disposição.
+                            <br />
+                            <br />
+                                Os seus Recursos Humanos incluem cerca de 107 docentes e investigadores (doutorados, mestrados e licenciados) e 21 funcionários do Corpo Técnico-Administrativo (CTA). 
+                            É esta a equipe que, de forma estruturada e flexível, garante a formação de alto nível aos cerca de 1113 estudantes de 
+                            Licenciatura e Mestrado, que o Departamento compreende anualmente, e a mais de 2000 estudantes de outras Faculdades da UEM
+                            com as quais a Faculdade de Ciências interage.
+                            Para garantir um suporte de qualidade ao Ensino e às Actividades de Investigação e Extensão, 
+                            o DMI conta com alguns serviços e infraestruturas de apoio.</p>
                         </div>
                     </div>
                 </div>
@@ -130,7 +140,7 @@
                         </div>
                         <div class="featured-content-holder">
                             <h3><a href="#">Informatica</a></h3>
-                            <p>Rmply dummy printing ypesetting industry it’s free demo.</p>
+                            <p>Um curso do DMI que tem como objectivo preparar técnicos informáticos de nível superior, aptos para a realização do processo de análise , desenvolvimento e implementação de soluções informáticas.</p>
                         </div>
                     </div>
                     <div class="featured-box">
@@ -140,7 +150,7 @@
                         </div>
                         <div class="featured-content-holder">
                             <h3><a href="#">Matematica</a></h3>
-                            <p>Rmply dummy printing ypesetting industry it’s free demo.</p>
+                            <p>Um curso de DMI com o objectivo de Formar especialistas para carreiras na Indústria, Serviços, Ensino Secundário, Médio e Universitário e preparar os graduados para estudos de pós-graduação, para o exercício da actividade de investigação fundamental e aplicada.</p>
                         </div>
                     </div>
                 </div>
@@ -152,7 +162,9 @@
                         </div>
                         <div class="featured-content-holder">
                             <h3><a href="#">Estatistica</a></h3>
-                            <p>Rmply dummy printing ypesetting industry it’s free demo.</p>
+                            <p>Os profissionais de estatística são chamados a actuar em diversas esferas de desenvolvimento 
+                            económico e social: Instituições do Sistema Estatístico Nacional, Hospitais, Banca, Empresas Seguradoras,
+                            instituições de ensino e de investigação e indústria, entre outras.</p>
                         </div>
                     </div>
                     <div class="featured-box">
@@ -168,7 +180,7 @@
                 </div>
             </div>
             <div class="view-all-btn-area">
-                <a href="#" class="ghost-btn-big">Ver trabalhos de todos os cursos</a>
+                @Html.ActionLink("Ver trabalhos de todos os cursos", "ListaTrabalhos", "TrabalhoFiles",null,  new {@class = "view-all-accent-btn"})
             </div>
         </div>
     </div>
@@ -181,9 +193,11 @@
     </div>
     <div class="container courses-list-wrapper">
         <div class="row courses-wrapper courses-list">
-
-        @foreach (var item in Model)
+            @{int i = 0;}
+      @foreach (var item in Model)
         {
+             if (i < 4)
+                {
 
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 courses-item">
                 <div class="courses-box2">
@@ -194,20 +208,20 @@
                         </div>
                         <div class="courses-content-wrapper">
                             <h3 class="item-title"><a href="#">Informatica</a></h3>
-                            <p class="item-content"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Titulo)</p>
+                            <p class="item-content"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</p>
                             <hr />
-                            <p><b>Data: </b>@Html.DisplayFor(modelItem => item.Data)</p>
-                            <p><b>Autor: </b>@Html.DisplayFor(modelItem => item.ApplicationUser.UserName)</p>
+                            <p><b>Data: </b>@Html.DisplayFor(modelItem => item.Trabalho.Data)</p>
+                            <p><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</p>
                         </div>
                     </div>
                 </div>
             </div>
-        }
+           i++;
+           }
+      } 
            
-           
-        <div class="view-all-btn-area loadmore" style="padding-bottom: 40px;" >
-            <a href="#" class="view-all-accent-btn">Ver Todos trabalhos</a>
-
+        <div class="view-all-btn-area" style="padding-bottom: 40px;" >
+           @Html.ActionLink("Ver todos trabalhos", "ListaTrabalhos", "TrabalhoFiles",null,  new {@class = "view-all-accent-btn"})
         </div>
     </div>
 </div>

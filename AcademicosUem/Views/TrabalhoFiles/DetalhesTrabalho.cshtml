@@ -51,13 +51,26 @@
                                         <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                                     </ul>
                                     <div class="form-group">
-                                        <button class="sidebar-search-btn disabled" >Ler documento</button>
+                                        <button data-toggle="collapse" data-target="#LerDoc" class="sidebar-search-btn" ><i class="small col m1 s1 fa fa-file-text icon-ler-doc"></i>  Ler documento</button>
                                     </div>
-                                  
+
+                          
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="container offset-l3">
+                            @*<a href="/ViewerJS/#../4.pdf">PDF</a>
+                <a href="file:///C:\Users\Frank%20Cumaio\Source\Repos\AcademicosUem\AcademicosUem\App_Data\uploads\4.pdf" target="_blank">Link Text</a>*@
+                            <div id="LerDoc" class="collapse" style="height: 300px;">
+                               @* <iframe src="/ViewerJS/#../uploads/5.pdf" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe> *@
+                          
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="product-details-tab-area">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -221,26 +234,17 @@
                             <div class="sidebar-find-course">
                                 <form id="checkout-form">
                                     <div class="form-group course-name">
-                                        <input id="first-name" placeholder="Titulo do trabalho" class="form-control" type="text" />
+                                        <input id="pesquisaDetalhesValue" placeholder="Pesquisar trabalho.." class="form-control" type="text" />
                                     </div>
                                     <div class="form-group">
-                                        <button class="sidebar-search-btn disabled" type="submit" value="Login">Pesquisar</button>
+                                        @Html.ActionLink("Pesquisar", "ListaTrabalhos", "TrabalhoFiles", null, new { @class = "sidebar-search-btn", @id = "pesquisaDetalhes" })
+
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="sidebar-box">
-                        <div class="sidebar-box-inner">
-                            <h3 class="sidebar-title">Pesquise por cursos</h3>
-                            <ul class="sidebar-categories">
-                                <li><a href="#">Informatica</a></li>
-                                <li><a href="#">Matematica</a></li>
-                                <li><a href="#">Estatistica</a></li>
-                                <li><a href="#">Ciencias de Informacao Geografica</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                   
                  
                   
                 </div>
