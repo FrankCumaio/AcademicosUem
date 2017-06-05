@@ -861,7 +861,7 @@
     <Content Include="Views\TrabalhoFiles\Details.cshtml" />
     <Content Include="Views\TrabalhoFiles\Edit.cshtml" />
     <Content Include="Views\TrabalhoFiles\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Shared\_LayoutFront.cshtml" />
     <Content Include="Views\TrabalhoFiles\dashboard.cshtml" />
     <Content Include="Views\Trabalhoes3\Create.cshtml" />
