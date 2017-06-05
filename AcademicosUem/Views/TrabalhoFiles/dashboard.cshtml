@@ -3,31 +3,36 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="row col-md-12">
-    <div class="input-field col s6">
-        <div class="col s6">
-            <input placeholder="Pesquisar" id="first_name" type="text" class="validate">
-        </div>
-        <div class="col s6">
+<div class="card white darken-1 cyan darken-1">
+    <div class="card-content">
+        <p>
+            
             @if (Roles.IsUserInRole("Estudante"))
-            { 
-                <a href="#" id="submeter" class="waves-effect waves-light btn"><i class="material-icons">backup</i> Submeter Documento</a>
-                }
-        </div>
-
-    </div>
-
-    </div>
-
-
-@foreach (var item in Model)
             {
-    <div class="card white darken-1">
-        <div class="card-content">
+                <a href="#" id="submeter" class="waves-effect waves-light btn"><i class="material-icons">backup</i> Submeter Documento</a>
+            }
+            else
+            {
+                <span class="card-title">Bem vindo!</span>
+            }
+        </div>
+    <div class="card-options">
+        <input type="text" class="expand-search" placeholder="Pesquisar" autocomplete="off">
+    </div>
+    </div>
+
+
+
+
+            @foreach (var item in Model)
+            {
+                <div class="card white darken-1">
+                    <div class="card-content">
             <p>
-            <span class="card-title"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</span><p>
-            <span class="card-title"><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</span>
-            <hr />
+                <span class="card-title"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</span>
+            <p>
+                <span class="card-title"><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</span>
+                <hr />
             <p><b>Tipo de documento:</b>Informatica @*@Html.DisplayFor(modelItem => item.Trabalho.Appli)*@</p>
             <p><b>Tipo de documento:</b> @Html.DisplayFor(modelItem => item.CatFiles.Designacao)</p>
             <p><b>Supervisor:</b> @Html.DisplayFor(modelItem => item.Data)</p>
@@ -44,21 +49,21 @@
             <!-- Modal Structure -->
             <div id="modal@(Html.DisplayFor(modelItem => item.Id))" class="modal">
                 <div class="modal-content">
-                    <iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf"width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>
+                    <iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>
                 </div>
 
                 <div class="modal-footer">
                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
                 </div>
-                </div>
-                }
-                @if (Roles.IsUserInRole("RA"))
+            </div>
+        }
+        @if (Roles.IsUserInRole("RA"))
                 {
-                <div class="card-action">
-                    <a href="/trabalhofiles/AprovarDoc/@item.Id">Aprovar Documento</a>
-                    <a href="#">Reprovar Documento</a>
-                </div>
-                }
+            <div class="card-action">
+                <a href="/trabalhofiles/AprovarDoc/@item.Id">Aprovar Documento</a>
+                <a href="#">Reprovar Documento</a>
+            </div>
+        }
         @if (Roles.IsUserInRole("CC"))
                 {
             <div class="card-action">
@@ -66,22 +71,22 @@
             </div>
         }
     </div>
-    
-}
+
+            }
 
             <!-- Modal Structure -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        @*<iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>*@
-    </div>
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    @*<iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>*@
+                </div>
 
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-</div>
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+            </div>
 
-@section Scripts {
-    <script>
+            @section Scripts {
+                <script>
         document.getElementById("submeter").onclick = function () {
     $.ajax({
     type: "POST",
@@ -97,7 +102,7 @@
 });
         };
 
-    </script>
-}
+                </script>
+            }
 
 

@@ -54,9 +54,9 @@ namespace AcademicosUem
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "322236784801206",
-               appSecret: "262771cad4adfcde6ea7a288d0e75d51");
+            //app.UseFacebookAuthentication(
+            //   appId: "322236784801206",
+            //   appSecret: "262771cad4adfcde6ea7a288d0e75d51");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

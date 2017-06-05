@@ -33,7 +33,7 @@ namespace AcademicosUem.Controllers
                 else
                 if (Roles.IsUserInRole("RA"))
             {
-                return View("dashboardRA", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Pendente")));
+                return View("dashboard", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Pendente")));
             }
             if (Roles.IsUserInRole("CC"))
             {
