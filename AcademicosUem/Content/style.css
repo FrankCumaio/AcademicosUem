@@ -29,7 +29,13 @@ body{
     margin-bottom: 40px;
 }
 
-#intro, #work, #team {padding-top: 4rem;}
+.icon-ler-doc {
+    margin-right: 30px !important;
+}
+
+#intro, #work, #team {
+    padding-top: 4rem;
+}
 
 #textoHeader{
     margin-top: 60px;

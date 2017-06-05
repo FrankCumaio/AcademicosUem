@@ -34,12 +34,12 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="courses-page-top-area">
                                     <div class="courses-page-top-left">
-                                        <p ><input placeholder="Pesquise pelo titulo, autor, data, etc..."  style="text-align: left; width: 100%; border-radius: 5px;" id="search" type="text" class="search-form"> </p>
+                                        <p ><input placeholder="Pesquisar por trabalhos.."  style="text-align: center; width: 100%; border-radius: 5px;" id="searchTodos" type="text" class="search-form"> </p>
+                                        
                                     </div>
                                     <div class="courses-page-top-right">
                                         <ul>
-                                            <li class="active"><a href="#gried-view" data-toggle="tab" aria-expanded="false"><i class="fa fa-th-large"></i></a></li>
-                                            <li><a href="#list-view" data-toggle="tab" aria-expanded="true"><i class="fa fa-list"></i></a></li>
+                                            <li class="active"><a href="#gried-view" id="btVerTodos" style="background: rgba(16,92,34,0.96); color: white; padding: 10px; font-weight: 100;" aria-expanded="false">Ver todos</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -48,29 +48,31 @@
                         <div class="row">
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active listaTrabalhos" id="gried-view">
-                                    
-                                @foreach (var item in Model)
-                                {
+                                <div role="tabpanel" class="tab-pane active listaTrabalhos">
+                                  
+                                    <ul class="live-search-list">
+                                        @foreach (var item in Model)
+                                        {
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="courses-box1">
-                                            <div class="single-item-wrapper">
-                                                <div class="courses-img-wrapper hvr-bounce-to-bottom">
-                                                    <img class="" style="height: auto !important" height="50" src="~/img/pdffoto.png" alt="courses">
-                                                   @Html.ActionLink("Ver", "DetalhesTrabalho", new { id = item.Id })
+                                            <li class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="courses-box1">
+                                                    <div class="single-item-wrapper">
+                                                        <div class="courses-img-wrapper hvr-bounce-to-bottom">
+                                                            <img class="" style="height: auto !important" height="50" src="~/img/pdffoto.png" alt="courses">
+                                                            @Html.ActionLink("Ver", "DetalhesTrabalho", new { id = item.Id })
+                                                        </div>
+                                                        <div class="courses-content-wrapper">
+                                                            <h3 class="item-title"><a href="#">Informatica</a></h3>
+                                                            <p class="item-content"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</p>
+                                                            <hr />
+                                                            <p><b>Data: </b>@Html.DisplayFor(modelItem => item.Data)</p>
+                                                            <p><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="courses-content-wrapper">
-                                                    <h3 class="item-title"><a href="#">Informatica</a></h3>
-                                                    <p class="item-content"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</p>
-                                                    <hr />
-                                                    <p><b>Data: </b>@Html.DisplayFor(modelItem => item.Data)</p>
-                                                    <p><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
+                                            </li>
+                                        }
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -92,10 +94,10 @@
                                 <div class="sidebar-box-inner">
                                     <h3 class="sidebar-title">Pesquise por cursos</h3>
                                     <ul class="sidebar-categories">
-                                        <li><a href="#">Informatica</a></li>
-                                        <li><a href="#">Matematica</a></li>
-                                        <li><a href="#">Estatistica</a></li>
-                                        <li><a href="#">Ciencias de Informacao Geografica</a></li>
+                                        <li><a href="#" class="cursoList">Informatica</a></li>
+                                        <li><a href="#" class="cursoList">Matematica</a></li>
+                                        <li><a href="#" class="cursoList">Estatistica</a></li>
+                                        <li><a href="#" class="cursoList">Ciencias de Informacao Geografica</a></li>
                                        
                                     </ul>
                                 </div>
@@ -113,5 +115,3 @@
         <!-- Footer Area End Here -->
     <!-- Preloader Start Here -->
  
-
-

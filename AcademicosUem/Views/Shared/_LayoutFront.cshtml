@@ -122,7 +122,6 @@
                                                         <label>Password *</label>
                                                         <input type="password" placeholder="Password">
                                                         <label class="check">Lost your password?</label>
-                                                        <span><input type="checkbox" name="remember">Remember Me</span>
                                                         <button class="default-big-btn" type="submit" value="Login">Login</button>
                                                         <button class="default-big-btn" type="submit" value="">Cancel</button>
                                                     </form>
@@ -145,51 +144,27 @@
                         <div class="row">
                             <div class="col-lg-2 col-md-2 col-sm-3">
                                 <div class="logo-area">
-                                    <a href="index.html"><img class="img-responsive" src="~/Content/assetsFront/img/logo-textprimary.png" alt="logo"></a>
+                                    <a><img class="img-responsive" src="~/Content/assetsFront/img/logo-textprimary.png" alt="logo"></a>
                                 </div>
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-9">
                                 <nav id="desktop-nav">
                                     <ul>
                                         <li class="active">
-                                            <a href="#">Home</a>
-                                            <ul>
-                                                <li><a href="index.html">Home 1</a></li>
-                                                <li><a href="index2.html">Home 2</a></li>
-                                                <li><a href="index3.html">Home 3</a></li>
-                                                <li><a href="index4.html">Home 4</a></li>
-                                            </ul>
+                                            @Html.ActionLink("Inicio", "Index", "Home")
                                         </li>
                                         <li>
-                                            <a href="#">Trabalhos</a>
-                                            <ul>
-                                                <li><a href="index.html">Home 1</a></li>
-                                                <li><a href="index2.html">Home 2</a></li>
-                                                <li><a href="index3.html">Home 3</a></li>
-                                                <li><a href="index4.html">Home 4</a></li>
-                                            </ul>
+                                            @Html.ActionLink("Trabalhos", "ListaTrabalhos", "TrabalhoFiles")                                        
                                         </li>
                                         <li>
                                             <a href="#">Contactos</a>
-                                            <ul>
-                                                <li><a href="index.html">Home 1</a></li>
-                                                <li><a href="index2.html">Home 2</a></li>
-                                                <li><a href="index3.html">Home 3</a></li>
-                                                <li><a href="index4.html">Home 4</a></li>
-                                            </ul>
+                                        
                                         </li>
                                            
                                     </ul>
                                 </nav>
                             </div>
-                            <div class="col-lg-1 col-md-1 hidden-sm">
-                                <div class="header-search">
-                                    <form>
-                                        <input type="text" class="search-form" placeholder="Search...." required="">
-                                        <a href="#" class="search-button" id="search-button"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                    </form>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -204,17 +179,15 @@
                                 <nav id="dropdown">
                                     <ul>
                                         <li>
-                                            <a href="#">Home</a>
+                                            @Html.ActionLink("Inicio", "Index", "Home")
                                         </li>
                                         <li>
-                                            <a href="#">Pages</a>
+                                            @Html.ActionLink("Trabalhos", "ListaTrabalhos", "TrabalhoFiles")
                                         </li>
                                         <li>
-                                            <a href="#">Courses</a>
+                                            <a href="#">Contacte nos</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Research</a>
-                                        </li>
+                                       
                                         @Html.Partial("_LoginPartial")
                                     </ul>
                                 </nav>
@@ -239,7 +212,7 @@
                             <div class="footer-box">
                                 <a href="index.html"><img class="img-responsive" src="~/Content/assetsFront/img/logo-footer.png" alt="logo"></a>
                                 <div class="footer-about">
-                                    <p>Praesent vel rutrum purus. Nam vel dui eu sus duis dignissim dignissim. Suspenetey disse at ros tecongueconsequat.Fusce sit amet rna feugiat.</p>
+                                    <p>O <b>Academicos</b> e uma pagina para divulgacao de trabalhos cientificos dos estudantes do Departamento de Matematica e Informatica da UEM</p>
                                 </div>
                                 <ul class="footer-social">
                                     <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -253,60 +226,30 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="footer-box">
-                                <h3>Featured Links</h3>
+                                <h3>Links importantes</h3>
                                 <ul class="featured-links">
                                     <li>
                                         <ul>
-                                            <li><a href="#">Graduation</a></li>
-                                            <li><a href="#">Admissions</a></li>
-                                            <li><a href="#">International</a></li>
-                                            <li><a href="#">FAQs</a></li>
+                                            <li><a href="#">Trabalhos</a></li>
+                                            <li><a href="#">Contacte nos</a></li>
+                                           
                                         </ul>
                                     </li>
-                                    <li>
-                                        <ul>
-                                            <li><a href="#">Courses</a></li>
-                                            <li><a href="#">About Us</a></li>
-                                            <li><a href="#">Book store</a></li>
-                                            <li><a href="#">Alumni</a></li>
-                                        </ul>
-                                    </li>
+                                   
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="footer-box">
-                                <h3>Information</h3>
+                                <h3>Informacao</h3>
                                 <ul class="corporate-address">
-                                    <li><i class="fa fa-phone" aria-hidden="true"></i><a href="Phone:(01)800433633"> (01) 800 433 633 </a></li>
-                                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i>info@bostonea.com</li>
+                                    <li><i class="fa fa-phone" aria-hidden="true"></i><a href="Phone:(01)800433633"> 21 6756545  </a></li>
+                                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i>info@dmi.uem.ac.mz</li>
                                 </ul>
-                                <div class="newsletter-area">
-                                    <h3>Newsletter</h3>
-                                    <div class="input-group stylish-input-group">
-                                        <input type="text" placeholder="Enter your e-mail here" class="form-control">
-                                        <span class="input-group-addon">
-                                            <button type="submit">
-                                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="footer-box">
-                                <h3>Flickr Photos</h3>
-                                <ul class="flickr-photos">
-                                    <li><a href="#"><img class="img-responsive" src="~/Content/assetsFront/img/footer/1.jpg" alt="flickr"></a></li>
-                                    <li><a href="#"><img class="img-responsive" src="~/Content/assetsFront/img/footer/2.jpg" alt="flickr"></a></li>
-                                    <li><a href="#"><img class="img-responsive" src="~/Content/assetsFront/img/footer/3.jpg" alt="flickr"></a></li>
-                                    <li><a href="#"><img class="img-responsive" src="~/Content/assetsFront/img/footer/4.jpg" alt="flickr"></a></li>
-                                    <li><a href="#"><img class="img-responsive" src="~/Content/assetsFront/img/footer/5.jpg" alt="flickr"></a></li>
-                                    <li><a href="#"><img class="img-responsive" src="~/Content/assetsFront/img/footer/6.jpg" alt="flickr"></a></li>
-                                </ul>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -314,7 +257,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                            <p>&copy; 2017 Academics All Rights Reserved. &nbsp; Designed by<a target="_blank" href="http://radiustheme.com/"> RadiusTheme</a></p>
+                            <p>&copy; 2017 Academics All Rights Reserved. &nbsp; Designed by Inercio &Aacute; Frank</p>
                         </div>
                        
                     </div>
@@ -331,7 +274,7 @@
     <!-- Bootstrap js -->
     <script src="~/Content/assets/plugins/materialize/js/materialize.min.js"></script>
     <script src="~/Content/assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
-    <script src="~/Content/assets/plugins/material-preloader/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/plugins/material-preloader/js/bootstrap.min.js"></script>
 
 
 
@@ -364,6 +307,125 @@
     <!-- Custom Js -->
     <script src="~/Content/assetsFront/js/main.js" type="text/javascript"></script>
 
+    <script>
+
+        $('#pesquisaHome').click(function () {
+            localStorage.setItem("pesquisaValue", $('#pesquisaValueHome').val());
+        });
+
+        $('#pesquisaDetalhes').click(function () {
+            localStorage.setItem("pesquisaValue2", $('#pesquisaDetalhesValue').val());
+        });
+
+
+
+        var pesquisaValue = localStorage.getItem("pesquisaValue");
+        var pesquisaValue2 = localStorage.getItem("pesquisaValue2");
+
+     
+
+        if (pesquisaValue) {
+            $('#searchTodos').val(pesquisaValue)
+
+            $('.live-search-list li').each(function () {
+                $(this).attr('data-search-term', $(this).text().toLowerCase());
+            });
+
+            var searchTerm = $('#searchTodos').val().toLowerCase();
+
+            $('.live-search-list li').each(function () {
+
+                if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+
+            });
+
+            localStorage.removeItem("pesquisaValue");
+
+        }
+
+        if (pesquisaValue2) {
+            $('#searchTodos').val(pesquisaValue2)
+
+            $('.live-search-list li').each(function () {
+                $(this).attr('data-search-term', $(this).text().toLowerCase());
+            });
+
+            var searchTerm = $('#searchTodos').val().toLowerCase();
+
+            $('.live-search-list li').each(function () {
+
+                if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+
+            });
+
+            localStorage.removeItem("pesquisaValue2");
+
+        }
+
+
+        $('#btVerTodos').click(function () {
+            $('#searchTodos').val('')
+            $('.live-search-list li').show()
+
+        });
+
+        
+        //pesquisa por curso
+        $('.cursoList').click(function () {
+
+            $('.live-search-list li').each(function () {
+                $(this).attr('data-search-term', $(this).text().toLowerCase());
+            });
+
+            var searchTerm = $(this).text().toLowerCase();
+
+            $('.live-search-list li').each(function () {
+
+                if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+
+            });
+        });
+
+
+
+        //pesquisa
+        $('.live-search-list li').each(function () {
+            $(this).attr('data-search-term', $(this).text().toLowerCase());
+        });
+
+
+        $('#searchTodos').keyup(function () {
+
+
+            var searchTerm = $(this).val().toLowerCase();
+
+            $('.live-search-list li').each(function () {
+
+                if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+
+            });
+
+        });
+
+
+        
+    </script>
 
 
 

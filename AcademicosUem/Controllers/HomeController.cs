@@ -15,7 +15,7 @@ namespace AcademicosUem.Controllers
 
         public ActionResult Index()
         {
-            return View("index", db.Trabalho.ToList());
+            return View("index", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Aprovado")));
         }
 
         public ActionResult About()
