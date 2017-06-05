@@ -27,7 +27,7 @@ namespace AcademicosUem.Controllers
                 
                 if (Roles.IsUserInRole("Estudante"))
                 {
-                    object id = User.Identity.GetUserId();
+                    string id = User.Identity.GetUserId();
                     return View("dashboard", db.TrabalhoFiles.Where(t => t.Trabalho.ApplicationUser.Id == id));
                 }
                 else
@@ -37,7 +37,7 @@ namespace AcademicosUem.Controllers
             }
             if (Roles.IsUserInRole("CC"))
             {
-                return View("dashboardCC", db.TrabalhoFiles.Where(t => t.EstadoTrabalhoFile.Designacao.Equals("Aprovado")));
+                return View("dashboard", db.TrabalhoFiles.Where(t => t.CatFiles.Designacao.Equals("Tese")));
             }
             else {
                 return Redirect("/Account/Login"); }

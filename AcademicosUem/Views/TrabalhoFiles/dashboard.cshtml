@@ -9,10 +9,9 @@
             <input placeholder="Pesquisar" id="first_name" type="text" class="validate">
         </div>
         <div class="col s6">
-            <button class="btn btn-default">Pesquisar</button>
             @if (Roles.IsUserInRole("Estudante"))
             { 
-                <a href="/trabalhoes/create" class="waves-effect waves-light btn"><i class="material-icons">backup</i> Submeter Documento</a>
+                <a href="#" id="submeter" class="waves-effect waves-light btn"><i class="material-icons">backup</i> Submeter Documento</a>
                 }
         </div>
 
@@ -40,7 +39,7 @@
         {
             <div class="card-action">
                 <a href="#modal@(Html.DisplayFor(modelItem => item.Id))" class="modal-trigger">Ler Documento</a>
-                <a href="#">Remover Documento</a>
+                <a href="#">Alterar Documento</a>
             </div>
             <!-- Modal Structure -->
             <div id="modal@(Html.DisplayFor(modelItem => item.Id))" class="modal">
@@ -63,32 +62,42 @@
         @if (Roles.IsUserInRole("CC"))
                 {
             <div class="card-action">
-                <a href="/trabalhofiles/AprovarDoc/@item.Id">Marcar Defesa</a>
+                <a href="/eventoes/create/@item.Id">Marcar Defesa</a>
             </div>
         }
     </div>
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trabalho.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trabalho.Grau_Academico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Data)
-        </td>
-        <td>
-            Estado
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
+    
+}
+
+            <!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        @*<iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>*@
+    </div>
+
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("submeter").onclick = function () {
+    $.ajax({
+    type: "POST",
+    url: '@Url.Action("verficaexistencia", "Trabalhoes")',
+    contentType: "application/json; charset=utf-8",
+    data: { data: "yourdata" },
+    dataType: "json",
+        success: function (recData) {
+            $('#modal1').modal('open');
+
+        },
+    error: function() { alert('A error'); }
+});
+        };
+
+    </script>
 }
 
 

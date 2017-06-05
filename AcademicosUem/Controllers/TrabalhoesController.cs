@@ -40,16 +40,34 @@ namespace AcademicosUem.Controllers
             return View(trabalho);
         }
 
-        // GET: Trabalhoes/Create
-        public ActionResult Create()
+        //Json verfica existencia de trabalhos
+        public ActionResult verficaexistencia()
+        {
+            string id = User.Identity.GetUserId();
+            int hastrabalho = (int)db.Trabalho.Where(t => t.ApplicationUserID == id).Count();
+            return Json(hastrabalho, JsonRequestBehavior.AllowGet); ;
+        }
+            // GET: Trabalhoes/Create
+            public ActionResult Create()
         {
             ViewBag.CatFilesID = new SelectList(db.catFiles, "Id", "designacao");
             ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "username");
             ViewBag.DocentesID = new SelectList(db.Docente, "Id", "nome");
-            return View();
+            string id = User.Identity.GetUserId();
+            ViewBag.hastrabalho = (int)db.Trabalho.Where(t => t.ApplicationUserID == id).Count();
+
+            //if (hastrabalho >= 1)
+            //{
+            //    return View("/trabalhofiles/create");
+
+            //}
+            //else
+            //{
+    
+            //}
+            
+                        return View();
         }
-
-
 
         // POST: Trabalhoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -110,11 +128,11 @@ namespace AcademicosUem.Controllers
                     var path = Path.Combine(Server.MapPath("~/uploads"), last_insert_id);
                     ficheiro.SaveAs(path);
                 }
-                return RedirectToAction("/trabalhofiles/dashboard");
+                return RedirectToAction("   /dashboard");
             }
 
             ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "username");
-            return View(trabalho);
+            return View("/trabalhofiles/dashboard");
         }
 
         // GET: Trabalhoes/Edit/5

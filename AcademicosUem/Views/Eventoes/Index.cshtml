@@ -4,96 +4,38 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="row col-md-12">
+    <div class="input-field col s6">
+        <div class="col s6">
+            <input placeholder="Pesquisar" id="first_name" type="text" class="validate">
+        </div>
+        <div class="col s6">
+        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EventoCategoria.descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Trabalho.Titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Local)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Agenda)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Website)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsPublished)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsPublic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.publishDate)
-        </th>
-        <th></th>
-    </tr>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventoCategoria.descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trabalho.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Local)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Agenda)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Website)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsPublished)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsPublic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.publishDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+</div>
 
-</table>
+@foreach (var item in Model)
+{
+    <div class="card white darken-1">
+        <div class="card-content">
+            <p>
+                <span class="card-title"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</span>
+            <p>
+                <span class="card-title"><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</span>
+                <hr />
+            <p><b>Data:</b> @Html.DisplayFor(modelItem => item.StartDateTime)</p>
+            <p><b>Hora:</b> @Html.DisplayFor(modelItem => item.StartDateTime)</p>
+            <p><b>Local: </b>@Html.DisplayFor(modelItem => item.Local)</p>
+            <p><b>Email:</b>@Html.DisplayFor(modelItem => item.Email)</p>
+            <p><b>Cell:</b>@Html.DisplayFor(modelItem => item.Telefone)</p>
+            <p><b>Website:</b>@Html.DisplayFor(modelItem => item.Website)</p>
+        </div>
+
+            <div class="card-action">
+                <a href="/trabalhofiles/AprovarDoc/@item.Id">Efetivar Defesa</a>
+                <a href="#">Adiar</a>
+            </div>
+</div>
+        }
