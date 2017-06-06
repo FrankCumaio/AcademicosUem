@@ -122,7 +122,8 @@
                                                         <label>Password *</label>
                                                         <input type="password" placeholder="Password">
                                                         <label class="check">Lost your password?</label>
-                                                        <button class="default-big-btn" type="submit" value="Login">Login</button>
+                                                        @Html.ActionLink("Login", "Login", "Account", null, new { @class = "default-big-btn" })
+
                                                         <button class="default-big-btn" type="submit" value="">Cancel</button>
                                                     </form>
                                                 </div>

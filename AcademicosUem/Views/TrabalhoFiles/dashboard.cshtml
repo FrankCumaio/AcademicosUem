@@ -28,15 +28,15 @@
             {
                 <li class="card white darken-1">
                     <div class="card-content">
-            <p>
-                <span class="card-title"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</span>
-            <p>
-                <span class="card-title"><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</span>
-                <hr />
-            <p><b>Tipo de documento:</b>Informatica @*@Html.DisplayFor(modelItem => item.Trabalho.Appli)*@</p>
+                        <div class="product-details-content">
+                            <p><b>Tema:</b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</p>
+                            <p><b>Autor:</b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</p>
+                        </div>
+             <hr/>
+            <p><b>Curso:</b>Informatica @*@Html.DisplayFor(modelItem => item.Trabalho.Appli)*@</p>
+            <p><b>Nivel Academico: </b>@Html.DisplayFor(modelItem => item.Trabalho.Grau_Academico)</p>
             <p><b>Tipo de documento:</b> @Html.DisplayFor(modelItem => item.CatFiles.Designacao)</p>
             <p><b>Supervisor:</b> @Html.DisplayFor(modelItem => item.Data)</p>
-            <p><b>Nivel Academico: </b>@Html.DisplayFor(modelItem => item.Trabalho.Grau_Academico)</p>
             <p><b>Data de Subissao:</b>@Html.DisplayFor(modelItem => item.Data)</p>
             <p><b>Estado do documento:</b> @Html.DisplayFor(modelItem => item.EstadoTrabalhoFile.Designacao)</p>
         </div>
