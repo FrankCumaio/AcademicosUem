@@ -149,6 +149,34 @@
     <script src="~/Content/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/Content/assets/js/alpha.min.js"></script>
     @RenderSection("scripts", required: false)
+
+
+    <script>
+        //Pesquisa
+
+        //pesquisa
+        $('.live-search-listE li').each(function () {
+            $(this).attr('data-search-term', $(this).text().toLowerCase());
+        });
+
+
+        $('#searchE').keyup(function () {
+
+            var searchTerm = $(this).val().toLowerCase();
+
+            $('.live-search-listE li').each(function () {
+
+                if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+
+            });
+
+        });
+    </script>
+
 </body>
 <!-- Mirrored from steelcoders.com/alpha/v1.2/layout-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 May 2017 16:57:07 GMT -->
 </html>

@@ -9,24 +9,24 @@
             
             @if (Roles.IsUserInRole("Estudante"))
             {
-                <a href="#" id="submeter" class="waves-effect waves-light btn"><i class="material-icons">backup</i> Submeter Documento</a>
-            }
+                <a href="#" id="submeter" style="background: white !important; color: black !important;" class="waves-effect waves-light btn btn-default"><i class="material-icons" style="padding-bottom: 10px !important;">backup</i> Submeter Documento</a>
+                }
             else
             {
-                <span class="card-title">Bem vindo!</span>
+                <span class="card-title" style="text-align: center !important; color: white !important">Bem vindo!</span>
             }
         </div>
     <div class="card-options">
-        <input type="text" class="expand-search" placeholder="Pesquisar" autocomplete="off">
+        <input type="text" class="expand-search" id="searchE" placeholder="Pesquisar" autocomplete="off">
     </div>
     </div>
 
 
 
-
+        <ul class="live-search-listE">
             @foreach (var item in Model)
             {
-                <div class="card white darken-1">
+                <li class="card white darken-1">
                     <div class="card-content">
             <p>
                 <span class="card-title"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</span>
@@ -70,10 +70,10 @@
                 <a href="/eventoes/create/@item.Id">Marcar Defesa</a>
             </div>
         }
-    </div>
+        </li>
 
             }
-
+        </ul>
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
                 <div class="modal-content">
@@ -102,7 +102,13 @@
 });
         };
 
+
+
+                   
+
+
                 </script>
+
             }
 
 
