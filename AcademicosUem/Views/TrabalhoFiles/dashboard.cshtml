@@ -31,9 +31,11 @@
             <p>
                 <span class="card-title"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</span>
             <p>
+@if (Roles.IsUserInRole("RA"))
+{
                 <span class="card-title"><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</span>
+}
                 <hr />
-            <p><b>Tipo de documento:</b>Informatica @*@Html.DisplayFor(modelItem => item.Trabalho.Appli)*@</p>
             <p><b>Tipo de documento:</b> @Html.DisplayFor(modelItem => item.CatFiles.Designacao)</p>
             <p><b>Supervisor:</b> @Html.DisplayFor(modelItem => item.Data)</p>
             <p><b>Nivel Academico: </b>@Html.DisplayFor(modelItem => item.Trabalho.Grau_Academico)</p>
@@ -42,19 +44,13 @@
         </div>
         @if (Roles.IsUserInRole("Estudante"))
         {
-            <div class="card-action">
-                <a href="#modal@(Html.DisplayFor(modelItem => item.Id))" class="modal-trigger">Ler Documento</a>
-                <a href="#">Alterar Documento</a>
-            </div>
-            <!-- Modal Structure -->
-            <div id="modal@(Html.DisplayFor(modelItem => item.Id))" class="modal">
-                <div class="modal-content">
-                    <iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>
-                </div>
 
-                <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                </div>
+            <div class="card-action">
+                <a id="@(Html.DisplayFor(modelItem => item.Id))" class="btnler">Ler Documento</a>
+                <a href="#@(Html.DisplayFor(modelItem => item.Id))">Alterar Documento</a>
+            </div>
+            <div class="" id="frame@(Html.DisplayFor(modelItem => item.Id))" style="text-align:center;display:none">
+                <iframe   src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id))Protocolo.pdf" width='900' height='1024' allowfullscreen webkitallowfullscreen></iframe>
             </div>
         }
         @if (Roles.IsUserInRole("RA"))
@@ -74,38 +70,89 @@
 
             }
         </ul>
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal">
-                <div class="modal-content">
-                    @*<iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>*@
+<a class="waves-effect waves-grey btn white modal-trigger" id="btnModalSubmissao" href="#modalSubmissao" style="display:none">Modal hidden</a>
+<div id="modalSubmissao" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 250.516304347826px;">
+   @using (Html.BeginForm("Create", "Trabalhoes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+   {
+    @Html.AntiForgeryToken()
+
+    <div class="modal-content">
+        <h4>Upload de documentos</h4>
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.Label("Tipo de Documento", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("CatFilesID", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
                 </div>
 
-                <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                        <input class="form-control text-box single-line" id="Titulo" name="Titulo" type="text" value="" placeholder="Titulo do trabalho">
+                </div>
+                <div class="form-group">
+                    <input class="form-control text-box single-line" id="Descricao" name="Descricao" type="text" value="" placeholder="Descricao do trabalho">
+                </div>
+                <div class="form-group">
+                    @Html.Label("Supervisor", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("DocentesID", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Anexar Documento</label>
+                    <div class="file-field input-field" col-md-10>
+                        <div class="btn teal lighten-1">
+                            <span>File</span>
+                            <input type="file" name="ficheiro" id="ficheiro">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
                 </div>
             </div>
-
+        
+    </div>
+    <div class="modal-footer">
+        <button href="#!"  type="submit" value="Create" class=" waves-effect waves-blue btn-flat ">Submeter</button>
+        <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancelar</a>
+    </div>
+        }
+</div>
             @section Scripts {
+                <script>
+                    $(function () {
+                        $('.btnler').on('click', function () {
+                            var frame = "frame" + this.id;
+                            document.getElementById(frame).style.display = "block";
+                        });
+                    });
+                    </script>
                 <script>
         document.getElementById("submeter").onclick = function () {
     $.ajax({
     type: "POST",
     url: '@Url.Action("verficaexistencia", "Trabalhoes")',
-    contentType: "application/json; charset=utf-8",
-    data: { data: "yourdata" },
-    dataType: "json",
-        success: function (recData) {
-            $('#modal1').modal('open');
+                    contentType: "application/json; charset=utf-8",
+                    data: { data: "yourdata" },
+                    dataType: "json",
+                    success: function (recData) {
+                        if (recData > 0) {
+                            document.getElementById('Titulo').style.display = "none";
+                            document.getElementById('DocentesID').style.display = "none";
+                            document.getElementById('Descricao').style.display = "none";
+                        }
+                       
+                    
+                        document.getElementById("btnModalSubmissao").click();
 
-        },
-    error: function() { alert('A error'); }
-});
-        };
-
-
-
-                   
-
+                    },
+                    error: function () { alert('A error'); }
+                        });
+                    };
 
                 </script>
 

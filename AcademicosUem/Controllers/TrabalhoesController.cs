@@ -76,25 +76,26 @@ namespace AcademicosUem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Titulo,Descricao,Grau_Academico,ApplicationUserID,Data")] Trabalho trabalho, HttpPostedFileBase ficheiro,int DocentesID, int CatFilesID)
         {
+            int trabID = new int();
+            var last_insert_id = "";
+            int fileID =  db.TrabalhoFiles.OrderByDescending(tf => tf.Id).FirstOrDefault().Id;
+            fileID = fileID + 1;
             TrabalhoFiles files = new TrabalhoFiles();
             DocenteAssociado docentes = new DocenteAssociado();
-            if (ModelState.IsValid)
+            string id = User.Identity.GetUserId();
+            int hastrabalho = (int)db.Trabalho.Where(t => t.ApplicationUserID == id).Count();
+            if (hastrabalho > 0)
             {
-                //Gravacao do trabalho
-                if(Roles.IsUserInRole("Estudante")){
-                    trabalho.ApplicationUserID = User.Identity.GetUserId();
-                    trabalho.Grau_Academico = "Licenciatura";
-                }
-                db.Trabalho.Add(trabalho);
-                db.SaveChanges();
-
-                //associacao do documento
-                var last_insert_id = trabalho.Id.ToString() + "Protocolo.pdf";
+                trabID = db.Trabalho.Where(t => t.ApplicationUserID == id).FirstOrDefault().Id;
+               
+                fileID = fileID + 1;
+                 last_insert_id = fileID.ToString() + "Protocolo.pdf";
                 files.Path = last_insert_id;
-                files.TrabalhoID = trabalho.Id;
-                if(Roles.IsUserInRole("Estudante")){
+                files.TrabalhoID = trabID;
+                if (Roles.IsUserInRole("Estudante"))
+                {
                     files.CatFilesID = CatFilesID;
-                    if (db.catFiles.Where(c =>c.Id == CatFilesID).FirstOrDefault().Designacao == "Tese")
+                    if (db.catFiles.Where(c => c.Id == CatFilesID).FirstOrDefault().Designacao == "Tese")
                     {
                         files.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(u => u.Designacao.Equals("Aprovado", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
 
@@ -110,29 +111,85 @@ namespace AcademicosUem.Controllers
                     files.CatFilesID = db.catFiles.Where(u => u.Designacao.Equals("Protocolo", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
 
                 }
-                db.TrabalhoFiles.Add(files);
-
-                //Associacao do supervisor
-                docentes.DocenteID = DocentesID;
-                docentes.FuncaoID = db.Funcao.Where(u => u.Designacao.Equals("Supervisor", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
-                docentes.TrabalhoID = trabalho.Id;
-                db.DocenteAssociado.Add(docentes);
-                db.SaveChanges();
-
                 if (ficheiro != null && ficheiro.ContentLength > 0)
                 {
                     // extract only the filename
+                     last_insert_id = fileID.ToString() + "Protocolo.pdf";
+                    files.Path = last_insert_id;
                     var fileName = Path.GetFileName(ficheiro.FileName);
                     Debug.WriteLine(fileName);
                     // store the file inside ~/App_Data/uploads folder
                     var path = Path.Combine(Server.MapPath("~/uploads"), last_insert_id);
                     ficheiro.SaveAs(path);
                 }
-                return RedirectToAction("   /dashboard");
+                db.TrabalhoFiles.Add(files);
+                db.SaveChanges();
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    //Gravacao do trabalho
+                    if (Roles.IsUserInRole("Estudante"))
+                    {
+                        trabalho.ApplicationUserID = User.Identity.GetUserId();
+                        trabalho.Grau_Academico = "Licenciatura";
+                    }
+                    db.Trabalho.Add(trabalho);
+                    db.SaveChanges();
+
+                    //associacao do documento
+                   
+                    files.TrabalhoID = trabalho.Id;
+                    if (Roles.IsUserInRole("Estudante"))
+                    {
+                        files.CatFilesID = CatFilesID;
+                        if (db.catFiles.Where(c => c.Id == CatFilesID).FirstOrDefault().Designacao == "Tese")
+                        {
+                            files.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(u => u.Designacao.Equals("Aprovado", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+
+                        }
+                        else
+                        {
+                            files.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(u => u.Designacao.Equals("Pendente", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+
+                        }
+                    }
+                    else
+                    {
+                        files.CatFilesID = db.catFiles.Where(u => u.Designacao.Equals("Protocolo", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+
+                    }
+                    if (ficheiro != null && ficheiro.ContentLength > 0)
+                    {
+                        // extract only the filename
+                        last_insert_id = fileID.ToString() + "Protocolo.pdf";
+                        files.Path = last_insert_id;
+                        var fileName = Path.GetFileName(ficheiro.FileName);
+                        Debug.WriteLine(fileName);
+                        // store the file inside ~/App_Data/uploads folder
+                        var path = Path.Combine(Server.MapPath("~/uploads"), last_insert_id);
+                        ficheiro.SaveAs(path);
+                    }
+                    db.TrabalhoFiles.Add(files);
+
+                    //Associacao do supervisor
+                    docentes.DocenteID = DocentesID;
+                    docentes.FuncaoID = db.Funcao.Where(u => u.Designacao.Equals("Supervisor", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+                    docentes.TrabalhoID = trabalho.Id;
+                    db.DocenteAssociado.Add(docentes);
+                    db.SaveChanges();
+                    fileID = files.Id;
+
+                    return RedirectToAction("dashboard", "trabalhofiles");
+                }
+
             }
 
+
             ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "username");
-            return View("/trabalhofiles/dashboard");
+           
+            return RedirectToAction("dashboard", "trabalhofiles");
         }
 
         // GET: Trabalhoes/Edit/5
