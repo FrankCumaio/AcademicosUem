@@ -1,1 +1,13 @@
 /* Write your custom CSS here */
+
+.live-search-listE p{
+    font-weight: 700;
+    padding-right: 10px;
+}
+
+.live-search-listE b {
+    text-transform: uppercase !important;
+    font-weight: 400;
+    padding-right: 10px;
+    text-align: right !important;
+}
