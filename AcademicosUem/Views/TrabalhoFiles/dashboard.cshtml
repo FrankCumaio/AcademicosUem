@@ -28,38 +28,37 @@
             {
                 <li class="card white darken-1">
                     <div class="card-content">
-                        <div class="product-details-content">
-                            <p><b>Tema:</b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</p>
-                            <p><b>Autor:</b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</p>
-                        </div>
-             <hr/>
-            <p><b>Curso:</b>Informatica @*@Html.DisplayFor(modelItem => item.Trabalho.Appli)*@</p>
-            <p><b>Nivel Academico: </b>@Html.DisplayFor(modelItem => item.Trabalho.Grau_Academico)</p>
+            <p>
+                <span class="card-title"><b>Tema: </b>@Html.DisplayFor(modelItem => item.Trabalho.Titulo)</span>
+            <p>
+@if (Roles.IsUserInRole("RA") || Roles.IsUserInRole("CC"))
+{
+                <span class="card-title"><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</span>
+}
+                <hr />
+                <a id="trabs" value="1">@item.TrabalhoID</a>
             <p><b>Tipo de documento:</b> @Html.DisplayFor(modelItem => item.CatFiles.Designacao)</p>
             <p><b>Supervisor:</b> @Html.DisplayFor(modelItem => item.Data)</p>
+            <p><b>Nivel Academico: </b>@Html.DisplayFor(modelItem => item.Trabalho.Grau_Academico)</p>
             <p><b>Data de Subissao:</b>@Html.DisplayFor(modelItem => item.Data)</p>
             <p><b>Estado do documento:</b> @Html.DisplayFor(modelItem => item.EstadoTrabalhoFile.Designacao)</p>
         </div>
         @if (Roles.IsUserInRole("Estudante"))
         {
-            <div class="card-action">
-                <a href="#modal@(Html.DisplayFor(modelItem => item.Id))" class="modal-trigger">Ler Documento</a>
-                <a href="#">Alterar Documento</a>
-            </div>
-            <!-- Modal Structure -->
-            <div id="modal@(Html.DisplayFor(modelItem => item.Id))" class="modal">
-                <div class="modal-content">
-                    <iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>
-                </div>
 
-                <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                </div>
+            <div class="card-action">
+                <a id="@(Html.DisplayFor(modelItem => item.Id))" class="btnler">Ler Documento</a>
+                <a href="#@(Html.DisplayFor(modelItem => item.Id))">Alterar Documento</a>
             </div>
+
         }
+                    <div class="" id="frame@(Html.DisplayFor(modelItem => item.Id))" style="text-align:center;display:none">
+                        <iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id))Protocolo.pdf" width='900' height='1024' allowfullscreen webkitallowfullscreen></iframe>
+                    </div>
         @if (Roles.IsUserInRole("RA"))
                 {
             <div class="card-action">
+                <a id="@(Html.DisplayFor(modelItem => item.Id))" class="btnler">Ler Documento</a>
                 <a href="/trabalhofiles/AprovarDoc/@item.Id">Aprovar Documento</a>
                 <a href="#">Reprovar Documento</a>
             </div>
@@ -67,48 +66,194 @@
         @if (Roles.IsUserInRole("CC"))
                 {
             <div class="card-action">
-                <a href="/eventoes/create/@item.Id">Marcar Defesa</a>
+                <a class="modal-trigger" href="#modalEvento">Marcar Defesa</a>
             </div>
         }
         </li>
 
             }
         </ul>
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal">
-                <div class="modal-content">
-                    @*<iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id)).pdf" width='724' height='1024' allowfullscreen webkitallowfullscreen></iframe>*@
+@* Modal da submissao dos docs *@
+<a class="waves-effect waves-grey btn white modal-trigger" id="btnModalSubmissao" href="#modalSubmissao" style="display:none">Modal hidden</a>
+<div id="modalSubmissao" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 250.516304347826px;">
+   @using (Html.BeginForm("Create", "Trabalhoes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+   {
+    @Html.AntiForgeryToken()
+
+    <div class="modal-content">
+        <h4>Upload de documentos</h4>
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.Label("Tipo de Documento", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("CatFilesID", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                        <input class="form-control text-box single-line" id="Titulo" name="Titulo" type="text" value="" placeholder="Titulo do trabalho">
+                </div>
+                <div class="form-group">
+                    <input class="form-control text-box single-line" id="Descricao" name="Descricao" type="text" value="" placeholder="Descricao do trabalho">
+                </div>
+                <div class="form-group" id="supervisor">
+                    @Html.Label("Supervisor", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("DocentesID", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Anexar Documento</label>
+                    <div class="file-field input-field" col-md-10>
+                        <div class="btn teal lighten-1">
+                            <span>File</span>
+                            <input type="file" name="ficheiro" id="ficheiro">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    <div class="modal-footer">
+        <button href="#!"  type="submit" value="Create" class=" waves-effect waves-blue btn-flat ">Submeter</button>
+        <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancelar</a>
+    </div>
+        }
+</div>
+
+@* Modal de submissao de eventos *@
+<div id="modalEvento" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 250.516304347826px;">
+    <div class="modal-content">
+        <form id="eventoForm">
+            <input id="TrabalhoID" data-val="true class="form-control text-box single-line" name="TrabalhoID" value="1" hidden>
+            <div class="form-horizontal">
+                <span class="card-title">Agendamento de defesa</span>
+                <hr />
+                <div class="col-md-10">
+                    <input placeholder="Data e Hora de inicio" class="form-control text-box single-line" data-val="true" data-val-date="The field StartDateTime must be a date." data-val-required="The StartDateTime field is required." id="StartDateTime" name="StartDateTime" type="datetime" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="StartDateTime" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="col-md-10">
+                    <input placeholder="Data e Hora de termino" class="form-control text-box single-line" data-val="true" data-val-date="The field EndDateTime must be a date." data-val-required="The EndDateTime field is required." id="EndDateTime" name="EndDateTime" type="datetime" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="EndDateTime" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="col-md-10">
+                    <input placeholder="Local" class="form-control text-box single-line" id="Local" name="Local" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Local" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="col-md-10">
+                    <input placeholder="Telefone" class="form-control text-box single-line" data-val="true" data-val-number="The field Telefone must be a number." data-val-required="The Telefone field is required." id="Telefone" name="Telefone" type="number" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Telefone" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="col-md-10">
+                    <input placeholder="Email" class="form-control text-box single-line" id="Email" name="Email" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="col-md-10">
+                    <input placeholder="Website" class="form-control text-box single-line" id="Website" name="Website" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Website" data-valmsg-replace="true"></span>
                 </div>
 
                 <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                    <button id="btnEvento"  class=" waves-effect waves-blue btn-flat " type="button">Confirmar</button>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancelar</a>
                 </div>
             </div>
+        </form>
+        </div>
+    </div>
 
-            @section Scripts {
-                <script>
-        document.getElementById("submeter").onclick = function () {
+
+        @section Scripts {
+<script>
+    $('#btnEvento').on('click', function () {
+
+        alert(document.getElementById("trabs").text);
+        var evento = {
+            StartDateTime: document.getElementById("StartDateTime").value,
+            EndtDateTime: document.getElementById("EndDateTime").value,
+            TrabalhoID: document.getElementById("trabs").text,
+            Local: document.getElementById("Local").value,
+            Telefone: document.getElementById("Telefone").value,
+            Email: document.getElementById("Email").value,
+            Agenda: 'Defesa do trabalho',
+            Website: document.getElementById("Website").value,
+            IsPublished: 'true',
+            IsPublic: 'true'
+        };
+
+        //alert(JSON.stringify(evento));
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Create", "Eventoes")',
+            data: evento,
+            dataType: "json",
+            success: function (recData) {
+                alert(recdata)
+            },
+            error: function () { alert('A error'); }
+        });
+   
+    });
+</script>
+            <script>
+                $(function () {
+                    $('.btnler').on('click', function () {
+                        var frame = "frame" + this.id;
+                        document.getElementById(frame).style.display = "block";
+                    });
+                });
+            </script>
+
+            <script>
+                document.getElementById("submeter").onclick = function (e) {
+                  
     $.ajax({
     type: "POST",
     url: '@Url.Action("verficaexistencia", "Trabalhoes")',
-    contentType: "application/json; charset=utf-8",
-    data: { data: "yourdata" },
-    dataType: "json",
-        success: function (recData) {
-            $('#modal1').modal('open');
-
-        },
-    error: function() { alert('A error'); }
-});
-        };
-
+                    contentType: "application/json; charset=utf-8",
+                    data: { data: "yourdata" },
+                    dataType: "json",
+                    success: function (recData) {
+                        if (recData > 0) {
+                            document.getElementById('Titulo').style.display = "none";
+                            document.getElementById('supervisor').style.display = "none";
+                            document.getElementById('Descricao').style.display = "none";
+                        }
 
 
-                   
+                        document.getElementById("btnModalSubmissao").click();
 
+                    },
+                    error: function () { alert('A error'); }
+                        });
+                    };
+                e.preventDefault();
+            </script>
+<script>
 
-                </script>
+                 $(document).ready(function () {
 
-            }
+                     $('#StartDateTime').bootstrapmaterialdatepicker({ format: 'yyyy/mm/dd hh:mm', mindate: new date() });
+                     $('#EndDateTime').bootstrapmaterialdatepicker({ format: 'yyyy/mm/dd hh:mm', mindate: new date() }).on('change', function (e, date) {
+                         $('#startdatetime').bootstrapmaterialdatepicker('setmindate', date);
+                     });
+
+                     $.material.init()
+                 });
+
+</script>
+        }
 
 

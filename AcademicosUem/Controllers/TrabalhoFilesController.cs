@@ -21,6 +21,9 @@ namespace AcademicosUem.Controllers
         [Authorize]
         public ActionResult Dashboard()
         {
+             ViewBag.CatFilesID = new SelectList(db.catFiles, "Id", "designacao");
+            ViewBag.ApplicationUserID = new SelectList(db.Users, "Id", "username");
+            ViewBag.DocentesID = new SelectList(db.Docente, "Id", "nome");
             string[] userRoles = Roles.GetRolesForUser(User.Identity.Name);
             for (var i = 0; i < userRoles.Length; i++)
             { }
@@ -37,7 +40,7 @@ namespace AcademicosUem.Controllers
             }
             if (Roles.IsUserInRole("CC"))
             {
-                return View("dashboard", db.TrabalhoFiles.Where(t => t.CatFiles.Designacao.Equals("Tese")));
+                return View("dashboard", db.TrabalhoFiles.Where(t => t.CatFiles.Designacao.Equals("Tese") && t.EstadoTrabalhoFile.Designacao == "Aprovado"));
             }
             else {
                 return Redirect("/Account/Login"); }
@@ -74,7 +77,8 @@ namespace AcademicosUem.Controllers
                 {
                     return HttpNotFound();
                 }
-            
+            ViewBag.CatFilesID = new SelectList(db.catFiles, "Id", "designacao");
+            ViewBag.DocentesID = new SelectList(db.Docente, "Id", "nome");
             trabalhoFiles.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(a=>a.Designacao == "Aprovado").FirstOrDefault().Id;
             db.Entry(trabalhoFiles).State = EntityState.Modified;
             db.SaveChanges();
@@ -106,6 +110,7 @@ namespace AcademicosUem.Controllers
         // GET: TrabalhoFiles/Create
         public ActionResult Create()
         {
+           
             ViewBag.CatFilesID = new SelectList(db.catFiles, "Id", "Designacao");
             ViewBag.TrabalhoID = new SelectList(db.Trabalho, "Id", "Titulo");
             return View();
@@ -123,12 +128,12 @@ namespace AcademicosUem.Controllers
             {
                 db.TrabalhoFiles.Add(trabalhoFiles);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("/trabalhofiles/dashboard");
             }
 
             ViewBag.CatFilesID = new SelectList(db.catFiles, "Id", "Designacao", trabalhoFiles.CatFilesID);
             ViewBag.TrabalhoID = new SelectList(db.Trabalho, "Id", "Titulo", trabalhoFiles.TrabalhoID);
-            return View(trabalhoFiles);
+            return View("/trabalhofiles/dashboard");
         }
 
         // GET: TrabalhoFiles/Edit/5

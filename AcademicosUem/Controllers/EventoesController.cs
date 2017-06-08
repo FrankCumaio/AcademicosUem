@@ -48,19 +48,27 @@ namespace AcademicosUem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,StartDateTime,EndDateTime,Local,Agenda,Telefone,Email,Website,IsPublished,IsPublic,publishDate,TrabalhoID,EventoCategoriaID")] Evento evento)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Create(Evento evento)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
+            evento.publishDate = DateTime.Today;
+            evento.StartDateTime = DateTime.Parse(evento.StartDateTime.ToString());
+            evento.EndDateTime = DateTime.Parse(evento.StartDateTime.ToString());
+            evento.EventoCategoriaID = db.EventoCategoria.Where(e => e.descricao == "Defesa").FirstOrDefault().Id;
+                evento.IsPublic = true;
+            evento.IsPublished = true;
+
                 db.Evento.Add(evento);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                return Json(evento);
+            //}
 
             ViewBag.EventoCategoriaID = new SelectList(db.EventoCategoria, "Id", "descricao", evento.EventoCategoriaID);
             ViewBag.TrabalhoID = new SelectList(db.Trabalho, "Id", "Titulo", evento.TrabalhoID);
-            return View(evento);
+            return Json(evento);
+
         }
 
         // GET: Eventoes/Edit/5

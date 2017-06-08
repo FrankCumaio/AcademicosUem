@@ -202,6 +202,14 @@
     <Compile Include="Migrations\201705181817488_init1.Designer.cs">
       <DependentUpon>201705181817488_init1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706082239385_init2.cs" />
+    <Compile Include="Migrations\201706082239385_init2.Designer.cs">
+      <DependentUpon>201706082239385_init2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706082241153_init3.cs" />
+    <Compile Include="Migrations\201706082241153_init3.Designer.cs">
+      <DependentUpon>201706082241153_init3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\catFiles.cs" />
@@ -444,6 +452,7 @@
     <Content Include="Content\assetsFront\vendor\slider\home.js" />
     <Content Include="Content\assetsFront\vendor\slider\js\jquery.nivo.slider.js" />
     <Content Include="Content\assets\css\alpha.min.css" />
+    <Content Include="Content\assets\css\bootstrap-material-datetimepicker.css" />
     <Content Include="Content\assets\css\custom.css" />
     <Content Include="Content\assets\images\card-image.jpg" />
     <Content Include="Content\assets\images\card-image2.jpg" />
@@ -483,6 +492,7 @@
     <Content Include="Content\assets\images\zoom\small\image3.jpg" />
     <Content Include="Content\assets\images\zoom\small\image4.jpg" />
     <Content Include="Content\assets\js\alpha.min.js" />
+    <Content Include="Content\assets\js\bootstrap-material-datetimepicker.js" />
     <Content Include="Content\assets\js\pages\calendar.js" />
     <Content Include="Content\assets\js\pages\charts.js" />
     <Content Include="Content\assets\js\pages\coming-soon.js" />
@@ -896,6 +906,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705181817488_init1.resx">
       <DependentUpon>201705181817488_init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706082239385_init2.resx">
+      <DependentUpon>201706082239385_init2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706082241153_init3.resx">
+      <DependentUpon>201706082241153_init3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
