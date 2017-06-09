@@ -40,7 +40,39 @@ namespace AcademicosUem.Controllers
             }
             if (Roles.IsUserInRole("CC"))
             {
-                return View("dashboard", db.TrabalhoFiles.Where(t => t.CatFiles.Designacao.Equals("Tese") && t.EstadoTrabalhoFile.Designacao == "Aprovado"));
+                List<TrabalhoFiles> lst = new List<TrabalhoFiles>();
+                var query = from o in db.TrabalhoFiles
+                            join c in db.EstadosDoTrabalho on o.TrabalhoID equals c.TrabalhoID where c.EstadoTrabalhoID == 3 && o.CatFiles.Designacao =="Tese" && c.isActual==true
+                            select new
+                            {
+                                TrabalhoFilesId = o.Id,
+                                Path = o.Path,
+                                TrabalhoID = o.TrabalhoID,
+                                Trabalho = o.Trabalho,
+                                CatFilesID = o.CatFilesID,
+                                CatFiles = o.CatFiles,
+                                EstadoTrabalhoFileID = o.EstadoTrabalhoFileID,
+                                EstadoTrabalhoFile = o.EstadoTrabalhoFile,
+                                Data = o.Data,
+                            };
+                foreach (var item in query)
+                {
+                    var trabalhoFiles = new TrabalhoFiles()
+                    {
+                        Id = item.TrabalhoFilesId,
+                        Path = item.Path,
+                        TrabalhoID = item.TrabalhoID,
+                        Trabalho = item.Trabalho,
+                        CatFilesID = item.CatFilesID,
+                        CatFiles = item.CatFiles,
+                        EstadoTrabalhoFileID = item.EstadoTrabalhoFileID,
+                        EstadoTrabalhoFile = item.EstadoTrabalhoFile,
+                        Data = item.Data,
+                    };
+                    lst.Add(trabalhoFiles);
+                }
+                    
+                    return View("dashboard",lst);
             }
             else {
                 return Redirect("/Account/Login"); }

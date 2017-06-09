@@ -79,6 +79,7 @@ namespace AcademicosUem.Controllers
             int trabID = new int();
             var last_insert_id = "";
             int fileID = new int();
+            EstadosDoTrabalho estadoTrabalho = new EstadosDoTrabalho();
             TrabalhoFiles files = new TrabalhoFiles();
             DocenteAssociado docentes = new DocenteAssociado();
             string id = User.Identity.GetUserId();
@@ -87,9 +88,6 @@ namespace AcademicosUem.Controllers
             {
                 trabID = db.Trabalho.Where(t => t.ApplicationUserID == id).FirstOrDefault().Id;
                
-               
-                 last_insert_id = files.Id + "Protocolo.pdf";
-                files.Path = last_insert_id;
                 files.TrabalhoID = trabID;
                 if (Roles.IsUserInRole("Estudante"))
                 {
@@ -97,11 +95,16 @@ namespace AcademicosUem.Controllers
                     if (db.catFiles.Where(c => c.Id == CatFilesID).FirstOrDefault().Designacao == "Tese")
                     {
                         files.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(u => u.Designacao.Equals("Aprovado", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
-
+                        estadoTrabalho.TrabalhoID = files.TrabalhoID;
+                        estadoTrabalho.EstadoTrabalhoID = db.EstadoTrabalho.Where(e => e.Designacao.Equals("Tese Submetida", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+                        estadoTrabalho.isActual = true;
                     }
                     else
                     {
                         files.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(u => u.Designacao.Equals("Pendente", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+                        estadoTrabalho.TrabalhoID = files.TrabalhoID;
+                        estadoTrabalho.EstadoTrabalhoID = db.EstadoTrabalho.Where(e => e.Designacao.Equals("Pendente", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+                        estadoTrabalho.isActual = true;
 
                     }
                 }
@@ -110,19 +113,20 @@ namespace AcademicosUem.Controllers
                     files.CatFilesID = db.catFiles.Where(u => u.Designacao.Equals("Protocolo", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
 
                 }
-                if (ficheiro != null && ficheiro.ContentLength > 0)
-                {
-                    // extract only the filename
-                     last_insert_id = files.Id + "Protocolo.pdf";
-                    
-                    var fileName = Path.GetFileName(ficheiro.FileName);
-                    Debug.WriteLine(fileName);
-                    // store the file inside ~/App_Data/uploads folder
-                    var path = Path.Combine(Server.MapPath("~/uploads"), last_insert_id);
-                    ficheiro.SaveAs(path);
-                }
+                
                 db.TrabalhoFiles.Add(files);
                 db.SaveChanges();
+                int estadojobcount = db.EstadosDoTrabalho.Where(e => e.TrabalhoID == files.TrabalhoID && e.isActual==true).Count();
+                for (int i=0; i < estadojobcount; i++)
+                {
+                    EstadosDoTrabalho oldActual = db.EstadosDoTrabalho.Where(o=>o.TrabalhoID ==files.TrabalhoID && o.isActual == true).FirstOrDefault();
+                    oldActual.isActual = false;
+                    db.Entry(oldActual).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                db.EstadosDoTrabalho.Add(estadoTrabalho);
+                db.SaveChanges();
+
             }
             else
             {
@@ -146,12 +150,16 @@ namespace AcademicosUem.Controllers
                         if (db.catFiles.Where(c => c.Id == CatFilesID).FirstOrDefault().Designacao == "Tese")
                         {
                             files.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(u => u.Designacao.Equals("Aprovado", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
-
+                            estadoTrabalho.TrabalhoID = trabalho.Id;
+                            estadoTrabalho.EstadoTrabalhoID = db.EstadoTrabalho.Where(e => e.Designacao.Equals("Tese Submetida", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+                            estadoTrabalho.isActual = true;
                         }
                         else
                         {
                             files.EstadoTrabalhoFileID = db.EstadoTrabalhoFile.Where(u => u.Designacao.Equals("Pendente", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
-
+                            estadoTrabalho.TrabalhoID = trabalho.Id;
+                            estadoTrabalho.EstadoTrabalhoID = db.EstadoTrabalho.Where(e => e.Designacao.Equals("Pendente", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+                            estadoTrabalho.isActual = true;
                         }
                     }
                     else
@@ -159,17 +167,7 @@ namespace AcademicosUem.Controllers
                         files.CatFilesID = db.catFiles.Where(u => u.Designacao.Equals("Protocolo", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
 
                     }
-                    if (ficheiro != null && ficheiro.ContentLength > 0)
-                    {
-                        // extract only the filename
-                        last_insert_id = fileID.ToString() + "Protocolo.pdf";
-                        files.Path = last_insert_id;
-                        var fileName = Path.GetFileName(ficheiro.FileName);
-                        Debug.WriteLine(fileName);
-                        // store the file inside ~/App_Data/uploads folder
-                        var path = Path.Combine(Server.MapPath("~/uploads"), files.Path);
-                        ficheiro.SaveAs(path);
-                    }
+
                     db.TrabalhoFiles.Add(files);
 
                     //Associacao do supervisor
@@ -177,12 +175,34 @@ namespace AcademicosUem.Controllers
                     docentes.FuncaoID = db.Funcao.Where(u => u.Designacao.Equals("Supervisor", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
                     docentes.TrabalhoID = trabalho.Id;
                     db.DocenteAssociado.Add(docentes);
+                    db.EstadosDoTrabalho.Add(estadoTrabalho);
                     db.SaveChanges();
                     fileID = files.Id;
+                    if (ficheiro != null && ficheiro.ContentLength > 0)
+                    {
+                        // extract only the filename
+                        last_insert_id = files.Id + files.CatFiles.Designacao + ".pdf";
+                        var fileName = Path.GetFileName(ficheiro.FileName);
+                        Debug.WriteLine(fileName);
+                        // store the file inside ~/App_Data/uploads folder
+                        var path = Path.Combine(Server.MapPath("~/uploads"), last_insert_id);
+                        ficheiro.SaveAs(path);
+                    }
 
                     return RedirectToAction("dashboard", "trabalhofiles");
                 }
 
+            }
+
+            if (ficheiro != null && ficheiro.ContentLength > 0)
+            {
+                // extract only the filename
+                last_insert_id = files.Id + files.CatFiles.Designacao+".pdf";
+                var fileName = Path.GetFileName(ficheiro.FileName);
+                Debug.WriteLine(fileName);
+                // store the file inside ~/App_Data/uploads folder
+                var path = Path.Combine(Server.MapPath("~/uploads"), last_insert_id);
+                ficheiro.SaveAs(path);
             }
 
 

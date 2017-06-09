@@ -17,7 +17,7 @@ namespace AcademicosUem.Controllers
         // GET: Eventoes
         public ActionResult Index()
         {
-            var evento = db.Evento.Include(e => e.EventoCategoria).Include(e => e.Trabalho);
+            var evento = db.Evento.Where(e=>e.IsPublished==true).Include(e => e.EventoCategoria).Include(e => e.Trabalho);
             return View(evento.ToList());
         }
 
@@ -53,6 +53,9 @@ namespace AcademicosUem.Controllers
         {
             //if (ModelState.IsValid)
             //{
+            EstadosDoTrabalho estadoTrabalho = new EstadosDoTrabalho();
+
+
             evento.publishDate = DateTime.Today;
             evento.StartDateTime = DateTime.Parse(evento.StartDateTime.ToString());
             evento.EndDateTime = DateTime.Parse(evento.StartDateTime.ToString());
@@ -62,7 +65,22 @@ namespace AcademicosUem.Controllers
 
                 db.Evento.Add(evento);
                 db.SaveChanges();
-                return Json(evento);
+
+            estadoTrabalho.TrabalhoID = evento.TrabalhoID;
+            estadoTrabalho.EstadoTrabalhoID = db.EstadoTrabalho.Where(e => e.Designacao.Equals("Defesa Marcada", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+            estadoTrabalho.isActual = true;
+
+            int estadojobcount = db.EstadosDoTrabalho.Where(e => e.TrabalhoID == evento.TrabalhoID && e.isActual == true).Count();
+            for (int i = 0; i < estadojobcount; i++)
+            {
+                EstadosDoTrabalho oldActual = db.EstadosDoTrabalho.Where(o => o.TrabalhoID == evento.TrabalhoID && o.isActual == true).FirstOrDefault();
+                oldActual.isActual = false;
+                db.Entry(oldActual).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            db.EstadosDoTrabalho.Add(estadoTrabalho);
+            db.SaveChanges();
+            return Json(evento);
             //}
 
             ViewBag.EventoCategoriaID = new SelectList(db.EventoCategoria, "Id", "descricao", evento.EventoCategoriaID);
@@ -71,6 +89,34 @@ namespace AcademicosUem.Controllers
 
         }
 
+        public JsonResult EfectivarDefesa(int TrabID)
+        {
+            EstadosDoTrabalho estadoTrabalho = new EstadosDoTrabalho();
+
+            estadoTrabalho.TrabalhoID = TrabID;
+            estadoTrabalho.EstadoTrabalhoID = db.EstadoTrabalho.Where(e => e.Designacao.Equals("Publicado", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault().Id;
+            estadoTrabalho.isActual = true;
+
+            int estadojobcount = db.EstadosDoTrabalho.Where(e => e.TrabalhoID == TrabID && e.isActual == true).Count();
+            for (int i = 0; i < estadojobcount; i++)
+            {
+                EstadosDoTrabalho oldActual = db.EstadosDoTrabalho.Where(o => o.TrabalhoID == TrabID && o.isActual == true).FirstOrDefault();
+                oldActual.isActual = false;
+                db.Entry(oldActual).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            int oldeventocount = db.Evento.Where(e => e.IsPublished == true && e.TrabalhoID == TrabID).Count();
+            for (int i = 0; i < oldeventocount; i++)
+            {
+                Evento oldEvento = db.Evento.Where(e => e.IsPublished == true && e.TrabalhoID == TrabID).FirstOrDefault();
+                oldEvento.IsPublished = false;
+                db.Entry(oldEvento).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            db.EstadosDoTrabalho.Add(estadoTrabalho);
+            db.SaveChanges();
+            return Json("Defesa Efectivada");
+        }
         // GET: Eventoes/Edit/5
         public ActionResult Edit(int? id)
         {

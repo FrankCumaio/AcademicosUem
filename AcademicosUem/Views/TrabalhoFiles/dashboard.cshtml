@@ -36,7 +36,7 @@
                 <span class="card-title"><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</span>
 }
                 <hr />
-                <a id="trabs" value="1">@item.TrabalhoID</a>
+                <a id="trabs(@item.TrabalhoID)" value="1">@item.TrabalhoID</a>
             <p><b>Tipo de documento:</b> @Html.DisplayFor(modelItem => item.CatFiles.Designacao)</p>
             <p><b>Supervisor:</b> @Html.DisplayFor(modelItem => item.Data)</p>
             <p><b>Nivel Academico: </b>@Html.DisplayFor(modelItem => item.Trabalho.Grau_Academico)</p>
@@ -47,26 +47,29 @@
         {
 
             <div class="card-action">
-                <a id="@(Html.DisplayFor(modelItem => item.Id))" class="btnler">Ler Documento</a>
-                <a href="#@(Html.DisplayFor(modelItem => item.Id))">Alterar Documento</a>
+                <button class="btn btn-primary btnler" id="@(Html.DisplayFor(modelItem => item.Id))" >Ler Documento</button>
+                <button class="btn btn-primary" href="#@(Html.DisplayFor(modelItem => item.Id))">Alterar Documento</button>
             </div>
 
         }
                     <div class="" id="frame@(Html.DisplayFor(modelItem => item.Id))" style="text-align:center;display:none">
-                        <iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id))Protocolo.pdf" width='900' height='1024' allowfullscreen webkitallowfullscreen></iframe>
+                        <iframe src="/ViewerJS/#../uploads/@(Html.DisplayFor(modelItem => item.Id))@(Html.DisplayFor(modelItem => item.CatFiles.Designacao)).pdf" width='900' height='1024' allowfullscreen webkitallowfullscreen></iframe>
                     </div>
         @if (Roles.IsUserInRole("RA"))
                 {
             <div class="card-action">
-                <a id="@(Html.DisplayFor(modelItem => item.Id))" class="btnler">Ler Documento</a>
-                <a href="/trabalhofiles/AprovarDoc/@item.Id">Aprovar Documento</a>
-                <a href="#">Reprovar Documento</a>
+                <button class="btn btn-primary btnler" id="@(Html.DisplayFor(modelItem => item.Id))" >Ler Documento</button>
+                <a class="btn btn-primary" href="/trabalhofiles/AprovarDoc/@item.Id">Aprovar Documento</a>
+                <button class="btn btn-primary" href="#">Reprovar Documento</button>
             </div>
         }
         @if (Roles.IsUserInRole("CC"))
                 {
             <div class="card-action">
-                <a class="modal-trigger" href="#modalEvento">Marcar Defesa</a>
+                <button  class="modal-trigger btn btn-primary" href="#modalEvento"  id="idMarcar" value="@item.TrabalhoID" >Marcar Defesa</button>
+                <button class="btn btn-primary btnler" id="@(Html.DisplayFor(modelItem => item.Id))">Ler Documento</button>
+
+                <a></a>
             </div>
         }
         </li>
@@ -177,13 +180,20 @@
 
         @section Scripts {
 <script>
+    var trabID;
+    $('#idMarcar').on('click', function () {
+
+        trabID =$(this).val();
+    });
+            </script>
+            <script>
     $('#btnEvento').on('click', function () {
 
-        alert(document.getElementById("trabs").text);
+        alert(trabID);
         var evento = {
             StartDateTime: document.getElementById("StartDateTime").value,
             EndtDateTime: document.getElementById("EndDateTime").value,
-            TrabalhoID: document.getElementById("trabs").text,
+            TrabalhoID: trabID,
             Local: document.getElementById("Local").value,
             Telefone: document.getElementById("Telefone").value,
             Email: document.getElementById("Email").value,
@@ -199,8 +209,9 @@
             url: '@Url.Action("Create", "Eventoes")',
             data: evento,
             dataType: "json",
-            success: function (recData) {
-                alert(recdata)
+                success: function (evento) {
+                    alert(evento)
+                location.href = '/trabalhofiles/dashboard'
             },
             error: function () { alert('A error'); }
         });
@@ -242,15 +253,12 @@
                 e.preventDefault();
             </script>
 <script>
+                $(document).ready(function () {
+                    
+                    $('#StartDateTime').bootstrapMaterialDatePicker({ format: 'YYYY/MM/DD HH:mm', minDate: new Date() });
+                    $('#EndDateTime').bootstrapMaterialDatePicker({ format: 'YYYY/MM/DD HH:mm', minDate: new Date() });
 
-                 $(document).ready(function () {
-
-                     $('#StartDateTime').bootstrapmaterialdatepicker({ format: 'yyyy/mm/dd hh:mm', mindate: new date() });
-                     $('#EndDateTime').bootstrapmaterialdatepicker({ format: 'yyyy/mm/dd hh:mm', mindate: new date() }).on('change', function (e, date) {
-                         $('#startdatetime').bootstrapmaterialdatepicker('setmindate', date);
-                     });
-
-                     $.material.init()
+                    $.material.init()
                  });
 
 </script>

@@ -24,8 +24,8 @@
             <p>
                 <span class="card-title"><b>Autor: </b>@Html.DisplayFor(modelItem => item.Trabalho.ApplicationUser.UserName)</span>
                 <hr />
-            <p><b>Data:</b> @Html.DisplayFor(modelItem => item.StartDateTime)</p>
-            <p><b>Hora:</b> @Html.DisplayFor(modelItem => item.StartDateTime)</p>
+            <p><b>Data:</b> @item.StartDateTime.ToShortDateString()</p>
+            <p><b>Hora:</b> @Html.DisplayFor(modelItem => item.StartDateTime.TimeOfDay)</p>
             <p><b>Local: </b>@Html.DisplayFor(modelItem => item.Local)</p>
             <p><b>Email:</b>@Html.DisplayFor(modelItem => item.Email)</p>
             <p><b>Cell:</b>@Html.DisplayFor(modelItem => item.Telefone)</p>
@@ -33,8 +33,33 @@
         </div>
 
             <div class="card-action">
-                <a href="/trabalhofiles/AprovarDoc/@item.Id">Efetivar Defesa</a>
-                <a href="#">Adiar</a>
+                <button class=" btn btn-primary" href="#modalEvento" id="idEfectivar" value="@item.TrabalhoID">Efectivar Defesa</button>
+
+                <a class="btn btn-primary" href="#">Adiar</a>
             </div>
 </div>
         }
+@section Scripts {
+<script>
+    $('#idEfectivar').on('click', function () {
+       
+        var trabID = {
+            trabID: $(this).val()
+        };
+        
+        alert(JSON.stringify(trabID));
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("EfectivarDefesa", "Eventoes")',
+            data: trabID,
+            dataType: "json",
+                success: function (result) {
+                    alert(result)
+                location.href = '/trabalhofiles/dashboard'
+            },
+            error: function () { alert('A error'); }
+        });
+
+    });
+</script>
+    }
